@@ -21,8 +21,8 @@
 <meta name="twitter:site" content="@kapitaresearch">
 <meta name="twitter:image" content="https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/og.jpg">
 <link rel="icon" href="assets/img/logo-navy.png" type="image/png">
-<link rel="preload" href="assets/fonts/noto-naskh-arabic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/ibm-plex-sans-arabic-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lyon-arabic-text-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lyon-arabic-text-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/scene-1200.webp" as="image" fetchpriority="high">
 <script>
   document.documentElement.classList.add('js');
@@ -35,10 +35,9 @@
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-900.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
   @font-face{font-family:'Newsreader';src:url('assets/fonts/newsreader.woff2') format('woff2');font-weight:300 600;font-style:normal;font-display:swap}
-  @font-face{font-family:'Newsreader';src:url('assets/fonts/newsreader-italic.woff2') format('woff2');font-weight:300 600;font-style:italic;font-display:swap}
-  @font-face{font-family:'Noto Naskh Arabic';src:url('assets/fonts/noto-naskh-arabic.woff2') format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
-  @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/fonts/ibm-plex-sans-arabic-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-  @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/fonts/ibm-plex-sans-arabic-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Lyon Arabic Text';src:url('assets/fonts/lyon-arabic-text-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Lyon Arabic Text';src:url('assets/fonts/lyon-arabic-text-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+  @font-face{font-family:'Lyon Arabic Text';src:url('assets/fonts/lyon-arabic-text-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
   /* ============ tokens ============ */
   :root{
     --navy:#1A284A; --blue:#2352FF; --red:#EC4136; --amber:#FAAD40;
@@ -65,8 +64,8 @@
   /* Arabic edition: Arabic faces for text, Gotham kept for figures; no tracking, no italics, taller lines */
   :lang(ar){letter-spacing:0!important}
   :root[lang="ar"]{
-    --sans:'IBM Plex Sans Arabic','Gotham',Tahoma,sans-serif;
-    --serif:'Noto Naskh Arabic','Newsreader','IBM Plex Sans Arabic',Tahoma,serif;
+    --sans:'Lyon Arabic Text','Gotham',Tahoma,sans-serif;
+    --serif:'Lyon Arabic Text','Newsreader',Tahoma,serif;
     --body-lh:1.95; --head-track:0;
   }
 
