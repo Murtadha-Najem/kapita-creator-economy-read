@@ -1430,7 +1430,7 @@
       var cTop = parts[0].getBoundingClientRect().top - shift;
       var cBot = parts[parts.length - 1].getBoundingClientRect().bottom - shift;
       if (dir > 0 && cBot > vh - 16 && y < t[k] + (cBot - vh) + 1) { go(y + Math.min(cBot - vh + 40, (vh - top) * 0.85)); return true; }
-      if (dir < 0 && cTop < top - 1 && y > t[k] + 24) { go(Math.max(t[k], y - (vh - top) * 0.85)); return true; }
+      if (dir < 0 && cTop < top - 1 && y > t[k] + 1) { go(Math.max(t[k], y - Math.min(top + 24 - cTop, (vh - top) * 0.85))); return true; }
     }
     var to = null;
     /* within 24px counts as there already (the site header tucking away shifts every target a little) */
