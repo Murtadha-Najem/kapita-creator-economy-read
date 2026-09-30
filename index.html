@@ -164,6 +164,7 @@
     transform:scale(.975);transition:transform 1.2s var(--ease-out)}
   .layer.vignette.on .art{transform:none}
   .stage.paneling .caption{opacity:0}
+  .stage.paneling .layer.on{opacity:.13}   /* the chart on the stage, its place in the drawing faint behind it */
 
   /* ---- panels: a chart, diagram, quotation or figure takes the stage on wide screens ---- */
   .panel{position:absolute;z-index:3;top:50%;inset-inline-start:var(--panel-start,60%);inset-inline-end:var(--gutter);max-width:42rem;
@@ -622,7 +623,7 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، تحويل التأثير إلى صناعة، 2026، ص 9</p>
         </section>
         
-        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="شاشة رسمية بلا مشاهدين">
+        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="شاشة رسمية بلا مشاهدين">
           <p class="tag">انتشار الإنترنت في العراق</p>
           <h3>من خُمس السكان إلى أربعة أخماسهم</h3>
           
@@ -678,7 +679,7 @@
           <p>حين يصل فرد واحد بهاتفه إلى كل بيت، يصير صانع المحتوى أشبه بمحطة بث وطنية، ويصير الشراء امتداداً للعلاقة معه.</p>
         </section>
         
-        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="صانعة المحتوى على الشاشة">
+        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="صانعة المحتوى على الشاشة">
           <p class="tag">المستخدمون النشطون على المنصات</p>
           <h3>تيك توك يصل إلى الجميع تقريباً</h3>
           
@@ -719,7 +720,7 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 9 و14</p>
         </section>
         
-        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الدرجات الأربع">
+        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الدرجات الأربع">
           <p class="tag">المسار الرباعي</p>
           <h3>أربع خطوات من المشاهدة إلى الشراء</h3>
           
@@ -815,7 +816,7 @@
           <p>خلف الجوائز والمقاطع حساب بسيط: من يتحمل المخاطرة، ومن يربح في كل حلقة، وكم متجراً يعيد الطلب.</p>
         </section>
         
-        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الوجه على الكيس">
+        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الوجه على الكيس">
           <p class="tag">ثلاثة نماذج للدخول إلى السوق</p>
           <h3>لماذا تنجح الجودة والجوائز ويفشل الاسم المجرد</h3>
           
@@ -835,7 +836,7 @@
           
         </section>
         
-        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="من المصنع إلى الموزع">
+        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="من المصنع إلى الموزع">
           <p class="tag">القيمة لكل كرتون</p>
           <h3>من المصنع إلى الرف</h3>
           
@@ -867,7 +868,7 @@
           <p class="source"><span>المصدر</span>بيانات لوحة موردي جميلة، نيسان 2026، عبر التقرير، ص 32</p>
         </section>
         
-        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الجائزة من الربح">
+        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الجائزة من الربح">
           <p class="tag">اقتصاديات الجوائز</p>
           <h3>سيارتان في الشهر لا تُذكران في الحساب</h3>
           
@@ -896,7 +897,7 @@
           <p>تجاهل هذه القيود يرسم صورة مشوّهة عن طريقة عمل العلامات الخاصة للمبدعين العراقيين فعلاً.</p>
         </section>
         
-        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الختم والقفل">
+        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الختم والقفل">
           <p class="tag">القيود تتراكم</p>
           <h3>خمس خطوات في ثلاث سنوات</h3>
           
@@ -915,7 +916,7 @@
           
         </section>
         
-        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="المنصة نفسها">
+        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="المنصة نفسها">
           <p class="tag">جمهور تيك توك في العراق</p>
           <h3>الجمهور ينمو والحظر معلّق</h3>
           
@@ -952,7 +953,7 @@
           <p class="source"><span>المصدر</span>شفق نيوز، 2025، عبر التقرير، ص 44</p>
         </section>
         
-        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الوجه على الكيس يُنسخ">
+        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الوجه على الكيس يُنسخ">
           <p class="tag">التقليد</p>
           <h3>كل نجاح يجلب نسخته المزيفة</h3>
           
@@ -1212,7 +1213,10 @@
       if (!narrow && a.el._panel) return { kind: 'panel', panel: a.el._panel };
       return a.fbLayer ? { kind: L[a.fbLayer].kind, layer: a.fbLayer, zone: a.fbZone } : { kind: 'none' };
     }
-    return { kind: a.kind, layer: a.layer, zone: a.zone };
+    /* a chart or diagram beat on a drawing: on wide screens its chart sits on the stage, the drawing dimmed behind */
+    var s = { kind: a.kind, layer: a.layer, zone: a.zone };
+    if (!narrow && a.el._panel) s.panel = a.el._panel;
+    return s;
   }
   function readingLine(){
     var vh = window.innerHeight;
@@ -1264,7 +1268,7 @@
       if (layerId) { var Lr = L[layerId]; warm(Lr); Lr.el.classList.add('on'); Lr.el.removeAttribute('aria-hidden'); sharpen(Lr); }
       active = layerId;
     }
-    var want = S.kind === 'panel' ? S.panel : null;
+    var want = S.panel || null;
     if (want !== activePanel) {
       if (activePanel) activePanel.classList.remove('show');
       if (want) want.classList.add('show');
@@ -1389,7 +1393,7 @@
     anchors: function(){ return anchors.map(function(a){ return { y: a.y, label: a.label, kind: a.kind }; }); },
     stateAt: function(y){
       var s = stateAt(y), S = s.show;
-      return { kind: S.kind, layer: S.layer || null, panel: S.kind === 'panel',
+      return { kind: S.kind, layer: S.layer || null, panel: !!S.panel,
                x: s.cam ? s.cam.x : 0, y: s.cam ? s.cam.y : 0, w: s.cam ? s.cam.w : 0,
                maxW: S.layer && L[S.layer].kind === 'scene' ? L[S.layer].maxW : 0,
                srcW: S.layer ? L[S.layer].cfg.w : 0, label: s.near.label, nearKind: s.near.kind };
