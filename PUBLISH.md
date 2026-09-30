@@ -1,6 +1,6 @@
 # Publishing `iraq-creator-economy` on research.kapita.iq
 
-Built 2026-09-30 12:22 (PREVIEW build: rebuild with --site before publishing).
+Built 2026-09-30 12:37 (PREVIEW build: rebuild with --site before publishing).
 
 1. Copy this folder to `kt-kapita-research-website/public/read-content/iraq-creator-economy/` (index.html and assets/).
 2. `src/lib/standaloneReads.ts`: add `"iraq-creator-economy",` to STANDALONE_READS.
