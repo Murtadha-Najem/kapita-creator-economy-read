@@ -52,7 +52,7 @@
     --site-h:72px; --bar-h:52px;
     --col:34rem; --gutter:clamp(22px,6vw,104px);
     --ease-out:cubic-bezier(.16,1,.3,1);
-    --scene-filter:none; --scene-blend:darken;
+    --scene-filter:none; --scene-blend:normal;   /* drawings are re-inked on this exact paper, so no blending is needed */
     --body-lh:1.62; --head-track:-.022em;
     color-scheme:light;
   }
@@ -78,6 +78,11 @@
   *{margin:0;padding:0}
   html{-webkit-text-size-adjust:100%;scrollbar-color:var(--rule-strong) var(--paper)}
   @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  /* the block being read is at full ink; the ones around it wait, faint, so every scroll shows where the reading is */
+  .js #flow [data-kind]{transition:opacity .45s var(--ease-out)}
+  .js #flow [data-kind]:not(.here){opacity:.3}
+  @media print{.js #flow [data-kind]{opacity:1!important}}
+  @media (prefers-reduced-motion:reduce){.js #flow [data-kind]{transition:none}}
   body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-optical-sizing:auto;
     font-size:1.1875rem;line-height:var(--body-lh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   ::selection{background:rgba(250,173,64,.42);color:var(--ink)}
@@ -159,10 +164,11 @@
   .plane{position:absolute;left:0;top:0;transform-origin:0 0;
     filter:var(--scene-filter);mix-blend-mode:var(--scene-blend)}
   .plane > div{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat}
-  /* the street recedes; a second copy, masked to the subject, stays at full ink */
-  .plane .base{opacity:var(--dim,1)}
-  .plane .spot{-webkit-mask-image:radial-gradient(ellipse var(--sr,160%) calc(var(--sr,160%) * var(--ar,2.33)) at var(--sx,50%) var(--sy,50%),#000 45%,transparent 100%);
-    mask-image:radial-gradient(ellipse var(--sr,160%) calc(var(--sr,160%) * var(--ar,2.33)) at var(--sx,50%) var(--sy,50%),#000 45%,transparent 100%)}
+  /* the drawing recedes around the subject: a veil of paper the size of the stage, open over the subject.
+     One copy of the drawing, and nothing the size of the drawing is repainted while the camera moves
+     (the first version masked a second copy of the whole drawing and dropped to about 30 frames a second) */
+  .layer .veil{position:absolute;inset:0;pointer-events:none;opacity:0;
+    background:radial-gradient(circle var(--vr,400px) at var(--vx,50%) var(--vy,50%),transparent 45%,var(--paper) 100%)}
   .plane.moving{will-change:transform}
   /* a vignette: one drawing of one subject, framed in the open part of the stage */
   .layer.vignette .art{position:absolute;top:9%;bottom:9%;inset-inline-start:var(--panel-start,55%);inset-inline-end:var(--gutter);
@@ -258,7 +264,7 @@
   @keyframes drip{to{top:100%}}
 
   /* ---- chapters ---- */
-  .chapter{min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0;scroll-margin-top:var(--bar-h)}
+  .chapter{display:flex;flex-direction:column;justify-content:center;padding:16vh 0;scroll-margin-top:var(--bar-h)}
   .chapter .ch-num{margin:0;font:900 clamp(4.5rem,7vw,6.5rem)/.8 var(--num);color:var(--accent);letter-spacing:-.04em}
   .chapter h2{margin-top:1.75rem;font-weight:400;font-size:clamp(2.2rem,3.7vw,3.35rem);line-height:1.08;letter-spacing:var(--head-track);text-wrap:balance}
   [lang="ar"] .chapter h2,[lang="ar"] .beat h3{font-weight:700;line-height:1.35}
@@ -266,7 +272,9 @@
   [lang="ar"] .chapter p{line-height:1.9}
 
   /* ---- beats ---- */
-  .beat{min-height:72svh;display:flex;flex-direction:column;justify-content:center;padding:12vh 0}
+  /* a block is its content plus a fixed gap (30 Sep 2026: blocks of 72svh left half the page empty and a
+     beat seven wheel notches from the next); the next title comes up as the current block ends */
+  .beat{display:flex;flex-direction:column;justify-content:center;padding:10vh 0}
   .tag{display:flex;align-items:center;gap:14px;font:500 13px/1.3 var(--sans);color:var(--ink-soft);margin-bottom:2.25rem}
   .tag::after{content:'';flex:1;height:1px;background:var(--rule)}
   .beat h3{font-weight:400;font-size:clamp(1.9rem,2.9vw,2.6rem);line-height:1.1;letter-spacing:var(--head-track);text-wrap:balance}
@@ -498,7 +506,7 @@
     [lang="ar"] .h1-main{font-size:clamp(2.4rem,10vw,3.6rem)}
     .cue{display:none}
     .chapter{min-height:0;padding:12vh 0 6vh;scroll-margin-top:calc(var(--bar-h) + var(--stage-h))}
-    .beat{min-height:56svh;padding:8vh 0}
+    .beat{padding:8vh 0}
     .tag{margin-bottom:1.5rem}
     body{font-size:1.125rem}
     .four{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -595,7 +603,7 @@
   <article>
     <div class="story">
       <div class="stage" id="stage">
-        <div class="layer scene" data-id="v-world" role="img" aria-label="A line drawing read from right to left. On the right, a shuttered shop with a padlock, an old television facing empty chairs, young people looking at their phones, and a tea house. In the middle, a giant phone lying flat like land, a woman creator on its screen before a ring light, an audience holding up phones, rising steps, a government building, a bank and a courier on a motorbike. On the left, a belt carrying bags printed with a smiling face from the phone to a factory, a warehouse, a truck, stocked corner shops, a beauty counter and a prize car with a bow on a pedestal; at the far edge, an iron gate with a padlock and a large stamp."><div class="plane" style="--ar:2.3301"><div class="base"></div><div class="spot"></div></div></div>
+        <div class="layer scene" data-id="v-world" role="img" aria-label="A line drawing read from right to left. On the right, a shuttered shop with a padlock, an old television facing empty chairs, young people looking at their phones, and a tea house. In the middle, a giant phone lying flat like land, a woman creator on its screen before a ring light, an audience holding up phones, rising steps, a government building, a bank and a courier on a motorbike. On the left, a belt carrying bags printed with a smiling face from the phone to a factory, a warehouse, a truck, stocked corner shops, a beauty counter and a prize car with a bow on a pedestal; at the far edge, an iron gate with a padlock and a large stamp."><div class="plane" style="--ar:2.3301"><div class="base"></div></div><div class="veil"></div></div>
         
         <p class="caption" id="caption" aria-hidden="true">The phone became the land</p>
       </div>
@@ -1104,7 +1112,7 @@
   [].slice.call(stage.querySelectorAll('.layer')).forEach(function(el){
     var id = el.getAttribute('data-id'), c = CFG.visuals[id];
     L[id] = { id: id, el: el, kind: c.kind, cfg: c, ar: c.w / c.h, loaded: '', maxW: 1,
-              plane: el.querySelector('.plane'), art: el.querySelector('.art'),
+              plane: el.querySelector('.plane'), art: el.querySelector('.art'), veil: el.querySelector('.veil'),
               faces: [].slice.call(el.querySelectorAll('.plane > div, .art')) };
   });
   function setImg(Lr, url){
@@ -1256,8 +1264,8 @@
     var a0 = anchors[i], a1 = anchors[j];
     var span = a1.y - a0.y;
     var t = span > 0 ? Math.max(0, Math.min(1, (line - a0.y) / span)) : 0;
-    /* hold still while a beat is being read; move only in the gap between two beats */
-    var e = mqReduce.matches ? (t < 0.5 ? 0 : 1) : smooth(Math.max(0, Math.min(1, (t - 0.3) / 0.4)));
+    /* hold still only while a block sits at the reading line; move across the rest of the gap, so every scroll moves the drawing */
+    var e = mqReduce.matches ? (t < 0.5 ? 0 : 1) : smooth(Math.max(0, Math.min(1, (t - 0.15) / 0.7)));
     var S0 = shows(a0), S1 = shows(a1), near = e < 0.5 ? a0 : a1, S = e < 0.5 ? S0 : S1;
     var st = { near: near, show: S, next: e < 0.5 ? S1 : S0, cam: null };
     if (S.kind === 'scene') {
@@ -1268,7 +1276,7 @@
     return st;
   }
 
-  var active = null, activePanel = null, lastLabel = null, labelTimer = 0, current = null, reached = {}, hereId = '';
+  var active = null, activePanel = null, lastLabel = null, labelTimer = 0, current = null, reached = {}, hereId = '', hereEl = null;
   function render(){
     if (!anchors.length) return;
     var s = stateAt(window.pageYOffset), S = s.show;
@@ -1288,16 +1296,10 @@
     /* warm the next visual so it is there when the reader arrives */
     if (s.next && s.next.layer) warm(L[s.next.layer]);
 
-    if (s.cam && layerId) {
-      var p = L[layerId].plane, c = s.cam;
-      p.style.transform = 'translate3d(' + c.x.toFixed(1) + 'px,' + c.y.toFixed(1) + 'px,0) scale(' + (c.w / L[layerId].maxW).toFixed(5) + ')';
-      p.style.setProperty('--sx', c.sx.toFixed(2) + '%');
-      p.style.setProperty('--sy', c.sy.toFixed(2) + '%');
-      p.style.setProperty('--sr', c.sr.toFixed(2) + '%');
-      p.style.setProperty('--dim', c.dim.toFixed(3));
-    }
+    if (s.cam && layerId) aimCamera(layerId, s.cam);
 
     hereId = s.near.el.id || '';
+    if (s.near.el !== hereEl) { if (hereEl) hereEl.classList.remove('here'); hereEl = s.near.el; hereEl.classList.add('here'); }
     var label = layerId ? (s.near.kind === 'panel' ? '' : s.near.label) : '';
     if (label !== lastLabel) {
       lastLabel = label;
@@ -1344,14 +1346,54 @@
 
   var queued = false, idleTimer = 0;
   function onScroll(){
-    if (active && L[active].plane) L[active].plane.classList.add('moving');
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(function(){ Object.keys(L).forEach(function(id){ if (L[id].plane) L[id].plane.classList.remove('moving'); }); }, 220);
     if (queued) return;
     queued = true;
     requestAnimationFrame(function(){ queued = false; render(); chromeState(); });
   }
-  function refresh(){ measure(); render(); }
+  function refresh(){ camNow = null; measure(); render(); }
+
+  /* ---------- the camera follows the scroll, eased ----------
+     The scroll position sets where the camera should be; the camera glides there with a short time
+     constant, so a wheel notch or a jerky trackpad becomes one smooth move instead of a jump. The plane
+     keeps its own GPU layer while it moves and gives it back (to redraw sharp) once it has stopped. */
+  var camNow = null, camTarget = null, camLayer = null, camRaf = null, camLast = 0, camIdle = 0;
+  var CAM_TAU = 110, CAM_EPS = { x: 0.25, y: 0.25, w: 0.25, sx: 0.01, sy: 0.01, sr: 0.01, dim: 0.001 };
+  function applyCam(Lr, c){
+    Lr.plane.style.transform = 'translate3d(' + c.x.toFixed(2) + 'px,' + c.y.toFixed(2) + 'px,0) scale(' + (c.w / Lr.maxW).toFixed(5) + ')';
+    if (!Lr.veil) return;
+    /* the veil is repainted only when its opening moves by a whole pixel; opacity is compositor-only */
+    var v = [Math.round(c.x + c.sx / 100 * c.w), Math.round(c.y + c.sy / 100 * (c.w / Lr.ar)), Math.round(c.sr / 100 * c.w)];
+    var o = (1 - c.dim).toFixed(2), last = Lr.veilLast || [];
+    if (v[0] !== last[0] || v[1] !== last[1] || v[2] !== last[2]) {
+      Lr.veil.style.setProperty('--vx', v[0] + 'px'); Lr.veil.style.setProperty('--vy', v[1] + 'px'); Lr.veil.style.setProperty('--vr', v[2] + 'px');
+    }
+    if (o !== last[3]) Lr.veil.style.opacity = o;
+    Lr.veilLast = [v[0], v[1], v[2], o];
+  }
+  function camStep(now){
+    camRaf = null;
+    var Lr = L[camLayer]; if (!Lr || !camNow) return;
+    var dt = camLast ? Math.min(64, now - camLast) : 16; camLast = now;
+    var k = 1 - Math.exp(-dt / CAM_TAU), moving = false;
+    for (var key in CAM_EPS) {
+      var d = camTarget[key] - camNow[key];
+      if (Math.abs(d) > CAM_EPS[key]) { camNow[key] += d * k; moving = true; } else camNow[key] = camTarget[key];
+    }
+    applyCam(Lr, camNow);
+    if (moving) camRaf = requestAnimationFrame(camStep);
+    else { camLast = 0; clearTimeout(camIdle); camIdle = setTimeout(function(){ Lr.plane.classList.remove('moving'); }, 250); }
+  }
+  function aimCamera(layerId, c){
+    var Lr = L[layerId];
+    if (!camNow || camLayer !== layerId || mqReduce.matches) {
+      if (camLayer && camLayer !== layerId && L[camLayer]) L[camLayer].plane.classList.remove('moving');
+      camLayer = layerId; camNow = {}; for (var key in CAM_EPS) camNow[key] = c[key];
+      camTarget = c; applyCam(Lr, camNow); return;
+    }
+    camTarget = c;
+    clearTimeout(camIdle); Lr.plane.classList.add('moving');
+    if (!camRaf) { camLast = 0; camRaf = requestAnimationFrame(camStep); }
+  }
 
   window.addEventListener('scroll', onScroll, { passive: true });
   /* phones resize the window as the address bar slides; only a change of width moves the layout */
@@ -1391,10 +1433,56 @@
       doc.style.scrollBehavior = 'auto';
       window.scrollTo(0, Math.max(0, anchors[i].y - readingLine()));
       doc.style.scrollBehavior = '';
+      camNow = null; render();
       return;
     }
   }
   window.addEventListener('load', function(){ refresh(); landHash(); });
+
+  /* ---------- a soft landing, forward only ----------
+     While the reader scrolls, nothing moves the page. When they stop between two blocks, having gone
+     about a third of the way or more, the page finishes the move to the next block in the direction they
+     were going, in a short glide. It never pulls them back, and any new scroll, touch or key stops it. */
+  var lastY2 = window.pageYOffset, dir = 0, settleTimer = 0, glide = null;
+  function stopGlide(){ if (glide) { cancelAnimationFrame(glide); glide = null; doc.style.scrollBehavior = ''; } }
+  function contentEdge(el, bottom){
+    var kids = [].filter.call(el.children, function(c){ return c.offsetHeight > 1 && getComputedStyle(c).position !== 'absolute' && !c.classList.contains('cue'); });
+    if (!kids.length) return null;
+    return bottom ? kids[kids.length - 1].getBoundingClientRect().bottom : kids[0].getBoundingClientRect().top;
+  }
+  function settle(){
+    if (glide || mqReduce.matches || !anchors.length || menu.classList.contains('open')) return;
+    var y = window.pageYOffset, line = readingLine(), t = anchors.map(function(a){ return a.y - line; });
+    if (y <= t[0] + 2 || y >= t[t.length - 1] - 2) return;           /* before the first block or past the last: free */
+    var i = 0; while (i < t.length - 1 && t[i + 1] <= y) i++;
+    var f = (y - t[i]) / (t[i + 1] - t[i]), to = null;
+    if (f < 0.03 || f > 0.97) return;                                /* already there */
+    if (dir > 0 && f >= 0.3) {
+      var eb = contentEdge(anchors[i].el, true);                     /* still reading a long block: leave it */
+      if (eb !== null && eb > window.innerHeight - 8) return;
+      to = t[i + 1];
+    } else if (dir < 0 && f <= 0.7) {
+      var et = contentEdge(anchors[i + 1].el, false), top = narrow ? stage.getBoundingClientRect().bottom : bar.getBoundingClientRect().bottom;
+      if (et !== null && et < top + 8) return;
+      to = t[i];
+    }
+    if (to === null) return;
+    var from = y, d = to - from, dur = Math.min(650, 280 + Math.abs(d) * 0.7), t0 = performance.now();
+    doc.style.scrollBehavior = 'auto';
+    (function frame(now){
+      var p = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - p, 3);
+      window.scrollTo(0, from + d * e);
+      if (p < 1) glide = requestAnimationFrame(frame); else { glide = null; doc.style.scrollBehavior = ''; }
+    })(t0);
+  }
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    if (!glide) { if (y > lastY2 + 1) dir = 1; else if (y < lastY2 - 1) dir = -1; }
+    lastY2 = y;
+    clearTimeout(settleTimer);
+    if (!glide) settleTimer = setTimeout(settle, 170);
+  }, { passive: true });
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(ev){ window.addEventListener(ev, stopGlide, { passive: true }); });
 
   /* ---------- theme: light unless the reader chooses dark ---------- */
   var themeBtn = document.getElementById('theme');
