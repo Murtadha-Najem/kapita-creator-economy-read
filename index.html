@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="light">
+<html lang="ar" dir="rtl" data-theme="light" style="--accent-l:#EC4136;--num-l:#D6352B;--accent-d:#FF6F63">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -23,12 +23,12 @@
 <link rel="icon" href="assets/img/logo-navy.png" type="image/png">
 <link rel="preload" href="assets/fonts/lyon-arabic-text-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/lyon-arabic-text-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/img/scene-1200.webp" as="image" fetchpriority="high">
+<link rel="preload" href="assets/img/hero-800.webp" as="image" fetchpriority="high">
 <script>
   document.documentElement.classList.add('js');
   (function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وعلاماتهم", "description": "في العراق لم يعد المؤثر واجهة إعلانية، بل صار مؤسس علامة ومنافساً تجارياً مباشراً. قراءة تفاعلية في تقرير كابيتا البحثية عن صنّاع المحتوى وتطوير الأعمال.", "datePublished": "2026-04", "dateModified": "2026-09-29", "inLanguage": "ar", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy", "isBasedOn": "https://research.kapita.iq/publications/iraqi-creator-economy-report-2026-iraq-abu-jana"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وعلاماتهم", "description": "في العراق لم يعد المؤثر واجهة إعلانية، بل صار مؤسس علامة ومنافساً تجارياً مباشراً. قراءة تفاعلية في تقرير كابيتا البحثية عن صنّاع المحتوى وتطوير الأعمال.", "datePublished": "2026-04", "dateModified": "2026-09-30", "inLanguage": "ar", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy", "isBasedOn": "https://research.kapita.iq/publications/iraqi-creator-economy-report-2026-iraq-abu-jana"}</script>
 <style>
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
@@ -43,7 +43,8 @@
     --navy:#1A284A; --blue:#2352FF; --red:#EC4136; --amber:#FAAD40;
     --paper:#FBF4E6; --paper-deep:#F3EAD8; --chrome:#FFFFFF;
     --ink:#191713; --ink-2:#433D33; --ink-soft:#655F53; --rule:rgba(25,23,19,.13); --rule-strong:rgba(25,23,19,.28);
-    --data:#1A284A; --focus-num:#D6352B; --link:#2352FF;
+    --data:#1A284A; --link:#2352FF;
+    --accent:var(--accent-l,#EC4136); --focus-num:var(--num-l,#D6352B);
     --sans:'Gotham','Helvetica Neue',Arial,sans-serif;
     --serif:'Newsreader','Iowan Old Style','Palatino Linotype',Georgia,serif;
     --num:'Gotham','Helvetica Neue',Arial,sans-serif;
@@ -57,8 +58,10 @@
   :root[data-theme="dark"]{
     --paper:#15130F; --paper-deep:#0F0E0B; --chrome:#0E0D0B;
     --ink:#F1EADB; --ink-2:#D2C9B7; --ink-soft:#A39B8B; --rule:rgba(241,234,219,.13); --rule-strong:rgba(241,234,219,.3);
-    --data:#C3CFF2; --focus-num:#FF6F63; --link:#8FA6FF; --blue:#4F72FF;
-    --scene-filter:invert(1) grayscale(1) sepia(.12) brightness(.9); --scene-blend:lighten;
+    --data:#C3CFF2; --link:#8FA6FF; --blue:#4F72FF;
+    --accent:var(--accent-d,#FF6F63); --focus-num:var(--accent-d,#FF6F63);
+    /* drawings are re-inked on the page's paper; inverting and turning the hue back keeps their ink colour */
+    --scene-filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(1.05); --scene-blend:lighten;
     color-scheme:dark;
   }
   /* Arabic edition: Arabic faces for text, Gotham kept for figures; no tracking, no italics, taller lines */
@@ -129,13 +132,13 @@
   .chapters a .n{font-family:var(--num);font-weight:900;color:var(--rule-strong);transition:color .25s;font-variant-numeric:tabular-nums}
   .chapters a:hover{color:var(--ink)}
   .chapters a[aria-current="true"]{color:var(--ink);background:var(--paper-deep)}
-  .chapters a[aria-current="true"] .n{color:var(--red)}
+  .chapters a[aria-current="true"] .n{color:var(--accent)}
   .progress{position:absolute;inset-inline:0;bottom:-1px;height:2px;display:grid;grid-template-columns:repeat(var(--chapters,4),1fr);gap:3px}
   .progress i{display:block;background:var(--rule);overflow:hidden}
-  .progress i b{display:block;height:100%;background:var(--red);transform-origin:left center;transform:scaleX(0)}
+  .progress i b{display:block;height:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
   [dir="rtl"] .progress i b{transform-origin:right center}
   .bar-now{display:none;font:700 12.5px/1 var(--sans);color:var(--ink);white-space:nowrap}
-  .bar-now .n{font-family:var(--num);color:var(--red);margin-inline-end:6px}
+  .bar-now .n{font-family:var(--num);color:var(--accent);margin-inline-end:6px}
 
   /* ============ story: sticky stage under a flowing text column ============ */
   main{padding-top:calc(var(--site-h) + var(--bar-h))}
@@ -143,24 +146,33 @@
   .stage,.flow{grid-area:1/1}
   .stage{position:sticky;top:var(--bar-h);align-self:start;height:calc(100svh - var(--bar-h));
     overflow:hidden;background:var(--paper);z-index:1;isolation:isolate}
+  /* ---- layers: each drawing sits in its own layer; the stage crossfades between them ---- */
+  .layer{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s var(--ease-out),visibility 0s linear .55s}
+  .layer.on{opacity:1;visibility:visible;transition-delay:0s}
   .plane{position:absolute;left:0;top:0;transform-origin:0 0;
-    filter:var(--scene-filter);mix-blend-mode:var(--scene-blend);transition:opacity .6s var(--ease-out)}
+    filter:var(--scene-filter);mix-blend-mode:var(--scene-blend)}
   .plane > div{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat}
   /* the street recedes; a second copy, masked to the subject, stays at full ink */
   .plane .base{opacity:var(--dim,1)}
   .plane .spot{-webkit-mask-image:radial-gradient(ellipse var(--sr,160%) calc(var(--sr,160%) * var(--ar,2.33)) at var(--sx,50%) var(--sy,50%),#000 45%,transparent 100%);
     mask-image:radial-gradient(ellipse var(--sr,160%) calc(var(--sr,160%) * var(--ar,2.33)) at var(--sx,50%) var(--sy,50%),#000 45%,transparent 100%)}
   .plane.moving{will-change:transform}
-  .stage.charting .plane{opacity:.13}
-  .stage.charting .caption{opacity:0}
+  /* a vignette: one drawing of one subject, framed in the open part of the stage */
+  .layer.vignette .art{position:absolute;top:9%;bottom:9%;inset-inline-start:var(--panel-start,55%);inset-inline-end:var(--gutter);
+    background-position:center;background-repeat:no-repeat;background-size:contain;
+    filter:var(--scene-filter);mix-blend-mode:var(--scene-blend);
+    transform:scale(.975);transition:transform 1.2s var(--ease-out)}
+  .layer.vignette.on .art{transform:none}
+  .stage.paneling .caption{opacity:0}
 
-  /* ---- chart panels: on wide screens a chart beat takes over the stage ---- */
-  .panel{position:absolute;z-index:3;top:50%;inset-inline-start:var(--panel-start,60%);inset-inline-end:var(--gutter);max-width:40rem;
+  /* ---- panels: a chart, diagram, quotation or figure takes the stage on wide screens ---- */
+  .panel{position:absolute;z-index:3;top:50%;inset-inline-start:var(--panel-start,60%);inset-inline-end:var(--gutter);max-width:42rem;
     transform:translateY(-46%);opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .45s var(--ease-out),transform .6s var(--ease-out),visibility 0s linear .45s}
   .panel.show{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
   .panel-title{font:400 clamp(1.5rem,2.2vw,2rem)/1.2 var(--serif);letter-spacing:var(--head-track);color:var(--ink);margin-bottom:1.6rem;text-wrap:balance}
-  .panel .chart{margin:0}
+  [lang="ar"] .panel-title{font-weight:600;line-height:1.45}
+  .panel .viz{margin:0}
   .panel .legend{font-size:14px;margin-bottom:1.4rem}
   .panel .legend i{width:14px;height:14px}
   .panel .bars{gap:18px}
@@ -180,14 +192,24 @@
   .panel.show li:nth-child(4) .seg{transition-delay:.35s} .panel.show li:nth-child(4) .bv{transition-delay:.8s}
   .panel.show li:nth-child(5) .seg{transition-delay:.45s} .panel.show li:nth-child(5) .bv{transition-delay:.9s}
   .panel.show li:nth-child(n+6) .seg{transition-delay:.55s} .panel.show li:nth-child(n+6) .bv{transition-delay:1s}
-  @media (prefers-reduced-motion:reduce){
-    .panel,.panel .seg,.panel .bv,.plane{transition:none!important}
-    .panel .seg{transform:none}
+  /* a quotation set large */
+  .panel-quote .pull{margin:0;font-size:clamp(1.9rem,2.9vw,2.8rem);line-height:1.3;letter-spacing:var(--head-track);text-wrap:balance}
+  [lang="ar"] .panel-quote .pull{line-height:1.7;font-weight:600}
+  .panel-quote .pull::before{width:56px;height:3px;background:var(--accent);margin-bottom:1.6rem}
+  /* a figure set large */
+  .panel-figure .fig{margin:0}
+  .panel-figure .fig-v{font-size:clamp(5rem,9vw,9rem)}
+  .panel-figure .fig-v.long{font-size:clamp(3.4rem,5.6vw,5.6rem)}
+  .panel-figure .fig-l{margin-top:1.2rem;font-size:17px;max-width:34ch}
+  /* the text keeps each panel's content for screen readers and phones; wide screens see it on the stage */
+  @media (min-width:981px) and (min-height:521px){
+    .js .beat[data-panel="chart"] .tag,.js .beat[data-panel="diagram"] .tag{display:none}
+    .js .beat[data-panel="chart"] .viz,.js .beat[data-panel="diagram"] .viz,
+    .js .beat[data-panel="quote"] .pull,.js .beat[data-panel="figure"] .fig{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   }
-  /* the text column keeps each chart for screen readers; sighted readers see it on the stage */
-  @media (min-width:981px){
-    .js .beat[data-panel] .tag{display:none}
-    .js .beat[data-panel] .chart{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){
+    .panel,.panel *,.layer,.layer .art{transition:none!important}
+    .panel .seg,.panel .sf{transform:none!important}
   }
   /* paper wash on the text side, so the column always reads cleanly over the drawing */
   .stage::after{content:'';position:absolute;inset:0;pointer-events:none;
@@ -200,7 +222,7 @@
     padding:9px 14px 9px 12px;border-radius:999px;background:color-mix(in srgb,var(--paper) 88%,transparent);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     font:500 13px/1 var(--sans);color:var(--ink-2);transition:opacity .3s}
-  .caption::before{content:'';width:18px;height:1px;background:var(--red)}
+  .caption::before{content:'';width:18px;height:1px;background:var(--accent)}
 
   .flow{position:relative;z-index:2;padding:0 var(--gutter)}
   .flow > *{max-width:var(--col)}
@@ -229,7 +251,7 @@
 
   /* ---- chapters ---- */
   .chapter{min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0;scroll-margin-top:var(--bar-h)}
-  .chapter .ch-num{margin:0;font:900 clamp(4.5rem,7vw,6.5rem)/.8 var(--num);color:var(--red);letter-spacing:-.04em}
+  .chapter .ch-num{margin:0;font:900 clamp(4.5rem,7vw,6.5rem)/.8 var(--num);color:var(--accent);letter-spacing:-.04em}
   .chapter h2{margin-top:1.75rem;font-weight:400;font-size:clamp(2.2rem,3.7vw,3.35rem);line-height:1.08;letter-spacing:var(--head-track);text-wrap:balance}
   [lang="ar"] .chapter h2,[lang="ar"] .beat h3{font-weight:700;line-height:1.35}
   .chapter p{margin-top:1.25rem;font-size:1.25rem;line-height:1.55;color:var(--ink-2);text-wrap:pretty}
@@ -271,7 +293,7 @@
   .c-red{background:var(--red)} .c-blue{background:var(--blue)} .c-navy{background:var(--data)}
   .c-amber{background:var(--amber)} .c-grey{background:var(--rule-strong)}
   .seg.solid{background:var(--data)}
-  .seg.hi{background:var(--red)}
+  .seg.hi{background:var(--accent)}
   .seg.target{background:none;border:1.5px dashed var(--data);border-inline-start:0}
   .bv{position:absolute;top:50%;inset-inline-start:calc(var(--end) + 10px);transform:translateY(-50%);white-space:nowrap;
     font:700 13.5px/1 var(--num);color:var(--ink);font-variant-numeric:tabular-nums}
@@ -280,6 +302,105 @@
   .bv,.fig-v,.four dt,.bk{unicode-bidi:isolate}
   .chart figcaption{margin-top:1.1rem;font:400 13px/1.5 var(--sans);color:var(--ink-soft)}
   .chart figcaption b{font-weight:700;color:var(--ink-2)}
+
+  /* ---- every chart and diagram shares the caption and spacing ---- */
+  .viz.diagram{margin-top:2rem}
+  .viz figcaption{margin-top:1.1rem;font:400 13px/1.5 var(--sans);color:var(--ink-soft)}
+  .viz figcaption b{font-weight:700;color:var(--ink-2)}
+
+  /* ---- units: n of every 100 ---- */
+  .units{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:15rem}
+  .units i{display:block;aspect-ratio:1;border-radius:2px;background:var(--rule)}
+  .units i.on{background:var(--accent)}
+  .units-l{margin-top:1rem;font:500 14px/1.5 var(--sans);color:var(--ink-2);max-width:30ch}
+  .units-l b{font:900 1.6rem/1 var(--num);color:var(--focus-num);letter-spacing:-.02em;display:block;margin-bottom:.35rem}
+  .panel .units{max-width:22rem;gap:7px}
+  .panel .units i.on{transform:scale(0);transition:transform .5s var(--ease-out)}
+  .panel.show .units i.on{transform:none}
+  .panel .units-l b{font-size:2.6rem}
+
+  /* ---- share: a part of a whole ---- */
+  .shares{list-style:none;display:grid;gap:18px}
+  .shares li{display:grid;grid-template-columns:1fr;gap:8px}
+  .sk{font:500 13.5px/1.35 var(--sans);color:var(--ink-2)}
+  .st{position:relative;height:18px;background:var(--rule);border-radius:2px;overflow:hidden}
+  .sf{position:absolute;top:0;bottom:0;inset-inline-start:0;width:var(--w);background:var(--accent);border-radius:2px}
+  .sv{font:700 14px/1.3 var(--num);color:var(--ink)}
+  .sv small{font:400 13px/1.3 var(--sans);color:var(--ink-soft)}
+  .panel .st{height:30px}
+  .panel .sk{font-size:15px}
+  .panel .sv{font-size:22px}
+  .panel .sf{transform-origin:left center;transform:scaleX(0);transition:transform 1s var(--ease-out) .15s}
+  [dir="rtl"] .panel .sf{transform-origin:right center}
+  .panel.show .sf{transform:none}
+
+  /* ---- steps: a sequence ---- */
+  .steps{list-style:none;display:grid;gap:14px;counter-reset:s}
+  .steps li{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .steps .sn{grid-row:span 2;font:900 1.9rem/1 var(--num);color:var(--accent)}
+  .steps b{font:700 15px/1.35 var(--sans);color:var(--ink)}
+  .steps span:not(.sn){font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+  .panel .steps{grid-template-columns:repeat(2,minmax(13rem,1fr));gap:30px 36px}
+  .panel .steps li{border-bottom:0;border-top:2px solid var(--ink);padding:14px 0 0;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
+  .panel .steps .sn{font-size:2.6rem}
+  .panel .steps b{font-size:18px}
+  .panel .steps span:not(.sn){font-size:16.5px}
+  .panel.show .steps li{opacity:1;transform:none}
+  .panel.show .steps li:nth-child(2){transition-delay:.15s} .panel.show .steps li:nth-child(3){transition-delay:.3s}
+  .panel.show .steps li:nth-child(4){transition-delay:.45s} .panel.show .steps li:nth-child(5){transition-delay:.6s}
+
+  /* ---- chain: value moving along a line ---- */
+  .chain{list-style:none;display:grid;gap:0}
+  .chain .node{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:baseline;padding:10px 0}
+  .chain .nv{font:900 1.35rem/1.1 var(--num);color:var(--ink);font-variant-numeric:tabular-nums}
+  .chain .nl{font:500 13.5px/1.4 var(--sans);color:var(--ink-2)}
+  .chain .link{position:relative;padding-block:4px;padding-inline-start:26px;font:700 13px/1.3 var(--num);color:var(--accent);min-height:22px}
+  .chain .link::before{content:'';position:absolute;inset-inline-start:8px;top:0;bottom:0;width:2px;background:var(--accent)}
+  .chain .node:last-child .nv{color:var(--accent)}
+  .panel .chain{grid-auto-flow:column;grid-auto-columns:auto;grid-template-rows:auto;align-items:center;gap:0}
+  .panel .chain .node{grid-template-columns:1fr;row-gap:8px;padding:0;min-width:8.5rem}
+  .panel .chain .nv{font-size:2rem}
+  .panel .chain .nl{font-size:15px}
+  .panel .chain .link{padding:0 14px 26px;min-width:8rem;max-width:11rem;text-align:center;font-size:13.5px;line-height:1.35}
+  .panel .chain .link::before{inset-inline:6px;top:auto;bottom:12px;width:auto;height:2px}
+
+  /* ---- matrix: models compared ---- */
+  .matrix{width:100%;border-collapse:collapse;font:400 13.5px/1.45 var(--sans);color:var(--ink-2)}
+  .matrix th,.matrix td{padding:10px 8px;text-align:start;vertical-align:top;border-bottom:1px solid var(--rule)}
+  .matrix thead th{font-weight:700;font-size:12.5px;color:var(--ink-soft);border-bottom:2px solid var(--ink)}
+  .matrix tbody th{font-weight:700;color:var(--ink);white-space:normal}
+  .matrix tr.hi th,.matrix tr.hi td{color:var(--ink);background:color-mix(in srgb,var(--accent) 9%,transparent)}
+  .matrix tr.hi th{color:var(--accent)}
+  .panel .matrix{font-size:16px}
+  .panel .matrix thead th{font-size:14px}
+  .panel .matrix th,.panel .matrix td{padding:13px 10px}
+
+  /* ---- timeline: dated events on one rail ---- */
+  .timeline{list-style:none;position:relative;display:grid;gap:16px;padding-inline-start:22px}
+  .timeline::before{content:'';position:absolute;inset-inline-start:5px;top:6px;bottom:6px;width:2px;background:var(--rule-strong)}
+  .timeline li{position:relative;display:grid;gap:3px}
+  .timeline li::before{content:'';position:absolute;inset-inline-start:-22px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--ink-soft)}
+  .timeline li.hi::before{background:var(--accent);border-color:var(--accent)}
+  .timeline time{font:700 13px/1.3 var(--sans);color:var(--ink)}
+  .timeline li.hi time{color:var(--accent)}
+  .timeline span{font-size:15.5px;line-height:1.5;color:var(--ink-2)}
+  .panel .timeline{gap:22px}
+  .panel .timeline time{font-size:15px}
+  .panel .timeline span{font-size:17px}
+  .panel .timeline li{opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
+  .panel.show .timeline li{opacity:1;transform:none}
+  .panel.show .timeline li:nth-child(2){transition-delay:.12s} .panel.show .timeline li:nth-child(3){transition-delay:.24s}
+  .panel.show .timeline li:nth-child(4){transition-delay:.36s} .panel.show .timeline li:nth-child(5){transition-delay:.48s}
+  .panel.show .timeline li:nth-child(6){transition-delay:.6s}
+
+  /* ---- map: Iraq by governorate ---- */
+  .map{width:100%;max-width:26rem;height:auto;display:block}
+  .map path{fill:var(--paper-deep);stroke:var(--paper);stroke-width:2}
+  .map path.on{fill:color-mix(in srgb,var(--accent) calc(var(--s) * 100%),var(--paper-deep))}
+  .map text{font:700 34px/1 var(--sans);fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:var(--paper);stroke-width:9px;stroke-linejoin:round}
+  .map .mv{font-weight:900;fill:var(--ink)}
+  .panel .map{max-width:30rem;max-height:62vh}
+
 
   /* ============ close ============ */
   .close{position:relative;z-index:2;background:var(--paper);border-top:1px solid var(--rule);padding:16vh var(--gutter) 10vh}
@@ -358,6 +479,7 @@
     .story{display:block}
     .stage{height:var(--stage-h);z-index:3;border-bottom:1px solid var(--rule)}
     .panel{display:none}
+    .layer.vignette .art{inset:5% 6%}
     .stage::after,[dir="rtl"] .stage::after{background:linear-gradient(to top,color-mix(in srgb,var(--paper) 70%,transparent),transparent 34%)}
     .caption{inset-inline-end:auto;inset-inline-start:12px;bottom:12px;font-size:12px;padding:7px 11px 7px 9px}
     .flow > *{max-width:40rem}
@@ -448,46 +570,58 @@
         <li><a href="#chapter-1"><span class="n">1</span><span class="t">قبل</span></a></li>
         <li><a href="#chapter-2"><span class="n">2</span><span class="t">القناة</span></a></li>
         <li><a href="#chapter-3"><span class="n">3</span><span class="t">العلامة</span></a></li>
-        <li><a href="#chapter-4"><span class="n">4</span><span class="t">الحدود</span></a></li>
+        <li><a href="#chapter-4"><span class="n">4</span><span class="t">الحساب</span></a></li>
+        <li><a href="#chapter-5"><span class="n">5</span><span class="t">الحدود</span></a></li>
         
       </ol>
     </nav>
     <p class="bar-now" id="barNow" aria-live="polite"></p>
-    <div class="progress" style="--chapters:4" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+    <div class="progress" style="--chapters:5" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
   </div>
 </div>
 
 <main id="brief">
   <article>
     <div class="story">
-      <div class="stage" id="stage" role="img" aria-label="رسم خطي لحي في بغداد يُقرأ من اليمين إلى اليسار: إلى اليمين متجر علامة أجنبية مغلق وبرج اتصالات وشباب ينظرون إلى هواتفهم ومقهى شعبي، وفي الوسط صانعة محتوى تصوّر نفسها على سطح ومندوب توصيل وبقالة وبسطة بضائع مقلدة ومبنى حكومي ومصرف، وإلى اليسار متجر تجميل ومصنع وجبات خفيفة وشاحنات ومتجر مكدّس بالكراتين وتسليم سيارة جائزة وأبراج سكنية ومتجر إلكترونيات يبث مباشرة.">
-        <div class="plane" id="plane" style="--ar:2.3301"><div class="base"></div><div class="spot"></div></div>
-        <p class="caption" id="caption" aria-hidden="true">الحي</p>
+      <div class="stage" id="stage">
+        <div class="layer vignette" data-id="v-hero" role="img" aria-label="كيس وجبة خفيفة يحمل صورة وجه شاب مبتسم، وبجانبه هاتف على حامل ثلاثي يصوّره"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-shutter" role="img" aria-label="واجهة متجر مغلقة بباب حديدي منزل وقفل، وإطار ملصق فارغ بجانب الباب"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-phones" role="img" aria-label="مجموعة من الشباب والشابات على ناصية شارع، كل منهم ينظر إلى هاتفه"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-creator" role="img" aria-label="صانعة محتوى تجلس على سطح بيت وتصوّر نفسها بهاتف على حامل وضوء دائري، وبجانبها طرود الرعاة"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-courier" role="img" aria-label="مندوب توصيل على دراجة نارية يسلّم طرداً لامرأة عند باب بيتها وهي تمسك هاتفها"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-beauty" role="img" aria-label="مؤسسة علامة تجميل تقف خلف منضدة متجرها، ومنتجاتها على الرفوف، وزبونتان تنظران إليها"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-prizecar" role="img" aria-label="سيارة جديدة بعقدة شريط كبيرة يُسلَّم مفتاحها لفائز مبتسم، وحولهما حشد يصوّر بالهواتف"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-factory" role="img" aria-label="خط إنتاج في مصنع وجبات خفيفة، عاملان يعبئان الأكياس في كراتين، وكراتين مكدسة خلفهما"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-store" role="img" aria-label="متجر صغير مكدّس بكراتين الوجبات الخفيفة حتى السقف، وصاحبه على الهاتف، وطابور من الأطفال والكبار"><div class="art"></div></div>
+        <div class="layer vignette" data-id="v-restricted" role="img" aria-label="هاتف ذكي على مكتب رسمي بجانب ختم مطاطي ووثيقة مختومة وقفل مغلق"><div class="art"></div></div>
+        
+        <p class="caption" id="caption" aria-hidden="true">الشخص صار المنتج</p>
       </div>
 
       <div class="flow" id="flow">
 
-        <header class="opening" data-zone="wide" data-x="0.5000" data-y="0.5000" data-span="all" data-label="الحي">
+        <header class="opening" data-kind="vignette" data-layer="v-hero" data-fb-layer="v-hero" data-label="الشخص صار المنتج">
           <h1><span class="h1-topic">تحويل التأثير إلى صناعة</span><span class="h1-main">حين يصبح صانع المحتوى صاحب العلامة</span></h1>
           <p class="dek">في العراق تجاوز المؤثرون دورهم كواجهات إعلانية ليصيروا مؤسسي علامات تجارية. لم يحدث ذلك صدفة: ثقة غائبة عن المؤسسات، وجيل يعيش على الهاتف، وتجزئة مشتتة. <em>والنتيجة منافس تجاري مباشر في التجميل والغذاء وما بعدهما.</em></p>
           <div class="byline">
             <p><b>قراءة تفاعلية</b>نيسان 2026</p>
             <p><b>Kapita Research</b>بغداد</p>
-            <p><b>مدة القراءة</b>8 دقائق</p>
+            <p><b>مدة القراءة</b>10 دقائق</p>
           </div>
-          <p class="cue"><span class="line" aria-hidden="true"></span>مرّر للتنقل في المشهد</p>
+          <p class="cue"><span class="line" aria-hidden="true"></span>مرّر للقراءة</p>
         </header>
 
         
-        <section class="chapter" id="chapter-1" data-chapter="قبل" data-zone="ch1" data-x="0.8300" data-y="0.5000" data-span="0.360" data-label="قبل">
+        <section class="chapter" id="chapter-1" data-chapter="قبل" data-kind="vignette" data-layer="v-shutter" data-fb-layer="v-hero" data-label="علامة أجنبية مغلقة">
           <p class="ch-num" aria-hidden="true">1</p>
           <h2><span class="vh">الفصل 1: </span>ثقة تبحث عن عنوان</h2>
           <p>قبل أن يصير الهاتف سوقاً، كانت الثقة بلا عنوان: لا إعلام رسمي ينافس عليها، وعلامات عالمية يُنظر إليها بريبة.</p>
         </section>
         
-        <section class="beat" id="b1-1" data-zone="shutter" data-x="0.9050" data-y="0.4000" data-span="0.160" data-label="متجر علامة أجنبية مغلق">
+        <section class="beat" id="b1-1" data-kind="panel" data-panel="quote" data-fb-layer="v-shutter" data-label="">
           <p class="tag">العلامات العالمية</p>
           <h3>صنع في العراق صار ضماناً</h3>
+          
           
           
           <p class="pull">أصبحت عبارة «صنع في العراق» علامة جودة وموثوقية في سوق لا تزال تنظر للعلامات العالمية بريبة موروثة من عقود الحصار والاضطراب.</p>
@@ -497,20 +631,23 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، تحويل التأثير إلى صناعة، 2026، ص 9</p>
         </section>
         
-        <section class="beat" id="b1-2" data-zone="mast" data-x="0.7600" data-y="0.3000" data-span="0.160" data-label="برج الاتصالات" data-panel>
+        <section class="beat" id="b1-2" data-kind="panel" data-panel="chart" data-fb-layer="v-phones" data-label="">
           <p class="tag">انتشار الإنترنت في العراق</p>
           <h3>من خُمس السكان إلى أربعة أخماسهم</h3>
           
           
-          <figure class="chart" style="--vw:6ch">
+          <figure class="viz chart viz-bars" style="--vw:6ch">
+            
             
             <ol class="bars">
               <li><span class="bk">2016</span><span class="bt" style="--end:24.00%"><span class="seg solid" style="--l:0%;--w:24.00%" aria-hidden="true"></span><span class="bv"><bdi>19.9%</bdi></span></span></li>
               <li><span class="bk">نهاية 2024</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>82.9%</bdi></span></span></li>
               
             </ol>
+            
             <figcaption>نسبة انتشار الإنترنت من إجمالي السكان. <b>المصدر</b> وزارة الاتصالات العراقية، تموز 2025</figcaption>
           </figure>
+          
           
           <p class="body">تخطت النسبة 80% لأول مرة بين 2022 و2023، بدفع من توسع شبكات الجيل الرابع ورخص الهواتف الذكية صينية الصنع وطفرة الطلب على الاتصال أيام الجائحة.</p>
           
@@ -518,10 +655,11 @@
           
         </section>
         
-        <section class="beat" id="b1-3" data-zone="crowd" data-x="0.7450" data-y="0.5800" data-span="0.160" data-label="شباب على هواتفهم">
+        <section class="beat" id="b1-3" data-kind="vignette" data-layer="v-phones" data-fb-layer="v-shutter" data-label="جيل يعيش على الهاتف">
           <p class="tag">جيل الهاتف</p>
           <h3>جيل يبحث عن طريق آخر</h3>
           <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l">نسبة من هم دون الخامسة والعشرين من سكان العراق</span></p>
+          
           
           
           <p class="body">متوسط العمر 20.8 عاماً، وبطالة الشباب 32.09%، ونحو 700 ألف خريج يدخلون سوق العمل كل عام. لهذا الجيل، صانع المحتوى برهان حيّ على نموذج رزق بديل.</p>
@@ -530,9 +668,10 @@
           <p class="source"><span>المصدر</span>Trading Economics ومنظمة العمل الدولية، عبر التقرير، ص 15</p>
         </section>
         
-        <section class="beat" id="b1-4" data-zone="teahouse" data-x="0.8850" data-y="0.7600" data-span="0.200" data-label="المقهى">
+        <section class="beat" id="b1-4" data-kind="panel" data-panel="quote" data-fb-layer="v-shutter" data-label="">
           <p class="tag">اللهجة</p>
           <h3>من يتكلم لهجتك يكسب ثقتك</h3>
+          
           
           
           <p class="pull">في العراق، لا تعد اللهجة المحلية مجرد وسيلة للتفاهم، بل هي إعلان عن «عضوية اجتماعية» تمنح المؤثر مصداقية فورية لدى جمهوره.</p>
@@ -542,18 +681,19 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 15</p>
         </section>
         
-        <section class="chapter" id="chapter-2" data-chapter="القناة" data-zone="ch2" data-x="0.5300" data-y="0.5500" data-span="0.360" data-label="القناة">
+        <section class="chapter" id="chapter-2" data-chapter="القناة" data-kind="vignette" data-layer="v-creator" data-fb-layer="v-hero" data-label="صانعة المحتوى على السطح">
           <p class="ch-num" aria-hidden="true">2</p>
           <h2><span class="vh">الفصل 2: </span>الجمهور صار قناة البيع</h2>
           <p>حين يصل فرد واحد بهاتفه إلى كل بيت، يصير صانع المحتوى أشبه بمحطة بث وطنية، ويصير الشراء امتداداً للعلاقة معه.</p>
         </section>
         
-        <section class="beat" id="b2-1" data-zone="creator" data-x="0.5150" data-y="0.4200" data-span="0.140" data-label="صانعة المحتوى على السطح" data-panel>
+        <section class="beat" id="b2-1" data-kind="panel" data-panel="chart" data-fb-layer="v-creator" data-label="">
           <p class="tag">المستخدمون النشطون على المنصات</p>
           <h3>تيك توك يصل إلى الجميع تقريباً</h3>
           
           
-          <figure class="chart" style="--vw:11ch">
+          <figure class="viz chart viz-bars" style="--vw:11ch">
+            
             
             <ol class="bars">
               <li><span class="bk">تيك توك</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>40.1 مليون</bdi></span></span></li>
@@ -564,8 +704,10 @@
               <li><span class="bk">ماسنجر</span><span class="bt" style="--end:37.16%"><span class="seg solid" style="--l:0%;--w:37.16%" aria-hidden="true"></span><span class="bv"><bdi>14.9 مليون</bdi></span></span></li>
               
             </ol>
+            
             <figcaption>المستخدمون النشطون من حيث الوصول الإعلاني، تشرين الأول 2025. <b>المصدر</b> DataReportal Digital 2026 Iraq</figcaption>
           </figure>
+          
           
           <p class="body">يصل تيك توك إلى أكثر من 90% من مستخدمي الإنترنت في العراق، بكثافة لا تُقارن بها الأسواق المماثلة. وإنستغرام يحرّك التجزئة لدى الفئة المهيمنة بين 18 و34 عاماً.</p>
           
@@ -573,9 +715,10 @@
           
         </section>
         
-        <section class="beat" id="b2-2" data-zone="courier" data-x="0.5300" data-y="0.7700" data-span="0.140" data-label="مندوب التوصيل">
+        <section class="beat" id="b2-2" data-kind="vignette" data-layer="v-courier" data-fb-layer="v-creator" data-label="الطلب وصل">
           <p class="tag">واتساب</p>
           <h3>الطلب يبدأ بفيديو وينتهي برسالة</h3>
+          
           
           
           
@@ -585,22 +728,30 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 9 و14</p>
         </section>
         
-        <section class="beat" id="b2-3" data-zone="street" data-x="0.5200" data-y="0.5500" data-span="0.240" data-label="الشارع">
+        <section class="beat" id="b2-3" data-kind="panel" data-panel="diagram" data-fb-layer="v-courier" data-label="">
           <p class="tag">المسار الرباعي</p>
           <h3>أربع خطوات من المشاهدة إلى الشراء</h3>
           
           
           
-          <p class="body">جذب الانتباه عبر تيك توك وإنستغرام، ثم ثقة تُبنى باللهجة والقصص المشتركة، ثم سلطة ذوق في تخصص بعينه، وأخيراً منتج يحمل اسم المبدع يقتنيه الجمهور ولاءً وانتماءً أكثر منه صفقة.</p>
+          <figure class="viz diagram viz-steps">
+            
+            <ol class="steps"><li><span class="sn" aria-hidden="true">1</span><b>جذب الانتباه</b><span>عبر تيك توك وإنستغرام، بلا حاجة إلى منصات تقليدية.</span></li><li><span class="sn" aria-hidden="true">2</span><b>الثقة والقرب</b><span>باللهجة اليومية والقصص المشتركة والردود المباشرة.</span></li><li><span class="sn" aria-hidden="true">3</span><b>المرجعية الثقافية</b><span>سلطة ذوق في تخصص بعينه، في غياب النقاد المهنيين.</span></li><li><span class="sn" aria-hidden="true">4</span><b>العلامة الخاصة</b><span>منتج يحمل اسم المبدع، يُقتنى ولاءً أكثر منه صفقة.</span></li></ol>
+            
+            <figcaption>المراحل الأربع كما يرسمها التقرير. <b>المصدر</b> كابيتا البحثية، ص 9 و18 و19</figcaption>
+          </figure>
+          
+          <p class="body">في كل مرحلة يتراكم رصيد يُصرف في التي بعدها: الانتباه يصير ثقة، والثقة تصير سلطة، والسلطة تصير منتجاً.</p>
           
           
-          <p class="source"><span>المصدر</span>كابيتا البحثية، ص 9 و18 و19</p>
+          
         </section>
         
-        <section class="beat" id="b2-4" data-zone="parcels" data-x="0.4900" data-y="0.4000" data-span="0.180" data-label="طرود الرعاة">
+        <section class="beat" id="b2-4" data-kind="panel" data-panel="figure" data-fb-layer="v-creator" data-label="">
           <p class="tag">حجم السوق</p>
           <h3>التسويق عبر المؤثرين صار قطاعاً</h3>
           <p class="fig"><span class="fig-v long"><bdi>15 إلى 20 مليون دولار</bdi></span><span class="fig-l">القيمة السنوية التقديرية لقطاع التسويق عبر المؤثرين في العراق</span></p>
+          
           
           
           <p class="body">وفي غياب النقاد المهنيين والأدلة الاستهلاكية الموثوقة، يحل مبدع التجميل محل رئيس تحرير قسم الجمال، ويصير مراجع الطعام الناقد الأول والمحرك الفعلي للسوق.</p>
@@ -609,16 +760,17 @@
           <p class="source"><span>المصدر</span>StarNgage، 2025، عبر التقرير، ص 19</p>
         </section>
         
-        <section class="chapter" id="chapter-3" data-chapter="العلامة" data-zone="ch3" data-x="0.2000" data-y="0.5000" data-span="0.420" data-label="العلامة">
+        <section class="chapter" id="chapter-3" data-chapter="العلامة" data-kind="vignette" data-layer="v-beauty" data-fb-layer="v-hero" data-label="مؤسِّسة خلف منضدتها">
           <p class="ch-num" aria-hidden="true">3</p>
-          <h2><span class="vh">الفصل 3: </span>من المتابعين إلى المصنع</h2>
+          <h2><span class="vh">الفصل 3: </span>من المتابعين إلى العلامة</h2>
           <p>في المرحلة الأخيرة يكفّ المبدع عن الترويج لمنتجات غيره: اسمه هو العلامة، ووجهه هو الواجهة، وقصته هي التسويق.</p>
         </section>
         
-        <section class="beat" id="b3-1" data-zone="boutique" data-x="0.0950" data-y="0.3400" data-span="0.170" data-label="متجر التجميل">
+        <section class="beat" id="b3-1" data-kind="panel" data-panel="figure" data-fb-layer="v-beauty" data-label="">
           <p class="tag">النموذج الأصلي</p>
           <h3>مدوّنة صارت علامة مليارية</h3>
           <p class="fig"><span class="fig-v long"><bdi>1.2 مليار دولار</bdi></span><span class="fig-l">تقييم Huda Beauty عند دخول حصة TSG، 2017</span></p>
+          
           
           
           <p class="body">بدأت هدى قطان مدوّنة تجميل عام 2010، وانتقلت إلى الإنتاج عام 2013 بميزانية لم تتجاوز 6,000 دولار، فكانت أول علامة يقودها مبدع على رفوف سيفورا دبي. وفي 2025 استعادت ملكيتها كاملة.</p>
@@ -627,9 +779,10 @@
           <p class="source"><span>المصدر</span>Business of Fashion وغيرها، عبر التقرير، ص 22</p>
         </section>
         
-        <section class="beat" id="b3-2" data-zone="counter" data-x="0.1000" data-y="0.4000" data-span="0.110" data-label="خلف المنضدة">
+        <section class="beat" id="b3-2" data-kind="vignette" data-layer="v-beauty" data-fb-layer="v-beauty" data-label="منتجاتها على رفوفها">
           <p class="tag">مبدعات عراقيات</p>
           <h3>السوق العراقي أولاً</h3>
+          
           
           
           
@@ -639,9 +792,10 @@
           <p class="source"><span>المصدر</span>Forbes Middle East وصفحات العلامتين، عبر التقرير، ص 23 و24</p>
         </section>
         
-        <section class="beat" id="b3-3" data-zone="prizecar" data-x="0.2000" data-y="0.7800" data-span="0.200" data-label="تسليم سيارة الجائزة">
+        <section class="beat" id="b3-3" data-kind="vignette" data-layer="v-prizecar" data-fb-layer="v-beauty" data-label="تسليم سيارة الجائزة">
           <p class="tag">المؤسس هو الشخصية</p>
           <h3>وجهه على الكيس وصوته هو الإعلان</h3>
+          
           
           
           
@@ -651,32 +805,69 @@
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 35</p>
         </section>
         
-        <section class="beat" id="b3-4" data-zone="factory" data-x="0.2600" data-y="0.4700" data-span="0.150" data-label="خط الإنتاج" data-panel>
-          <p class="tag">القيمة لكل كرتون</p>
-          <h3>هامش يكفي لتمويل الجوائز</h3>
+        <section class="beat" id="b3-4" data-kind="panel" data-panel="quote" data-fb-layer="v-beauty" data-label="">
+          <p class="tag">ما بعد السلع الاستهلاكية</p>
+          <h3>الجمهور ملك المبدع لا الراعي</h3>
           
           
-          <figure class="chart" style="--vw:13ch">
+          
+          <p class="pull">الإنفاق التسويقي المؤسسي في العراق هو، في جزء منه، حضانة غير طوعية للمبدعين.</p>
+          <p class="body">رفعت حملة Pocket Fight لمصرف FIB متابعي عازف الجاز محمود طالب من 7,000 إلى 500,000 في أقل من شهرين، وحققت حملة TCL Bling أكثر من 30 مليون مشاهدة عضوية. والمسار نفسه يمتد إلى العقارات.</p>
+          
+          
+          <p class="source"><span>المصدر</span>Ads of the World، عبر التقرير، ص 40</p>
+        </section>
+        
+        <section class="chapter" id="chapter-4" data-chapter="الحساب" data-kind="vignette" data-layer="v-factory" data-fb-layer="v-hero" data-label="خط الإنتاج">
+          <p class="ch-num" aria-hidden="true">4</p>
+          <h2><span class="vh">الفصل 4: </span>اقتصاد الوجه على الكيس</h2>
+          <p>خلف الجوائز والمقاطع حساب بسيط: من يتحمل المخاطرة، ومن يربح في كل حلقة، وكم متجراً يعيد الطلب.</p>
+        </section>
+        
+        <section class="beat" id="b4-1" data-kind="panel" data-panel="diagram" data-fb-layer="v-factory" data-label="">
+          <p class="tag">ثلاثة نماذج للدخول إلى السوق</p>
+          <h3>لماذا تنجح الجودة والجوائز ويفشل الاسم المجرد</h3>
+          
+          
+          
+          <figure class="viz diagram viz-matrix">
             
-            <ol class="bars">
-              <li><span class="bk">تكلفة التصنيع</span><span class="bt" style="--end:70.00%"><span class="seg solid" style="--l:0%;--w:70.00%" aria-hidden="true"></span><span class="bv"><bdi>7,000 دينار</bdi></span></span></li>
-              <li><span class="bk">البيع بالجملة للموزع</span><span class="bt" style="--end:90.00%"><span class="seg solid" style="--l:0%;--w:90.00%" aria-hidden="true"></span><span class="bv"><bdi>9,000 دينار</bdi></span></span></li>
-              <li><span class="bk">سعر شراء التجزئة</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>10,000 دينار</bdi></span></span></li>
-              
-            </ol>
-            <figcaption>سلسلة القيمة لكرتون الوجبات الخفيفة. بيانات لوحة موردي جميلة، نيسان 2026، لم تخضع لمراجعة مستقلة. <b>المصدر</b> Jamila supplier panel data، نيسان 2026</figcaption>
+            <table class="matrix"><thead><tr><th></th><th scope="col">ماذا يشتري العميل</th><th scope="col">ولاؤه يتجه نحو</th><th scope="col">عمر العلامة المتوقع</th></tr></thead>
+              <tbody><tr><th scope="row">الجائزة أولاً</th><td>فرصة الفوز</td><td>الجائزة والمحفز المادي</td><td>مرتفع ما دامت الجوائز والحملة</td></tr><tr><th scope="row">الجودة أولاً</th><td>القيمة والاتساق</td><td>المنتج نفسه</td><td>مرتفع، بقاعدة مستهلكين دائمين</td></tr><tr class="hi"><th scope="row">اسم المؤثر فقط</th><td>الانتماء للمشهور</td><td>المؤثر شخصاً</td><td>منخفض جداً، ينتهي بعد تجربة أو اثنتين</td></tr></tbody></table>
+            
+            <figcaption>نماذج الدخول إلى سوق الوجبات الخفيفة كما يقارنها التقرير. <b>المصدر</b> كابيتا البحثية، ص 28</figcaption>
           </figure>
           
-          <p class="body">تبقى تكلفة التصنيع عند 30% أو أقل من سعر التجزئة، فيربح المصنع 2,000 دينار في الكرتون ويربح الموزع 1,000 دينار. والكيس الصغير بـ 250 ديناراً، والعائلي بـ 500.</p>
+          <p class="body">في نموذجي الشراكة والملكية الكاملة يتحمل المبدع المخاطرة بنفسه، فينغمس في الجودة وسلاسل التوريد. أما «شيبس المشاهير» فيبيع الاسم برسم ثابت، فيقصر عمره.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b3-5" data-zone="store" data-x="0.3300" data-y="0.5600" data-span="0.150" data-label="المتجر المكدّس">
+        <section class="beat" id="b4-2" data-kind="panel" data-panel="diagram" data-fb-layer="v-factory" data-label="">
+          <p class="tag">القيمة لكل كرتون</p>
+          <h3>من المصنع إلى الرف</h3>
+          
+          
+          
+          <figure class="viz diagram viz-chain">
+            
+            <ol class="chain"><li class="node"><span class="nv"><bdi>7,000 دينار</bdi></span><span class="nl">تكلفة التصنيع</span></li><li class="link"><span>2,000 دينار للمصنع أو المؤثر</span></li><li class="node"><span class="nv"><bdi>9,000 دينار</bdi></span><span class="nl">البيع بالجملة للموزع</span></li><li class="link"><span>1,000 دينار للموزع</span></li><li class="node"><span class="nv"><bdi>10,000 دينار</bdi></span><span class="nl">سعر شراء التجزئة</span></li></ol>
+            
+            <figcaption>سلسلة القيمة لكرتون الوجبات الخفيفة. بيانات لوحة موردي جميلة، نيسان 2026، لم تخضع لمراجعة مستقلة. <b>المصدر</b> Jamila supplier panel data، نيسان 2026، ص 30</figcaption>
+          </figure>
+          
+          <p class="body">تبقى تكلفة التصنيع عند 30% أو أقل من سعر التجزئة، وهي النسبة التي تترك هامشاً يموّل التسويق الضخم. الكيس الصغير بـ 250 ديناراً، والعائلي بـ 500.</p>
+          
+          
+          
+        </section>
+        
+        <section class="beat" id="b4-3" data-kind="vignette" data-layer="v-store" data-fb-layer="v-factory" data-label="متجر يعيد الطلب">
           <p class="tag">التوزيع</p>
           <h3>القيد هو التوزيع لا الطلب</h3>
           <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l">نقطة بيع يعاد التوريد إليها</span></p>
+          
           
           
           <p class="body">يطلب المتجر الواحد المنتج 7 مرات في الشهر، بمعدل 21 كرتوناً. كل كرتون يخرج من المصنع مبيع قبل وصوله، والمنافسة انتقلت من إقناع المستهلك إلى سرعة الوصول إلى الرف.</p>
@@ -685,40 +876,83 @@
           <p class="source"><span>المصدر</span>بيانات لوحة موردي جميلة، نيسان 2026، عبر التقرير، ص 32</p>
         </section>
         
-        <section class="beat" id="b3-6" data-zone="trucks" data-x="0.2800" data-y="0.2700" data-span="0.180" data-label="المخزن والشاحنات">
+        <section class="beat" id="b4-4" data-kind="panel" data-panel="chart" data-fb-layer="v-prizecar" data-label="">
           <p class="tag">اقتصاديات الجوائز</p>
           <h3>سيارتان في الشهر لا تُذكران في الحساب</h3>
           
           
-          <p class="pull">فتقديم سيارتين شهرياً بقيمة 30,000 دولار لا يمثل سوى 0.7% من إجمالي الربح.</p>
-          <p class="body">وحتى برنامج المكافآت الكامل بتكلفة 300,000 دولار شهرياً يبقى في حدود 4.4% من الإيرادات. هذا تقدير كابيتا البحثية على بيانات الموردين، ويُقرأ بهامش خطأ مناسب.</p>
+          <figure class="viz chart viz-share" style="--vw:5ch">
+            
+            <ol class="shares">
+              <li><span class="sk">سيارتا الجائزة شهرياً (30,000 دولار)</span><span class="st"><span class="sf" style="--w:0.70%" aria-hidden="true"></span></span><span class="sv"><bdi>0.7%</bdi> <small>من إجمالي الربح</small></span></li>
+              <li><span class="sk">برنامج المكافآت الكامل (300,000 دولار شهرياً)</span><span class="st"><span class="sf" style="--w:4.40%" aria-hidden="true"></span></span><span class="sv"><bdi>4.4%</bdi> <small>من الإيرادات</small></span></li>
+              
+            </ol>
+            
+            <figcaption>كلفة الجوائز حصةً من الربح والإيرادات، في تقدير الحد الأعلى. يُقرأ بهامش خطأ مناسب. <b>المصدر</b> تقدير كابيتا البحثية على بيانات الموردين، ص 33 و52</figcaption>
+          </figure>
           
           
-          <p class="source"><span>المصدر</span>تقدير كابيتا البحثية، ص 33 و52</p>
+          <p class="body">خلافاً للانطباع الشائع، لا تستنزف الجوائز الكبرى الأرباح. وحتى لو ارتفعت التكاليف 15%، يبقى صافي الربح الشهري نحو 0.93 مليون دولار، وهو فائض يكفي لتمويل عشرة أضعاف الجوائز الحالية.</p>
+          
+          
+          
         </section>
         
-        <section class="beat" id="b3-7" data-zone="beyond" data-x="0.1000" data-y="0.4200" data-span="0.300" data-label="الأبراج ومتجر الإلكترونيات">
-          <p class="tag">ما بعد السلع الاستهلاكية</p>
-          <h3>الجمهور ملك المبدع لا الراعي</h3>
-          
-          
-          
-          <p class="body">رفعت حملة Pocket Fight لمصرف FIB متابعي عازف الجاز محمود طالب من 7,000 إلى 500,000 في أقل من شهرين. وحققت حملة TCL Bling أكثر من 30 مليون مشاهدة عضوية، والمسار نفسه يمتد إلى العقارات.</p>
-          
-          
-          <p class="source"><span>المصدر</span>Ads of the World، عبر التقرير، ص 40</p>
-        </section>
-        
-        <section class="chapter" id="chapter-4" data-chapter="الحدود" data-zone="ch4" data-x="0.5300" data-y="0.2500" data-span="0.360" data-label="الحدود">
-          <p class="ch-num" aria-hidden="true">4</p>
-          <h2><span class="vh">الفصل 4: </span>مسار سريع تحت قيود حقيقية</h2>
+        <section class="chapter" id="chapter-5" data-chapter="الحدود" data-kind="vignette" data-layer="v-restricted" data-fb-layer="v-hero" data-label="الختم والقفل">
+          <p class="ch-num" aria-hidden="true">5</p>
+          <h2><span class="vh">الفصل 5: </span>مسار سريع تحت قيود حقيقية</h2>
           <p>تجاهل هذه القيود يرسم صورة مشوّهة عن طريقة عمل العلامات الخاصة للمبدعين العراقيين فعلاً.</p>
         </section>
         
-        <section class="beat" id="b4-1" data-zone="government" data-x="0.4600" data-y="0.2000" data-span="0.170" data-label="المبنى الحكومي">
+        <section class="beat" id="b5-1" data-kind="panel" data-panel="diagram" data-fb-layer="v-restricted" data-label="">
+          <p class="tag">القيود تتراكم</p>
+          <h3>خمس خطوات في ثلاث سنوات</h3>
+          
+          
+          
+          <figure class="viz diagram viz-timeline">
+            
+            <ol class="timeline"><li><time>2023</time><span>تشريعات هيئة الإعلام والاتصالات تساوي اللهجة المحلية بالفصحى في الخطاب الإعلاني.</span></li><li><time>تشرين الثاني 2024</time><span>البنك المركزي يحظر المعاملات المالية مع وسطاء تيك توك.</span></li><li><time>آذار 2025</time><span>تسجيل سنوي إلزامي لدى الهيئة، برسوم تصل إلى 680 دولاراً لمن يتجاوز 5 ملايين متابع.</span></li><li><time>نيسان 2025</time><span>طلب برلماني بحظر تيك توك، لم يحصل على الموافقة.</span></li><li class="hi"><time>تشرين الثاني 2025</time><span>البنك المركزي يصنّف المؤثرين عملاء عاليي المخاطر، فيتأثر أكثر من 11,000 حساب.</span></li></ol>
+            
+            <figcaption>القرارات التنظيمية التي يرصدها التقرير. <b>المصدر</b> Arab News وThe New Arab وشفق نيوز، عبر التقرير، ص 15 و44 و45</figcaption>
+          </figure>
+          
+          <p class="body">عبء الامتثال يدفع مدفوعات المؤثرين نحو النقد والحسابات الوسيطة، فتقل الشفافية المالية للعلامات التي تطلب استثماراً رسمياً أو شراكات دولية.</p>
+          
+          
+          
+        </section>
+        
+        <section class="beat" id="b5-2" data-kind="panel" data-panel="chart" data-fb-layer="v-creator" data-label="">
+          <p class="tag">جمهور تيك توك في العراق</p>
+          <h3>الجمهور ينمو والحظر معلّق</h3>
+          
+          
+          <figure class="viz chart viz-bars" style="--vw:11ch">
+            
+            
+            <ol class="bars">
+              <li><span class="bk">كانون الثاني 2025</span><span class="bt" style="--end:85.54%"><span class="seg solid" style="--l:0%;--w:85.54%" aria-hidden="true"></span><span class="bv"><bdi>34.3 مليون</bdi></span></span></li>
+              <li><span class="bk">تشرين الأول 2025</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>40.1 مليون</bdi></span></span></li>
+              
+            </ol>
+            
+            <figcaption>المستخدمون النشطون خلال 2025. <b>المصدر</b> DataReportal، عبر التقرير، ص 45</figcaption>
+          </figure>
+          
+          
+          <p class="body">العلامة المبنية على اكتشاف تيك توك وحده تحمل خطر تركّز المنصة، وهو خطر لا تحمله علامة بدأت على إنستغرام أو تعيش على واتساب.</p>
+          
+          
+          
+        </section>
+        
+        <section class="beat" id="b5-3" data-kind="vignette" data-layer="v-restricted" data-fb-layer="v-restricted" data-label="رقابة على المحتوى">
           <p class="tag">لوائح الأخلاق العامة</p>
           <h3>مقطع واحد قد يصير قضية</h3>
           <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l">قضية إلكترونية مرتبطة بالأخلاق منذ 2023، ومعها أكثر من 200 اعتقال</span></p>
+          
           
           
           <p class="body">تستند الملاحقات إلى المادة 403 من قانون العقوبات لعام 1969. ومع منصة «بلّغ» للتبليغ المجهول سُجلت 500 مخالفة و75 اعتقالاً بين كانون الثاني وآذار 2025 وحدها.</p>
@@ -727,46 +961,23 @@
           <p class="source"><span>المصدر</span>شفق نيوز، 2025، عبر التقرير، ص 44</p>
         </section>
         
-        <section class="beat" id="b4-2" data-zone="bank" data-x="0.6100" data-y="0.2400" data-span="0.160" data-label="المصرف">
-          <p class="tag">الترخيص والمصارف</p>
-          <h3>رسوم سنوية وتصنيف عالي المخاطر</h3>
-          
-          
-          
-          <p class="body">منذ آذار 2025 تفرض هيئة الإعلام والاتصالات تسجيلاً سنوياً برسوم تصل إلى 680 دولاراً لمن يتجاوز 5 ملايين متابع. وفي تشرين الثاني 2025 صنّف البنك المركزي المؤثرين عملاء عاليي المخاطر، فتأثر أكثر من 11,000 حساب.</p>
-          
-          
-          <p class="source"><span>المصدر</span>Arab News وThe New Arab وشفق نيوز، عبر التقرير، ص 44</p>
-        </section>
-        
-        <section class="beat" id="b4-3" data-zone="stall" data-x="0.6450" data-y="0.7200" data-span="0.160" data-label="بسطة البضائع المقلدة">
+        <section class="beat" id="b5-4" data-kind="panel" data-panel="chart" data-fb-layer="v-store" data-label="">
           <p class="tag">التقليد</p>
           <h3>كل نجاح يجلب نسخته المزيفة</h3>
-          <p class="fig"><span class="fig-v"><bdi>15%</bdi></span><span class="fig-l">حصة المنتجات المقلدة من إيرادات قطاع التجميل إقليمياً</span></p>
+          
+          
+          <figure class="viz chart viz-share" style="--vw:4ch">
+            
+            <ol class="shares">
+              <li><span class="sk">المنتجات المقلدة</span><span class="st"><span class="sf" style="--w:15.00%" aria-hidden="true"></span></span><span class="sv"><bdi>15%</bdi> <small>من إيرادات قطاع التجميل إقليمياً</small></span></li>
+              
+            </ol>
+            
+            <figcaption>حصة المنتجات المقلدة من إيرادات قطاع التجميل في المنطقة. <b>المصدر</b> مركز الخليج للأبحاث عبر Market Data Forecast، ص 45</figcaption>
+          </figure>
           
           
           <p class="body">وامتد التقليد إلى الغذاء: نجاح أبو جنة أطلق موجة ممن ينسخون الهوية البصرية دون الوفاء بالجوائز، فتتضرر سمعة العلامة الأصلية قبل حصتها.</p>
-          
-          
-          <p class="source"><span>المصدر</span>مركز الخليج للأبحاث عبر Market Data Forecast، ص 45</p>
-        </section>
-        
-        <section class="beat" id="b4-4" data-zone="creator" data-x="0.5150" data-y="0.4200" data-span="0.140" data-label="صانعة المحتوى على السطح" data-panel>
-          <p class="tag">جمهور تيك توك في العراق</p>
-          <h3>الجمهور ينمو والحظر معلّق</h3>
-          
-          
-          <figure class="chart" style="--vw:11ch">
-            
-            <ol class="bars">
-              <li><span class="bk">كانون الثاني 2025</span><span class="bt" style="--end:85.54%"><span class="seg solid" style="--l:0%;--w:85.54%" aria-hidden="true"></span><span class="bv"><bdi>34.3 مليون</bdi></span></span></li>
-              <li><span class="bk">تشرين الأول 2025</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>40.1 مليون</bdi></span></span></li>
-              
-            </ol>
-            <figcaption>المستخدمون النشطون خلال 2025. <b>المصدر</b> DataReportal، عبر التقرير، ص 45</figcaption>
-          </figure>
-          
-          <p class="body">حظر البنك المركزي معاملات وسطاء تيك توك في تشرين الثاني 2024، وطُرح الحظر في البرلمان في نيسان 2025 دون موافقة. العلامة المبنية على تيك توك وحده تحمل خطراً لا تحمله علامة تعيش على واتساب.</p>
           
           
           
@@ -774,7 +985,7 @@
         
 
         
-        <section class="beat" id="finale" data-zone="wide" data-x="0.5000" data-y="0.5000" data-span="all" data-label="الحي كاملاً">
+        <section class="beat" id="finale" data-kind="vignette" data-layer="v-hero" data-fb-layer="v-hero" data-label="الشخص صار المنتج">
           <p class="tag">الخلاصة</p>
           <h3>الطريق الأقصر إلى علامة وطنية</h3>
           <p class="pull">في العراق، المسار الأكثر كفاءة نحو علامة تجارية استهلاكية وطنية في 2026 لا يمر عبر شبكات التوزيع أو الإعلان فوق الخط، بل عبر العلاقة الاجتماعية الافتراضية للمبدع مع جمهوره.</p>
@@ -791,7 +1002,7 @@
         <dl class="four" style="--ledger:4">
           <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd>نسبة انتشار الإنترنت، نهاية 2024</dd></div>
           <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1 مليون</a></bdi></dt><dd>مستخدمو تيك توك النشطون، تشرين الأول 2025</dd></div>
-          <div><dt><bdi><a href="#b3-5" style="text-decoration:none">100,000+</a></bdi></dt><dd>نقطة بيع لعلامة وجبات خفيفة يقودها مبدع</dd></div>
+          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd>نقطة بيع لعلامة وجبات خفيفة يقودها مبدع</dd></div>
           <div><dt><bdi><a href="#b2-4" style="text-decoration:none">15 إلى 20 مليون دولار</a></bdi></dt><dd>القيمة السنوية لقطاع التسويق عبر المؤثرين، 2025</dd></div>
           
         </dl>
@@ -861,26 +1072,23 @@
   <p class="legal">© 2026 Kapita Research. جميع الحقوق محفوظة.</p>
 </footer>
 
-<script>window.__READ_CFG = {"slug": "iraq-creator-economy", "spotDim": 0.42, "scene": {"w": 3840, "h": 1648, "small": "assets/img/scene-1200.webp", "medium": "assets/img/scene-2000.webp", "large": "assets/img/scene-3840.webp"}, "t": {"dark": "التبديل إلى الوضع الداكن", "light": "التبديل إلى الوضع الفاتح", "menuOpen": "فتح القائمة", "menuClose": "إغلاق القائمة"}};</script>
+<script>window.__READ_CFG = {"slug": "iraq-creator-economy", "spotDim": 0.42, "visuals": {"v-hero": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/hero-800.webp", "medium": "assets/img/hero-1400.webp", "large": "assets/img/hero-1536.webp"}, "v-shutter": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/shutter-800.webp", "medium": "assets/img/shutter-1400.webp", "large": "assets/img/shutter-1536.webp"}, "v-phones": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/phones-800.webp", "medium": "assets/img/phones-1400.webp", "large": "assets/img/phones-1536.webp"}, "v-creator": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/creator-800.webp", "medium": "assets/img/creator-1400.webp", "large": "assets/img/creator-1536.webp"}, "v-courier": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/courier-800.webp", "medium": "assets/img/courier-1400.webp", "large": "assets/img/courier-1536.webp"}, "v-beauty": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/beauty-800.webp", "medium": "assets/img/beauty-1400.webp", "large": "assets/img/beauty-1536.webp"}, "v-prizecar": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/prizecar-800.webp", "medium": "assets/img/prizecar-1400.webp", "large": "assets/img/prizecar-1536.webp"}, "v-factory": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/factory-800.webp", "medium": "assets/img/factory-1400.webp", "large": "assets/img/factory-1536.webp"}, "v-store": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/store-800.webp", "medium": "assets/img/store-1400.webp", "large": "assets/img/store-1536.webp"}, "v-restricted": {"kind": "vignette", "w": 1536, "h": 1152, "small": "assets/img/restricted-800.webp", "medium": "assets/img/restricted-1400.webp", "large": "assets/img/restricted-1536.webp"}}, "t": {"dark": "التبديل إلى الوضع الداكن", "light": "التبديل إلى الوضع الفاتح", "menuOpen": "فتح القائمة", "menuClose": "إغلاق القائمة"}};</script>
 <script>
 (function(){
-  /* Everything the camera needs comes from the page itself:
-     each [data-zone] element carries data-x, data-y (0 to 1 across the drawing) and data-span
-     (the share of the drawing's width to show beside the text, or "all" for the whole street).
-     CFG is written by build.py. */
+  /* The stage holds several layers: scenes (wide drawings the camera moves across), vignettes (one drawing,
+     one subject) and panels (a beat's chart, diagram, quotation or figure, drawn large). Every block in the
+     text says which one it shows through data-kind / data-layer / data-panel (written by build.py).
+     Within one scene the camera moves continuously; between different visuals the stage crossfades. */
   var CFG = window.__READ_CFG;
   var RTL = document.documentElement.dir === 'rtl';
-  var IMG_AR = CFG.scene.w / CFG.scene.h;
-  /* never stretch a source pixel past this on the reader's screen */
-  var MAX_UPSCALE = 1.5;
+  var MAX_UPSCALE = 1.5;          /* never stretch a source pixel past this on the reader's screen */
 
   var doc = document.documentElement;
   var stage = document.getElementById('stage');
-  var plane = document.getElementById('plane');
   var caption = document.getElementById('caption');
   var chrome = document.getElementById('chrome');
   var bar = document.querySelector('.bar');
-  var items = [].slice.call(document.querySelectorAll('#flow [data-zone]'));
+  var items = [].slice.call(document.querySelectorAll('#flow [data-kind]'));
   var chapters = [].slice.call(document.querySelectorAll('.chapter'));
   var navLinks = [].slice.call(document.querySelectorAll('#chapterNav a'));
   var fills = [].slice.call(document.querySelectorAll('.progress b'));
@@ -889,45 +1097,59 @@
   var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mqNarrow = window.matchMedia('(max-width: 980px), (max-height: 520px)');
 
-  function zoneOf(el){
-    var span = el.getAttribute('data-span');
-    return { x: parseFloat(el.getAttribute('data-x')), y: parseFloat(el.getAttribute('data-y')),
-             span: span === 'all' ? 'all' : parseFloat(span) };
+  /* ---------- layers ---------- */
+  var L = {};
+  [].slice.call(stage.querySelectorAll('.layer')).forEach(function(el){
+    var id = el.getAttribute('data-id'), c = CFG.visuals[id];
+    L[id] = { id: id, el: el, kind: c.kind, cfg: c, ar: c.w / c.h, loaded: '', maxW: 1,
+              plane: el.querySelector('.plane'), art: el.querySelector('.art'),
+              faces: [].slice.call(el.querySelectorAll('.plane > div, .art')) };
+  });
+  function setImg(Lr, url){
+    if (Lr.loaded === url) return;
+    Lr.loaded = url;
+    Lr.faces.forEach(function(f){ f.style.backgroundImage = "url('" + url + "')"; });
   }
-
-  /* ---------- the drawing: small file first, then the size this screen can use ---------- */
-  var layers = [].slice.call(plane.children);
-  function setScene(url){ layers.forEach(function(l){ l.style.backgroundImage = "url('" + url + "')"; }); }
-  setScene(CFG.scene.small);
-  /* the rendition this screen can actually use at the deepest zoom of the story */
-  function loadFull(){
-    var need = maxW * (window.devicePixelRatio || 1);
-    var want = need > 2200 ? CFG.scene.large : CFG.scene.medium;
+  /* small file first; the size this screen can use once the layer is on screen */
+  function warm(Lr){ if (Lr && !Lr.loaded) setImg(Lr, Lr.cfg.small); }
+  function sharpen(Lr){
+    if (!Lr || Lr.sharp) return;
+    Lr.sharp = true;
+    var d = window.devicePixelRatio || 1, want;
+    if (Lr.kind === 'scene') want = Lr.maxW * d > 2200 ? Lr.cfg.large : Lr.cfg.medium;
+    else {
+      /* a vignette only needs as many pixels as its frame on this screen: most readers never fetch the largest */
+      var need = Lr.art.clientWidth * d;
+      want = need <= 880 ? Lr.cfg.small : need <= 1540 ? Lr.cfg.medium : Lr.cfg.large;
+    }
+    if (want === Lr.loaded) return;
     var img = new Image();
-    img.onload = function(){ setScene(want); };
+    img.onload = function(){ setImg(Lr, want); };
     img.src = want;
   }
 
-  /* ---------- chart panels: each chart beat, drawn large on the stage ---------- */
+  /* ---------- panels: a beat's chart, diagram, quotation or figure, set large on the stage ---------- */
   items.forEach(function(el){
-    if (!el.hasAttribute('data-panel')) return;
-    var fig = el.querySelector('.chart');
-    if (!fig) return;
+    var kind = el.getAttribute('data-panel');
+    if (!kind) return;
+    var src = kind === 'quote' ? el.querySelector('.pull') : kind === 'figure' ? el.querySelector('.fig') : el.querySelector('.viz');
+    if (!src) return;
     var panel = document.createElement('div');
-    panel.className = 'panel';
+    panel.className = 'panel panel-' + kind;
     panel.setAttribute('aria-hidden', 'true');
-    var title = document.createElement('p');
-    title.className = 'panel-title';
-    var tag = el.querySelector('.tag');
-    title.textContent = (tag || el.querySelector('h3')).textContent;
-    panel.appendChild(title);
-    panel.appendChild(fig.cloneNode(true));
+    if (kind === 'chart' || kind === 'diagram') {
+      var title = document.createElement('p');
+      title.className = 'panel-title';
+      title.textContent = (el.querySelector('.tag') || el.querySelector('h3')).textContent;
+      panel.appendChild(title);
+    }
+    panel.appendChild(src.cloneNode(true));
     stage.appendChild(panel);
     el._panel = panel;
   });
 
   /* ---------- geometry ---------- */
-  var W = 0, H = 0, colEdge = 0, narrow = false, dpr = 1, maxW = 1, lastWidth = 0;
+  var W = 0, H = 0, colEdge = 0, narrow = false, dpr = 1, lastWidth = 0;
   function layout(){
     narrow = mqNarrow.matches;
     dpr = window.devicePixelRatio || 1;
@@ -935,22 +1157,20 @@
     var r = (chapters[0] || items[0]).getBoundingClientRect();
     colEdge = narrow ? 0 : (RTL ? r.left : r.right);
     var gap = Math.min(96, W * 0.05);
-    stage.style.setProperty('--panel-start', (RTL ? (W - colEdge + gap) : (colEdge + gap)) + 'px');
+    stage.style.setProperty('--panel-start', (narrow ? 16 : (RTL ? (W - colEdge + gap) : (colEdge + gap))) + 'px');
   }
-  /* the part of the stage the reader can see clearly, beside the text */
   function view(){
     if (narrow) return { l: 0, w: W };
     return RTL ? { l: 0, w: colEdge } : { l: colEdge, w: W - colEdge };
   }
-  function widthFor(z){
+  function widthFor(Lr, z){
     if (z.span === 'all') return narrow ? W / 0.62 : W;
-    return Math.min(view().w / z.span, CFG.scene.w * MAX_UPSCALE / dpr);
+    return Math.min(view().w / z.span, Lr.cfg.w * MAX_UPSCALE / dpr);
   }
-  function place(z, imgW){
-    var imgH = imgW / IMG_AR, v = view();
+  function place(Lr, z, imgW){
+    var imgH = imgW / Lr.ar, v = view();
     var fx = z.span === 'all' ? W / 2 : v.l + v.w / 2;
     var tx = fx - z.x * imgW, ty = H / 2 - z.y * imgH;
-    /* the drawing may slide under the text column (the paper wash hides its edge), never off the open side */
     var under = narrow ? 0 : (RTL ? (W - colEdge) : colEdge) * 0.85;
     var minX = W - imgW - (RTL ? under : 0), maxX = RTL ? 0 : under;
     if (z.span === 'all' && imgW <= W) tx = (W - imgW) / 2;
@@ -958,24 +1178,51 @@
     ty = imgH <= H ? (H - imgH) / 2 : Math.min(0, Math.max(H - imgH, ty));
     return { x: tx, y: ty };
   }
+  function spot(z){
+    if (z.span === 'all') return { x: 50, y: 50, r: 160, dim: 1 };
+    return { x: z.x * 100, y: z.y * 100, r: Math.max(6, z.span * 34), dim: CFG.spotDim };
+  }
 
   /* ---------- anchors ---------- */
+  function zoneFrom(el, p){
+    var s = el.getAttribute('data-' + p + 'span');
+    if (s === null) return null;
+    return { x: parseFloat(el.getAttribute('data-' + p + 'x')), y: parseFloat(el.getAttribute('data-' + p + 'y')),
+             span: s === 'all' ? 'all' : parseFloat(s) };
+  }
   var anchors = [];
   function measure(){
     layout();
     var y0 = window.pageYOffset;
     anchors = items.map(function(el){
       var r = el.getBoundingClientRect();
-      return { y: r.top + y0 + Math.min(r.height / 2, window.innerHeight * 0.35),
-               z: zoneOf(el), label: el.getAttribute('data-label') || '', el: el };
+      return { y: r.top + y0 + Math.min(r.height / 2, window.innerHeight * 0.35), el: el,
+               kind: el.getAttribute('data-kind'), layer: el.getAttribute('data-layer'), zone: zoneFrom(el, ''),
+               fbLayer: el.getAttribute('data-fb-layer'), fbZone: zoneFrom(el, 'fb-'),
+               label: el.getAttribute('data-label') || '' };
     });
-    /* the drawing is laid out once at the deepest zoom of the story and only ever scaled down:
-       no layout or repaint per frame, and at rest the browser redraws it sharp */
-    maxW = anchors.reduce(function(m, a){ return Math.max(m, widthFor(a.z)); }, W);
-    plane.style.width = maxW.toFixed(1) + 'px';
-    plane.style.height = (maxW / IMG_AR).toFixed(1) + 'px';
+    /* each scene is laid out once at the deepest zoom it reaches and only ever scaled down */
+    Object.keys(L).forEach(function(id){
+      var Lr = L[id];
+      if (Lr.kind !== 'scene') return;
+      Lr.maxW = W;
+      anchors.forEach(function(a){
+        [[a.layer, a.zone], [a.fbLayer, a.fbZone]].forEach(function(p){
+          if (p[0] === id && p[1]) Lr.maxW = Math.max(Lr.maxW, widthFor(Lr, p[1]));
+        });
+      });
+      Lr.plane.style.width = Lr.maxW.toFixed(1) + 'px';
+      Lr.plane.style.height = (Lr.maxW / Lr.ar).toFixed(1) + 'px';
+    });
   }
-  /* the reading line: middle of the screen beside the stage, or middle of what is left below it on phones */
+  /* what an anchor shows here: panels are desktop only, phones keep the chapter's drawing on the stage */
+  function shows(a){
+    if (a.kind === 'panel') {
+      if (!narrow && a.el._panel) return { kind: 'panel', panel: a.el._panel };
+      return a.fbLayer ? { kind: L[a.fbLayer].kind, layer: a.fbLayer, zone: a.fbZone } : { kind: 'none' };
+    }
+    return { kind: a.kind, layer: a.layer, zone: a.zone };
+  }
   function readingLine(){
     var vh = window.innerHeight;
     if (!narrow) return vh * 0.5;
@@ -985,7 +1232,17 @@
   function smooth(t){ return t * t * (3 - 2 * t); }
   function lerp(a, b, t){ return a + (b - a) * t; }
 
-  /* camera state for any scroll position; render() applies it, verify.py reads it */
+  function cam(Lr, z0, z1, e){
+    var w0 = widthFor(Lr, z0), w1 = widthFor(Lr, z1);
+    var p0 = place(Lr, z0, w0), p1 = place(Lr, z1, w1);
+    var imgW = w0 * Math.pow(w1 / w0, e);
+    var k = Math.abs(w1 - w0) > 0.5 ? (imgW - w0) / (w1 - w0) : e;
+    var s0 = spot(z0), s1 = spot(z1);
+    return { x: lerp(p0.x, p1.x, k), y: lerp(p0.y, p1.y, k), w: imgW,
+             sx: lerp(s0.x, s1.x, e), sy: lerp(s0.y, s1.y, e), sr: lerp(s0.r, s1.r, e), dim: lerp(s0.dim, s1.dim, e) };
+  }
+
+  /* the stage for any scroll position; render() applies it, verify.py reads it */
   function stateAt(scrollY){
     var line = scrollY + readingLine();
     var n = anchors.length, i = 0;
@@ -993,50 +1250,54 @@
     var j = Math.min(i + 1, n - 1);
     var a0 = anchors[i], a1 = anchors[j];
     var span = a1.y - a0.y;
-    var t = span > 0 ? (line - a0.y) / span : 0;
-    t = Math.max(0, Math.min(1, t));
-    /* rest on each subject for the first and last fifth of the travel */
+    var t = span > 0 ? Math.max(0, Math.min(1, (line - a0.y) / span)) : 0;
     /* hold still while a beat is being read; move only in the gap between two beats */
     var e = mqReduce.matches ? (t < 0.5 ? 0 : 1) : smooth(Math.max(0, Math.min(1, (t - 0.3) / 0.4)));
-    /* interpolate the zoom geometrically and the pan in step with it, so the move reads as one camera */
-    var w0 = widthFor(a0.z), w1 = widthFor(a1.z);
-    var p0 = place(a0.z, w0), p1 = place(a1.z, w1);
-    var imgW = w0 * Math.pow(w1 / w0, e);
-    var k = Math.abs(w1 - w0) > 0.5 ? (imgW - w0) / (w1 - w0) : e;
-    /* spotlight: the subject stays at full ink, the rest of the street recedes */
-    var sp0 = spot(a0.z), sp1 = spot(a1.z);
-    return { x: lerp(p0.x, p1.x, k), y: lerp(p0.y, p1.y, k), w: imgW,
-             sx: lerp(sp0.x, sp1.x, e), sy: lerp(sp0.y, sp1.y, e), sr: lerp(sp0.r, sp1.r, e), dim: lerp(sp0.dim, sp1.dim, e),
-             near: e < 0.5 ? a0 : a1 };
+    var S0 = shows(a0), S1 = shows(a1), near = e < 0.5 ? a0 : a1, S = e < 0.5 ? S0 : S1;
+    var st = { near: near, show: S, next: e < 0.5 ? S1 : S0, cam: null };
+    if (S.kind === 'scene') {
+      var Lr = L[S.layer];
+      if (S0.kind === 'scene' && S1.kind === 'scene' && S0.layer === S1.layer) st.cam = cam(Lr, S0.zone, S1.zone, e);
+      else st.cam = cam(Lr, S.zone, S.zone, 0);
+    }
+    return st;
   }
 
-  function spot(z){
-    if (z.span === 'all') return { x: 50, y: 50, r: 160, dim: 1 };
-    return { x: z.x * 100, y: z.y * 100, r: Math.max(6, z.span * 34), dim: CFG.spotDim };
-  }
-
-  var lastLabel = null, labelTimer = 0, current = null, activePanel = null, reached = {};
+  var active = null, activePanel = null, lastLabel = null, labelTimer = 0, current = null, reached = {};
   function render(){
     if (!anchors.length) return;
-    var s = stateAt(window.pageYOffset);
-    plane.style.transform = 'translate3d(' + s.x.toFixed(1) + 'px,' + s.y.toFixed(1) + 'px,0) scale(' + (s.w / maxW).toFixed(5) + ')';
-    plane.style.setProperty('--sx', s.sx.toFixed(2) + '%');
-    plane.style.setProperty('--sy', s.sy.toFixed(2) + '%');
-    plane.style.setProperty('--sr', s.sr.toFixed(2) + '%');
-    plane.style.setProperty('--dim', s.dim.toFixed(3));
-
-    if (s.near.label !== lastLabel) {
-      lastLabel = s.near.label;
-      caption.style.opacity = 0;
-      clearTimeout(labelTimer);
-      labelTimer = setTimeout(function(){ caption.textContent = lastLabel; caption.style.opacity = ''; }, 180);
+    var s = stateAt(window.pageYOffset), S = s.show;
+    var layerId = (S.kind === 'scene' || S.kind === 'vignette') ? S.layer : null;
+    if (layerId !== active) {
+      if (active) { L[active].el.classList.remove('on'); L[active].el.setAttribute('aria-hidden', 'true'); }
+      if (layerId) { var Lr = L[layerId]; warm(Lr); Lr.el.classList.add('on'); Lr.el.removeAttribute('aria-hidden'); sharpen(Lr); }
+      active = layerId;
     }
-    var want = !narrow && s.near.el._panel ? s.near.el._panel : null;
+    var want = S.kind === 'panel' ? S.panel : null;
     if (want !== activePanel) {
       if (activePanel) activePanel.classList.remove('show');
       if (want) want.classList.add('show');
-      stage.classList.toggle('charting', !!want);
       activePanel = want;
+    }
+    stage.classList.toggle('paneling', !!want);
+    /* warm the next visual so it is there when the reader arrives */
+    if (s.next && s.next.layer) warm(L[s.next.layer]);
+
+    if (s.cam && layerId) {
+      var p = L[layerId].plane, c = s.cam;
+      p.style.transform = 'translate3d(' + c.x.toFixed(1) + 'px,' + c.y.toFixed(1) + 'px,0) scale(' + (c.w / L[layerId].maxW).toFixed(5) + ')';
+      p.style.setProperty('--sx', c.sx.toFixed(2) + '%');
+      p.style.setProperty('--sy', c.sy.toFixed(2) + '%');
+      p.style.setProperty('--sr', c.sr.toFixed(2) + '%');
+      p.style.setProperty('--dim', c.dim.toFixed(3));
+    }
+
+    var label = layerId ? (s.near.kind === 'panel' ? '' : s.near.label) : '';
+    if (label !== lastLabel) {
+      lastLabel = label;
+      caption.style.opacity = 0;
+      clearTimeout(labelTimer);
+      if (label) labelTimer = setTimeout(function(){ caption.textContent = lastLabel; caption.style.opacity = ''; }, 180);
     }
 
     /* chapters: which one is being read, and how far through */
@@ -1046,13 +1307,12 @@
     fills.forEach(function(b, k){
       var start = chapters[k].getBoundingClientRect().top;
       var stop = k < chapters.length - 1 ? chapters[k + 1].getBoundingClientRect().top : endTop;
-      var p = (vline - start) / Math.max(1, stop - start);
-      b.style.transform = 'scaleX(' + Math.max(0, Math.min(1, p)).toFixed(3) + ')';
+      b.style.transform = 'scaleX(' + Math.max(0, Math.min(1, (vline - start) / Math.max(1, stop - start))).toFixed(3) + ')';
     });
     if (idx !== current) {
       current = idx;
       navLinks.forEach(function(a, k){ if (k === idx) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
-      barNow.innerHTML = idx < 0 ? '' : '<span class="n">' + (idx + 1) + '</span>' + chapters[idx].getAttribute('data-chapter');
+      barNow.innerHTML = idx < 0 ? '' : '<span class="n">' + navLinks[idx].querySelector('.n').textContent + '</span>' + chapters[idx].getAttribute('data-chapter');
       if (idx >= 0 && !reached[idx]) { reached[idx] = 1; track('read_chapter', { chapter: idx + 1 }); }
     }
     if (!reached.end && endTop < window.innerHeight * 0.6) { reached.end = 1; track('read_complete', {}); }
@@ -1060,10 +1320,7 @@
 
   /* analytics: sends only when the site's Google tag is on the page */
   function track(name, params){
-    if (typeof window.gtag === 'function') {
-      params.read_slug = CFG.slug;
-      window.gtag('event', name, params);
-    }
+    if (typeof window.gtag === 'function') { params.read_slug = CFG.slug; window.gtag('event', name, params); }
   }
   [].slice.call(document.querySelectorAll('[data-track]')).forEach(function(a){
     a.addEventListener('click', function(){ track(a.getAttribute('data-track'), {}); });
@@ -1081,9 +1338,9 @@
 
   var queued = false, idleTimer = 0;
   function onScroll(){
-    plane.classList.add('moving');
+    if (active && L[active].plane) L[active].plane.classList.add('moving');
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(function(){ plane.classList.remove('moving'); }, 220);
+    idleTimer = setTimeout(function(){ Object.keys(L).forEach(function(id){ if (L[id].plane) L[id].plane.classList.remove('moving'); }); }, 220);
     if (queued) return;
     queued = true;
     requestAnimationFrame(function(){ queued = false; render(); chromeState(); });
@@ -1094,10 +1351,10 @@
   /* phones resize the window as the address bar slides; only a change of width moves the layout */
   window.addEventListener('resize', function(){
     if (narrow && window.innerWidth === lastWidth) { render(); return; }
-    lastWidth = window.innerWidth; refresh();
+    lastWidth = window.innerWidth; Object.keys(L).forEach(function(id){ L[id].sharp = false; }); refresh();
   });
   lastWidth = window.innerWidth;
-  window.addEventListener('load', function(){ refresh(); loadFull(); });
+  window.addEventListener('load', refresh);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   refresh();
 
@@ -1110,18 +1367,13 @@
       var offset = narrow ? stage.getBoundingClientRect().bottom + 8 : bar.offsetHeight + 24;
       window.scrollTo({ top: top - offset + (narrow ? 0 : window.innerHeight * 0.08), behavior: mqReduce.matches ? 'auto' : 'smooth' });
       history.replaceState(null, '', '#' + target.id);
-      var h = target.querySelector('h2');
-      h.setAttribute('tabindex', '-1');
-      h.focus({ preventScroll: true });
+      var h = target.querySelector('h2'); h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true });
     });
   });
 
   /* ---------- theme: light unless the reader chooses dark ---------- */
   var themeBtn = document.getElementById('theme');
-  function syncThemeLabel(){
-    var dark = doc.getAttribute('data-theme') === 'dark';
-    themeBtn.setAttribute('aria-label', dark ? CFG.t.light : CFG.t.dark);
-  }
+  function syncThemeLabel(){ themeBtn.setAttribute('aria-label', doc.getAttribute('data-theme') === 'dark' ? CFG.t.light : CFG.t.dark); }
   themeBtn.addEventListener('click', function(){
     var next = doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     doc.setAttribute('data-theme', next);
@@ -1141,10 +1393,16 @@
   });
   document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closeMenu(); });
 
-  /* hook for verify.py: the camera at any scroll position, without touching the page */
+  /* hook for verify.py: what the stage shows at any scroll position, without touching the page */
   window.__READ = {
-    anchors: function(){ return anchors.map(function(a){ return { y: a.y, label: a.label }; }); },
-    stateAt: function(y){ var s = stateAt(y); return { x: s.x, y: s.y, w: s.w, label: s.near.label, panel: !!(s.near.el._panel && !narrow) }; },
+    anchors: function(){ return anchors.map(function(a){ return { y: a.y, label: a.label, kind: a.kind }; }); },
+    stateAt: function(y){
+      var s = stateAt(y), S = s.show;
+      return { kind: S.kind, layer: S.layer || null, panel: S.kind === 'panel',
+               x: s.cam ? s.cam.x : 0, y: s.cam ? s.cam.y : 0, w: s.cam ? s.cam.w : 0,
+               maxW: S.layer && L[S.layer].kind === 'scene' ? L[S.layer].maxW : 0,
+               srcW: S.layer ? L[S.layer].cfg.w : 0, label: s.near.label, nearKind: s.near.kind };
+    },
     readingLine: readingLine,
     refresh: refresh
   };
