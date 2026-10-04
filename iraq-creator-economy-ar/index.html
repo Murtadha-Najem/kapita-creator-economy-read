@@ -27,6 +27,7 @@
 <link rel="preload" href="assets/fonts/lyon-arabic-text-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/lyon-arabic-text-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/world-1200.webp" as="image" fetchpriority="high">
+<link rel="preload" href="assets/img/world-2000.webp" as="image" media="(min-width: 981px)">
 <script>
   document.documentElement.classList.add('js');
   (function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();
@@ -1100,9 +1101,20 @@
       want = need <= 880 ? Lr.cfg.small : need <= 1540 ? Lr.cfg.medium : Lr.cfg.large;
     }
     if (want === Lr.loaded) return;
-    var img = new Image();
-    img.onload = function(){ setImg(Lr, want); };
-    img.src = want;
+    /* in steps, so the blur goes early: the medium file lands in a third of the time of the large one,
+       and the large one follows it. Each step only ever replaces a smaller file. */
+    var steps = want === Lr.cfg.large && Lr.loaded !== Lr.cfg.medium ? [Lr.cfg.medium, Lr.cfg.large] : [want];
+    (function next(i){
+      if (i >= steps.length) return;
+      var img = new Image();
+      img.onload = function(){
+        var rank = [Lr.cfg.small, Lr.cfg.medium, Lr.cfg.large];
+        if (rank.indexOf(steps[i]) > rank.indexOf(Lr.loaded)) setImg(Lr, steps[i]);
+        next(i + 1);
+      };
+      img.onerror = function(){ next(i + 1); };
+      img.src = steps[i];
+    })(0);
   }
 
   /* ---------- panels: a beat's chart, diagram, quotation or figure, set large on the stage ---------- */
