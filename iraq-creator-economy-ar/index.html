@@ -31,7 +31,7 @@
   document.documentElement.classList.add('js');
   (function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وتطوير الأعمال", "description": "في العراق تجاوز المؤثرون دورهم كواجهات إعلانية ليتحولوا إلى مؤسسي علامات تجارية ومنافسين تجاريين مباشرين. قراءة تفاعلية في تقرير كابيتا البحثية.", "datePublished": "2026-04", "dateModified": "2026-09-30", "inLanguage": "ar", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy-ar/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy-ar/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy-ar", "isBasedOn": "https://research.kapita.iq/publications/iraqi-creator-economy-report-2026-iraq-abu-jana"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وتطوير الأعمال", "description": "في العراق تجاوز المؤثرون دورهم كواجهات إعلانية ليتحولوا إلى مؤسسي علامات تجارية ومنافسين تجاريين مباشرين. قراءة تفاعلية في تقرير كابيتا البحثية.", "datePublished": "2026-04", "dateModified": "2026-10-04", "inLanguage": "ar", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy-ar/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy-ar/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy-ar", "isBasedOn": "https://research.kapita.iq/publications/iraqi-creator-economy-report-2026-iraq-abu-jana"}</script>
 <style>
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
@@ -393,6 +393,18 @@
   .panel .matrix{font-size:16px}
   .panel .matrix thead th{font-size:14px}
   .panel .matrix th,.panel .matrix td{padding:13px 10px}
+  /* on the stage the table arrives like the charts do: the header, then each row in turn, then the tint
+     of the highlighted row. Cells move, not rows: a transform on a table row is not reliable everywhere. */
+  .panel .matrix thead th{opacity:0;transition:opacity .5s var(--ease-out)}
+  .panel .matrix tbody th,.panel .matrix tbody td{opacity:0;transform:translateY(10px);
+    transition:opacity .5s var(--ease-out),transform .6s var(--ease-out),background-color .6s var(--ease-out)}
+  .panel .matrix tr.hi th,.panel .matrix tr.hi td{background-color:transparent}
+  .panel.show .matrix thead th{opacity:1}
+  .panel.show .matrix tbody th,.panel.show .matrix tbody td{opacity:1;transform:none}
+  .panel.show .matrix tr.hi th,.panel.show .matrix tr.hi td{background-color:color-mix(in srgb,var(--accent) 9%,transparent)}
+  .panel.show .matrix tbody tr:nth-child(1)>*{transition-delay:.12s,.12s,.75s} .panel.show .matrix tbody tr:nth-child(2)>*{transition-delay:.22s,.22s,.85s}
+  .panel.show .matrix tbody tr:nth-child(3)>*{transition-delay:.32s,.32s,.95s} .panel.show .matrix tbody tr:nth-child(4)>*{transition-delay:.42s,.42s,1.05s}
+  .panel.show .matrix tbody tr:nth-child(5)>*{transition-delay:.52s,.52s,1.15s} .panel.show .matrix tbody tr:nth-child(n+6)>*{transition-delay:.62s,.62s,1.25s}
 
   /* ---- timeline: dated events on one rail ---- */
   .timeline{list-style:none;position:relative;display:grid;gap:16px;padding-inline-start:22px}
@@ -591,14 +603,14 @@
       <div class="stage" id="stage">
         <div class="layer scene" data-id="v-world" role="img" aria-label="رسم خطي يُقرأ من اليمين إلى اليسار: إلى اليمين متجر مغلق بقفل وتلفزيون قديم أمام كراسٍ فارغة وشباب ينظرون إلى هواتفهم ومقهى شعبي، وفي الوسط هاتف عملاق ممدود كالأرض تقف على شاشته صانعة محتوى أمام حلقة ضوء ويحيط به جمهور يرفع هواتفه، ودرجات صاعدة ومبنى حكومي ومصرف ومندوب توصيل على دراجة، وإلى اليسار حزام يخرج من الهاتف بأكياس عليها وجه مبتسم إلى مصنع ومخزن وشاحنة ودكاكين مكدسة ومنضدة تجميل وسيارة جائزة بشريطة على منصة، وعند الطرف بوابة حديدية بقفل وختم كبير."><div class="plane" style="--ar:2.3301"><div class="base"></div></div><div class="veil"></div></div>
         
-        <p class="caption" id="caption" aria-hidden="true">الهاتف صار الأرض</p>
+        <p class="caption" id="caption" aria-hidden="true" data-edit="opening.label">الهاتف صار الأرض</p>
       </div>
 
       <div class="flow" id="flow">
 
-        <header class="opening" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض">
-          <h1><span class="h1-topic">تحويل التأثير إلى صناعة</span><span class="h1-main">من المتابعين إلى المؤسسين</span></h1>
-          <p class="dek">في العراق تجاوز المؤثرون دورهم التقليدي كواجهات إعلانية ليتحولوا إلى مؤسسي علامات تجارية. <em>لم يعد المؤثر مجرد وسيلة للتسويق، بل تحول إلى منافس تجاري مباشر.</em></p>
+        <header class="opening" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض" data-edit-label="opening.label">
+          <h1><span class="h1-topic" data-edit="h1.topic">تحويل التأثير إلى صناعة</span><span class="h1-main" data-edit="h1.main">من المتابعين إلى المؤسسين</span></h1>
+          <p class="dek" data-edit="dek">في العراق تجاوز المؤثرون دورهم التقليدي كواجهات إعلانية ليتحولوا إلى مؤسسي علامات تجارية. <em>لم يعد المؤثر مجرد وسيلة للتسويق، بل تحول إلى منافس تجاري مباشر.</em></p>
           <div class="byline">
             <p><b>قراءة تفاعلية</b>نيسان 2026</p>
             <p><b>Kapita Research</b>بغداد</p>
@@ -608,28 +620,28 @@
         </header>
 
         
-        <section class="chapter" id="chapter-1" data-chapter="قبل" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الطريق القديم">
+        <section class="chapter" id="chapter-1" data-chapter="قبل" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الطريق القديم" data-edit-label="chapter-1.label">
           <p class="ch-num" aria-hidden="true">1</p>
-          <h2><span class="vh">الفصل 1: </span>فراغ الثقة</h2>
-          <p>ما يمنح العراق خصوصيته الهيكلية هو غياب «نقاط الاحتكاك» التقليدية: فلا إعلام رسمي ينافس على الثقة، ولا عوائق مالية ضخمة لدخول السوق.</p>
+          <h2><span class="vh">الفصل 1: </span><span data-edit="chapter-1.title">فراغ الثقة</span></h2>
+          <p data-edit="chapter-1.intro">ما يمنح العراق خصوصيته الهيكلية هو غياب «نقاط الاحتكاك» التقليدية: فلا إعلام رسمي ينافس على الثقة، ولا عوائق مالية ضخمة لدخول السوق.</p>
         </section>
         
-        <section class="beat" id="b1-1" data-kind="scene" data-layer="v-world" data-x="0.8900" data-y="0.2200" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="علامة عالمية مغلقة">
-          <p class="tag">العلامات العالمية</p>
-          <h3>«صنع في العراق» علامة جودة</h3>
+        <section class="beat" id="b1-1" data-kind="scene" data-layer="v-world" data-x="0.8900" data-y="0.2200" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="علامة عالمية مغلقة" data-edit-label="b1-1.label">
+          <p class="tag" data-edit="b1-1.tag">العلامات العالمية</p>
+          <h3 data-edit="b1-1.title">«صنع في العراق» علامة جودة</h3>
           
           
           
-          <p class="pull">أصبحت عبارة «صنع في العراق» علامة جودة وموثوقية في سوق لا تزال تنظر للعلامات العالمية بريبة موروثة من عقود الحصار.</p>
-          <p class="body">وفي بيئة مقاطعة العلامات الدولية بعد أكتوبر 2023، تحمل إشارات المنشأ المحلي قوة شرائية تتجاوز القيمة الوظيفية.</p>
+          <p class="pull"><span data-edit="b1-1.pull">أصبحت عبارة «صنع في العراق» علامة جودة وموثوقية في سوق لا تزال تنظر للعلامات العالمية بريبة موروثة من عقود الحصار.</span></p>
+          <p class="body" data-edit="b1-1.body.1">وفي بيئة مقاطعة العلامات الدولية بعد أكتوبر 2023، تحمل إشارات المنشأ المحلي قوة شرائية تتجاوز القيمة الوظيفية.</p>
           
           
           <p class="source"><span>المصدر</span>كابيتا البحثية، تحويل التأثير إلى صناعة، 2026، ص 9 و48</p>
         </section>
         
-        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="تلفزيون الدولة بلا مشاهدين">
-          <p class="tag">انتشار الإنترنت في العراق</p>
-          <h3>من الأسرع في المنطقة</h3>
+        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="تلفزيون الدولة بلا مشاهدين" data-edit-label="b1-2.label">
+          <p class="tag" data-edit="b1-2.tag">انتشار الإنترنت في العراق</p>
+          <h3 data-edit="b1-2.title">من الأسرع في المنطقة</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -645,47 +657,47 @@
           </figure>
           
           
-          <p class="body">تخطت النسبة حاجز الـ 80% لأول مرة خلال 2022 و2023، بدفع من توسيع شبكات الجيل الرابع، وتدفق الهواتف الذكية صينية الصنع بأسعار تنافسية، وطفرة الطلب على الاتصال التي فرضتها جائحة كوفيد.</p>
+          <p class="body" data-edit="b1-2.body.1">تخطت النسبة حاجز الـ 80% لأول مرة خلال 2022 و2023، بدفع من توسيع شبكات الجيل الرابع، وتدفق الهواتف الذكية صينية الصنع بأسعار تنافسية، وطفرة الطلب على الاتصال التي فرضتها جائحة كوفيد.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="ظهورهم للتلفزيون، وجوههم للهواتف">
-          <p class="tag">جيل الهواتف الذكية</p>
-          <h3>نموذج اقتصادي بديل</h3>
-          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l">من سكان العراق دون سن 25</span></p>
+        <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="ظهورهم للتلفزيون، وجوههم للهواتف" data-edit-label="b1-3.label">
+          <p class="tag" data-edit="b1-3.tag">جيل الهواتف الذكية</p>
+          <h3 data-edit="b1-3.title">نموذج اقتصادي بديل</h3>
+          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">من سكان العراق دون سن 25</span></p>
           
           
           
-          <p class="body">متوسط العمر 20.8 عاماً، وبطالة الشباب 32.09%، ونحو 700 ألف خريج سنوياً في سوق عمل حكومي متخم وقطاع خاص محدود. والعلامة التجارية الخاصة التي يطلقها المؤثر لاحقاً هي الدليل على قدرة هذا النموذج على التوسع.</p>
+          <p class="body" data-edit="b1-3.body.1">متوسط العمر 20.8 عاماً، وبطالة الشباب 32.09%، ونحو 700 ألف خريج سنوياً في سوق عمل حكومي متخم وقطاع خاص محدود. والعلامة التجارية الخاصة التي يطلقها المؤثر لاحقاً هي الدليل على قدرة هذا النموذج على التوسع.</p>
           
           
           <p class="source"><span>المصدر</span>Trading Economics / ILO، عبر التقرير، ص 15</p>
         </section>
         
-        <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="المقهى">
-          <p class="tag">اللهجة</p>
-          <h3>اللهجة إشارة ثقة</h3>
+        <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="المقهى" data-edit-label="b1-4.label">
+          <p class="tag" data-edit="b1-4.tag">اللهجة</p>
+          <h3 data-edit="b1-4.title">اللهجة إشارة ثقة</h3>
           
           
           
-          <p class="pull">في العراق، لا تعد اللهجة المحلية مجرد وسيلة للتفاهم، بل هي إعلان عن «عضوية اجتماعية».</p>
-          <p class="body">واكتسب هذا النفوذ اللغوي صبغة رسمية من خلال تشريعات هيئة الاتصالات والإعلام عام 2023، التي وضعت اللهجة المحلية على قدم المساواة مع الفصحى في الخطاب الإعلاني.</p>
+          <p class="pull"><span data-edit="b1-4.pull">في العراق، لا تعد اللهجة المحلية مجرد وسيلة للتفاهم، بل هي إعلان عن «عضوية اجتماعية».</span></p>
+          <p class="body" data-edit="b1-4.body.1">واكتسب هذا النفوذ اللغوي صبغة رسمية من خلال تشريعات هيئة الاتصالات والإعلام عام 2023، التي وضعت اللهجة المحلية على قدم المساواة مع الفصحى في الخطاب الإعلاني.</p>
           
           
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 15</p>
         </section>
         
-        <section class="chapter" id="chapter-2" data-chapter="القناة" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="0.420" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض">
+        <section class="chapter" id="chapter-2" data-chapter="القناة" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="0.420" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض" data-edit-label="chapter-2.label">
           <p class="ch-num" aria-hidden="true">2</p>
-          <h2><span class="vh">الفصل 2: </span>كثافة جماهيرية غير مسبوقة</h2>
-          <p>صار المبدع الفرد بمثابة «محطة بث وطنية»، وصار الشراء «امتداداً للعلاقة» معه وليس مجرد صفقة عابرة.</p>
+          <h2><span class="vh">الفصل 2: </span><span data-edit="chapter-2.title">كثافة جماهيرية غير مسبوقة</span></h2>
+          <p data-edit="chapter-2.intro">صار المبدع الفرد بمثابة «محطة بث وطنية»، وصار الشراء «امتداداً للعلاقة» معه وليس مجرد صفقة عابرة.</p>
         </section>
         
-        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="صانعة المحتوى على الشاشة">
-          <p class="tag">أبرز المنصات من حيث الوصول الإعلاني</p>
-          <h3>تيك توك يصل إلى أكثر من 90%</h3>
+        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="صانعة المحتوى على الشاشة" data-edit-label="b2-1.label">
+          <p class="tag" data-edit="b2-1.tag">أبرز المنصات من حيث الوصول الإعلاني</p>
+          <h3 data-edit="b2-1.title">تيك توك يصل إلى أكثر من 90%</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:11ch">
@@ -705,28 +717,28 @@
           </figure>
           
           
-          <p class="body">وإنستغرام، بـ 21.5 مليون مستخدم من الفئة المهيمنة بين 18 و34 عاماً، هو واجهة الجمال والأزياء.</p>
+          <p class="body" data-edit="b2-1.body.1">وإنستغرام، بـ 21.5 مليون مستخدم من الفئة المهيمنة بين 18 و34 عاماً، هو واجهة الجمال والأزياء.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الطلب وصل">
-          <p class="tag">واتساب</p>
-          <h3>البيع يُغلق عبر واتساب</h3>
+        <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الطلب وصل" data-edit-label="b2-2.label">
+          <p class="tag" data-edit="b2-2.tag">واتساب</p>
+          <h3 data-edit="b2-2.title">البيع يُغلق عبر واتساب</h3>
           
           
           
           
-          <p class="body">الاكتشاف على تيك توك، وإنستغرام واجهة الجمال والأزياء، أما واتساب فهو البنية التحتية للتجارة: تنفيذ الطلبات، وخدمات التوصيل، ودعم العملاء.</p>
+          <p class="body" data-edit="b2-2.body.1">الاكتشاف على تيك توك، وإنستغرام واجهة الجمال والأزياء، أما واتساب فهو البنية التحتية للتجارة: تنفيذ الطلبات، وخدمات التوصيل، ودعم العملاء.</p>
           
           
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 9 و14</p>
         </section>
         
-        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الدرجات الأربع">
-          <p class="tag">المسار الرباعي المراحل</p>
-          <h3>أربع مراحل</h3>
+        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الدرجات الأربع" data-edit-label="b2-3.label">
+          <p class="tag" data-edit="b2-3.tag">المسار الرباعي المراحل</p>
+          <h3 data-edit="b2-3.title">أربع مراحل</h3>
           
           
           
@@ -737,92 +749,92 @@
             <figcaption>كل مرحلة تستمد طاقتها من ظروف هيكلية يوفرها السوق العراقي مجاناً. <b>المصدر</b> كابيتا البحثية، ص 9 و17 إلى 19</figcaption>
           </figure>
           
-          <p class="body">يراكم المؤثر سلطة الذوق والمصداقية، ثم يسيلها إلى رأس مال اقتصادي عبر منتج يحمل علامته الشخصية.</p>
+          <p class="body" data-edit="b2-3.body.1">يراكم المؤثر سلطة الذوق والمصداقية، ثم يسيلها إلى رأس مال اقتصادي عبر منتج يحمل علامته الشخصية.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الجمهور حول الشاشة">
-          <p class="tag">المرجعية الثقافية</p>
-          <h3>سلطة دون منازع</h3>
+        <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الجمهور حول الشاشة" data-edit-label="b2-4.label">
+          <p class="tag" data-edit="b2-4.tag">المرجعية الثقافية</p>
+          <h3 data-edit="b2-4.title">سلطة دون منازع</h3>
           
           
           
           
-          <p class="body">في غياب الأدلة الاستهلاكية الموثوقة والنقاد المهنيين، يحل مبدع التجميل محل «رئيس تحرير قسم الجمال»، ويصبح مراجع الطعام «الناقد الأول».</p>
+          <p class="body" data-edit="b2-4.body.1">في غياب الأدلة الاستهلاكية الموثوقة والنقاد المهنيين، يحل مبدع التجميل محل «رئيس تحرير قسم الجمال»، ويصبح مراجع الطعام «الناقد الأول».</p>
           
           
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 19</p>
         </section>
         
-        <section class="chapter" id="chapter-3" data-chapter="العلامة" data-kind="scene" data-layer="v-world" data-x="0.2500" data-y="0.7200" data-span="0.300" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="من الشاشة إلى العلامة">
+        <section class="chapter" id="chapter-3" data-chapter="العلامة" data-kind="scene" data-layer="v-world" data-x="0.2500" data-y="0.7200" data-span="0.300" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="من الشاشة إلى العلامة" data-edit-label="chapter-3.label">
           <p class="ch-num" aria-hidden="true">3</p>
-          <h2><span class="vh">الفصل 3: </span>المبدع يصبح هو المنتج</h2>
-          <p>في المرحلة الرابعة يتوقف المبدع عن الترويج لمنتجات الآخرين: اسمه هو العلامة، ووجهه هو الواجهة، وقصته هي جوهر التسويق.</p>
+          <h2><span class="vh">الفصل 3: </span><span data-edit="chapter-3.title">المبدع يصبح هو المنتج</span></h2>
+          <p data-edit="chapter-3.intro">في المرحلة الرابعة يتوقف المبدع عن الترويج لمنتجات الآخرين: اسمه هو العلامة، ووجهه هو الواجهة، وقصته هي جوهر التسويق.</p>
         </section>
         
-        <section class="beat" id="b3-1" data-kind="scene" data-layer="v-world" data-x="0.2000" data-y="0.7200" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="منضدة التجميل">
-          <p class="tag">النموذج الأصلي</p>
-          <h3>من مدونة إلى علامة مليارية</h3>
-          <p class="fig"><span class="fig-v long"><bdi>1.2 مليار دولار</bdi></span><span class="fig-l">تقييم Huda Beauty (حصة TSG، 2017)</span></p>
+        <section class="beat" id="b3-1" data-kind="scene" data-layer="v-world" data-x="0.2000" data-y="0.7200" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="منضدة التجميل" data-edit-label="b3-1.label">
+          <p class="tag" data-edit="b3-1.tag">النموذج الأصلي</p>
+          <h3 data-edit="b3-1.title">من مدونة إلى علامة مليارية</h3>
+          <p class="fig"><span class="fig-v long"><bdi>1.2 مليار دولار</bdi></span><span class="fig-l" data-edit="b3-1.figure">تقييم Huda Beauty (حصة TSG، 2017)</span></p>
           
           
           
-          <p class="body">بدأت هدى قطان مدونة للتجميل عام 2010، وانتقلت إلى الإنتاج عام 2013 بـ 6,000 دولار، فكانت أول علامة يقودها مبدع في «سيفورا» دبي. وفي حزيران 2025 استعادت ملكيتها الكاملة.</p>
+          <p class="body" data-edit="b3-1.body.1">بدأت هدى قطان مدونة للتجميل عام 2010، وانتقلت إلى الإنتاج عام 2013 بـ 6,000 دولار، فكانت أول علامة يقودها مبدع في «سيفورا» دبي. وفي حزيران 2025 استعادت ملكيتها الكاملة.</p>
           
           
           <p class="source"><span>المصدر</span>Business of Fashion وغيرها، عبر التقرير، ص 22</p>
         </section>
         
-        <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="منتجاتها بيدها">
-          <p class="tag">مبدعات عراقيات</p>
-          <h3>العراق الوجهة الأولى</h3>
+        <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="منتجاتها بيدها" data-edit-label="b3-2.label">
+          <p class="tag" data-edit="b3-2.tag">مبدعات عراقيات</p>
+          <h3 data-edit="b3-2.title">العراق الوجهة الأولى</h3>
           
           
           
           
-          <p class="body">صار العراق الوجهة الأولى لعلامة مينا الشيخلي، متفوقاً على السعودية والإمارات. وفي بغداد أسست المعمارية شمس الخزرجي شبكة التوزيع «المقصد» ثم علامتها Voyage، بأسعار بين 12 و35 ألف دينار.</p>
+          <p class="body" data-edit="b3-2.body.1">صار العراق الوجهة الأولى لعلامة مينا الشيخلي، متفوقاً على السعودية والإمارات. وفي بغداد أسست المعمارية شمس الخزرجي شبكة التوزيع «المقصد» ثم علامتها Voyage، بأسعار بين 12 و35 ألف دينار.</p>
           
           
           <p class="source"><span>المصدر</span>Forbes Middle East وصفحات العلامتين، عبر التقرير، ص 23 و24</p>
         </section>
         
-        <section class="beat" id="b3-3" data-kind="scene" data-layer="v-world" data-x="0.3100" data-y="0.7800" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="سيارة الجائزة">
-          <p class="tag">حين يكون المؤسس هو الشخصية</p>
-          <h3>وجهه هو الغلاف</h3>
+        <section class="beat" id="b3-3" data-kind="scene" data-layer="v-world" data-x="0.3100" data-y="0.7800" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="سيارة الجائزة" data-edit-label="b3-3.label">
+          <p class="tag" data-edit="b3-3.tag">حين يكون المؤسس هو الشخصية</p>
+          <h3 data-edit="b3-3.title">وجهه هو الغلاف</h3>
           
           
           
           
-          <p class="body">لا تعتمد علامة أبو جنة على شعارات أو ألحان إعلانية، وحساباته الشخصية هي منصته التسويقية. ويوثّق كل تسليم لسيارة جائزة بفيديو، فالتسليم عنده ليس إجراءً لوجستياً بل صناعة محتوى، يبني «سلسلة إثبات اجتماعي» عابرة للمحافظات، من بغداد إلى صلاح الدين.</p>
+          <p class="body" data-edit="b3-3.body.1">لا تعتمد علامة أبو جنة على شعارات أو ألحان إعلانية، وحساباته الشخصية هي منصته التسويقية. ويوثّق كل تسليم لسيارة جائزة بفيديو، فالتسليم عنده ليس إجراءً لوجستياً بل صناعة محتوى، يبني «سلسلة إثبات اجتماعي» عابرة للمحافظات، من بغداد إلى صلاح الدين.</p>
           
           
           <p class="source"><span>المصدر</span>كابيتا البحثية، ص 35</p>
         </section>
         
-        <section class="beat" id="b3-4" data-kind="scene" data-layer="v-world" data-x="0.7050" data-y="0.2000" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="حملة مصرف">
-          <p class="tag">ما وراء السلع الاستهلاكية</p>
-          <h3>هذا الجمهور ملك لطالب</h3>
+        <section class="beat" id="b3-4" data-kind="scene" data-layer="v-world" data-x="0.7050" data-y="0.2000" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="حملة مصرف" data-edit-label="b3-4.label">
+          <p class="tag" data-edit="b3-4.tag">ما وراء السلع الاستهلاكية</p>
+          <h3 data-edit="b3-4.title">هذا الجمهور ملك لطالب</h3>
           
           
           
-          <p class="pull">الإنفاق التسويقي المؤسسي في العراق هو، في جزء منه، حضانة غير طوعية للمبدعين.</p>
-          <p class="body">رفعت حملة Pocket Fight التابعة لـ First Iraqi Bank متابعي عازف الجاز محمود طالب من 7,000 إلى 500,000 في أقل من شهرين، وحققت حملة TCL Bling أكثر من 30 مليون مشاهدة عضوية على إنستغرام. والمسار نفسه يمتد إلى العقارات.</p>
+          <p class="pull"><span data-edit="b3-4.pull">الإنفاق التسويقي المؤسسي في العراق هو، في جزء منه، حضانة غير طوعية للمبدعين.</span></p>
+          <p class="body" data-edit="b3-4.body.1">رفعت حملة Pocket Fight التابعة لـ First Iraqi Bank متابعي عازف الجاز محمود طالب من 7,000 إلى 500,000 في أقل من شهرين، وحققت حملة TCL Bling أكثر من 30 مليون مشاهدة عضوية على إنستغرام. والمسار نفسه يمتد إلى العقارات.</p>
           
           
           <p class="source"><span>المصدر</span>Ads of the World، عبر التقرير، ص 40</p>
         </section>
         
-        <section class="chapter" id="chapter-4" data-chapter="الحساب" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="حزام الإنتاج">
+        <section class="chapter" id="chapter-4" data-chapter="الحساب" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="حزام الإنتاج" data-edit-label="chapter-4.label">
           <p class="ch-num" aria-hidden="true">4</p>
-          <h2><span class="vh">الفصل 4: </span>اقتصاديات برنامج الجوائز</h2>
-          <p>كيف يُموَّل برنامج «هدايا السيارات» الخاص بأبو جنة؟</p>
+          <h2><span class="vh">الفصل 4: </span><span data-edit="chapter-4.title">اقتصاديات برنامج الجوائز</span></h2>
+          <p data-edit="chapter-4.intro">كيف يُموَّل برنامج «هدايا السيارات» الخاص بأبو جنة؟</p>
         </section>
         
-        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الوجه على الكيس">
-          <p class="tag">ثلاثة نماذج للدخول إلى السوق</p>
-          <h3>لماذا يفشل الاسم المجرد</h3>
+        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الوجه على الكيس" data-edit-label="b4-1.label">
+          <p class="tag" data-edit="b4-1.tag">ثلاثة نماذج للدخول إلى السوق</p>
+          <h3 data-edit="b4-1.title">لماذا يفشل الاسم المجرد</h3>
           
           
           
@@ -834,15 +846,15 @@
             <figcaption>نماذج الدخول إلى سوق الوجبات الخفيفة كما يقارنها التقرير. <b>المصدر</b> كابيتا البحثية، ص 28</figcaption>
           </figure>
           
-          <p class="body">يقع أبو جنة وسكونونو في خانتي الشراكة والملكية الكاملة، حيث المخاطرة على المؤسس. أما موجة «شيبس المشاهير» قصيرة العمر فتتمركز في خانة الرسوم الثابتة: لا مخاطرة على المبدع ولا مساءلة تشغيلية.</p>
+          <p class="body" data-edit="b4-1.body.1">يقع أبو جنة وسكونونو في خانتي الشراكة والملكية الكاملة، حيث المخاطرة على المؤسس. أما موجة «شيبس المشاهير» قصيرة العمر فتتمركز في خانة الرسوم الثابتة: لا مخاطرة على المبدع ولا مساءلة تشغيلية.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="من المصنع إلى الموزع">
-          <p class="tag">سلّم الأسعار لكل كرتون</p>
-          <h3>من المصنع إلى الرف</h3>
+        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="من المصنع إلى الموزع" data-edit-label="b4-2.label">
+          <p class="tag" data-edit="b4-2.tag">سلّم الأسعار لكل كرتون</p>
+          <h3 data-edit="b4-2.title">من المصنع إلى الرف</h3>
           
           
           
@@ -853,28 +865,28 @@
             <figcaption>بيانات لوحة موردي جميلة، نيسان 2026، ولم تخضع لمراجعة مستقلة. <b>المصدر</b> Jamila supplier panel data، نيسان 2026، ص 30</figcaption>
           </figure>
           
-          <p class="body">تكلفة التصنيع 30% أو أقل من سعر التجزئة. وسعر المستهلك 250 ديناراً للعبوة الصغيرة، وهي نقطة السعر الأكثر شعبية، و500 دينار للعبوة العائلية.</p>
+          <p class="body" data-edit="b4-2.body.1">تكلفة التصنيع 30% أو أقل من سعر التجزئة. وسعر المستهلك 250 ديناراً للعبوة الصغيرة، وهي نقطة السعر الأكثر شعبية، و500 دينار للعبوة العائلية.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="دكاكين تعيد الطلب">
-          <p class="tag">التوزيع</p>
-          <h3>التوزيع لا الإنتاج</h3>
-          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l">نقطة بيع يُعاد التوريد إليها</span></p>
+        <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="دكاكين تعيد الطلب" data-edit-label="b4-3.label">
+          <p class="tag" data-edit="b4-3.tag">التوزيع</p>
+          <h3 data-edit="b4-3.title">التوزيع لا الإنتاج</h3>
+          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">نقطة بيع يُعاد التوريد إليها</span></p>
           
           
           
-          <p class="body">يطلب المتجر الواحد المنتج 7 مرات شهرياً، بمعدل 21 كرتوناً، وهو إيقاع يكشف نموذجاً استهلاكياً صلباً وليس مجرد تجربة عابرة.</p>
+          <p class="body" data-edit="b4-3.body.1">يطلب المتجر الواحد المنتج 7 مرات شهرياً، بمعدل 21 كرتوناً، وهو إيقاع يكشف نموذجاً استهلاكياً صلباً وليس مجرد تجربة عابرة.</p>
           
           
           <p class="source"><span>المصدر</span>بيانات لوحة موردي جميلة، نيسان 2026، عبر التقرير، ص 32</p>
         </section>
         
-        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الجائزة من الربح">
-          <p class="tag">السيناريو الأعلى مقابل التحفظي</p>
-          <h3>0.7% من إجمالي الربح</h3>
+        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الجائزة من الربح" data-edit-label="b4-4.label">
+          <p class="tag" data-edit="b4-4.tag">السيناريو الأعلى مقابل التحفظي</p>
+          <h3 data-edit="b4-4.title">0.7% من إجمالي الربح</h3>
           
           
           <figure class="viz chart viz-share" style="--vw:5ch">
@@ -889,21 +901,21 @@
           </figure>
           
           
-          <p class="body">وحتى في «اختبار المتانة» مع ارتفاع التكاليف، يظل صافي الربح الشهري نحو 0.93 مليون دولار، وهو فائض يكفي لتمويل عشرة أضعاف حجم الجوائز الحالي.</p>
+          <p class="body" data-edit="b4-4.body.1">وحتى في «اختبار المتانة» مع ارتفاع التكاليف، يظل صافي الربح الشهري نحو 0.93 مليون دولار، وهو فائض يكفي لتمويل عشرة أضعاف حجم الجوائز الحالي.</p>
           
           
           
         </section>
         
-        <section class="chapter" id="chapter-5" data-chapter="الحدود" data-kind="scene" data-layer="v-world" data-x="0.1400" data-y="0.7000" data-span="0.280" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="البوابة">
+        <section class="chapter" id="chapter-5" data-chapter="الحدود" data-kind="scene" data-layer="v-world" data-x="0.1400" data-y="0.7000" data-span="0.280" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="البوابة" data-edit-label="chapter-5.label">
           <p class="ch-num" aria-hidden="true">5</p>
-          <h2><span class="vh">الفصل 5: </span>قيود حقيقية</h2>
-          <p>تجاهلها يُنتج صورة مشوّهة عن كيفية عمل العلامات الخاصة للمبدعين العراقيين فعلياً.</p>
+          <h2><span class="vh">الفصل 5: </span><span data-edit="chapter-5.title">قيود حقيقية</span></h2>
+          <p data-edit="chapter-5.intro">تجاهلها يُنتج صورة مشوّهة عن كيفية عمل العلامات الخاصة للمبدعين العراقيين فعلياً.</p>
         </section>
         
-        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الختم والقفل">
-          <p class="tag">البيئة التنظيمية تتسارع</p>
-          <h3>خمس خطوات في ثلاث سنوات</h3>
+        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الختم والقفل" data-edit-label="b5-1.label">
+          <p class="tag" data-edit="b5-1.tag">البيئة التنظيمية تتسارع</p>
+          <h3 data-edit="b5-1.title">خمس خطوات في ثلاث سنوات</h3>
           
           
           
@@ -914,15 +926,15 @@
             <figcaption>القرارات التنظيمية التي يرصدها التقرير. <b>المصدر</b> Arab News وThe New Arab وشفق نيوز، عبر التقرير، ص 15 و44 و45</figcaption>
           </figure>
           
-          <p class="body">عبء الامتثال يدفع مدفوعات المؤثرين نحو النقد والحسابات الوسيطة، مما يقلّص الشفافية المالية للعلامات الخاصة التي تسعى إلى استثمار رسمي أو شراكات دولية.</p>
+          <p class="body" data-edit="b5-1.body.1">عبء الامتثال يدفع مدفوعات المؤثرين نحو النقد والحسابات الوسيطة، مما يقلّص الشفافية المالية للعلامات الخاصة التي تسعى إلى استثمار رسمي أو شراكات دولية.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="المنصة نفسها">
-          <p class="tag">خطر حظر المنصة</p>
-          <h3>خطر الحظر حقيقي</h3>
+        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="المنصة نفسها" data-edit-label="b5-2.label">
+          <p class="tag" data-edit="b5-2.tag">خطر حظر المنصة</p>
+          <h3 data-edit="b5-2.title">خطر الحظر حقيقي</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:11ch">
@@ -938,28 +950,28 @@
           </figure>
           
           
-          <p class="body">العلامات الخاصة المبنية أساساً على الاكتشاف عبر تيك توك تواجه خطر تركّز المنصة الذي لا تواجهه العلامات الأولى على إنستغرام أو الأصيلة على واتساب.</p>
+          <p class="body" data-edit="b5-2.body.1">العلامات الخاصة المبنية أساساً على الاكتشاف عبر تيك توك تواجه خطر تركّز المنصة الذي لا تواجهه العلامات الأولى على إنستغرام أو الأصيلة على واتساب.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الجهة الرسمية">
-          <p class="tag">لوائح الأخلاق العامة</p>
-          <h3>حتى المقاطع الكوميدية</h3>
-          <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l">قضية إلكترونية مرتبطة بالأخلاق منذ 2023، ومعها أكثر من 200 اعتقال</span></p>
+        <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الجهة الرسمية" data-edit-label="b5-3.label">
+          <p class="tag" data-edit="b5-3.tag">لوائح الأخلاق العامة</p>
+          <h3 data-edit="b5-3.title">حتى المقاطع الكوميدية</h3>
+          <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l" data-edit="b5-3.figure">قضية إلكترونية مرتبطة بالأخلاق منذ 2023، ومعها أكثر من 200 اعتقال</span></p>
           
           
           
-          <p class="body">تستند الملاحقات إلى المادة 403 من قانون العقوبات لعام 1969. ومع منصة «بلّغ» للتبليغ المجهول، سُجلت 500 مخالفة و75 اعتقالاً من كانون الثاني إلى آذار 2025 وحدها.</p>
+          <p class="body" data-edit="b5-3.body.1">تستند الملاحقات إلى المادة 403 من قانون العقوبات لعام 1969. ومع منصة «بلّغ» للتبليغ المجهول، سُجلت 500 مخالفة و75 اعتقالاً من كانون الثاني إلى آذار 2025 وحدها.</p>
           
           
           <p class="source"><span>المصدر</span>شفق نيوز، 2025، عبر التقرير، ص 44</p>
         </section>
         
-        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الوجه على الكيس يُنسخ">
-          <p class="tag">المنتجات المقلّدة</p>
-          <h3>تسرّب المنتجات المقلّدة</h3>
+        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الوجه على الكيس يُنسخ" data-edit-label="b5-4.label">
+          <p class="tag" data-edit="b5-4.tag">المنتجات المقلّدة</p>
+          <h3 data-edit="b5-4.title">تسرّب المنتجات المقلّدة</h3>
           
           
           <figure class="viz chart viz-share" style="--vw:4ch">
@@ -973,7 +985,7 @@
           </figure>
           
           
-          <p class="body">وامتد الأمر إلى الأغذية: أفرز نجاح نموذج أبو جنة موجة من المقلدين دون البنية التحتية لتسليم الجوائز، مما يهدد بتلويث سمعة العلامة الأصلية.</p>
+          <p class="body" data-edit="b5-4.body.1">وامتد الأمر إلى الأغذية: أفرز نجاح نموذج أبو جنة موجة من المقلدين دون البنية التحتية لتسليم الجوائز، مما يهدد بتلويث سمعة العلامة الأصلية.</p>
           
           
           
@@ -981,11 +993,11 @@
         
 
         
-        <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض">
-          <p class="tag">الخلاصة</p>
-          <h3>المسار الأكثر كفاءة</h3>
-          <p class="pull">في العراق، المسار الأكثر كفاءة نحو علامة تجارية استهلاكية وطنية في 2026 لا يمر عبر شبكات التوزيع أو الإعلان فوق الخط، بل عبر العلاقة الاجتماعية الافتراضية للمبدع مع جمهوره.</p>
-          <p class="body">المسار سريع ومنخفض الاحتكاك ومتزايد التنافس. وللعلامات العالمية الداخلة إلى العراق: المؤثر ليس شريك توزيع بل هو منافس.</p>
+        <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض" data-edit-label="finale.label">
+          <p class="tag" data-edit="finale.tag">الخلاصة</p>
+          <h3 data-edit="finale.title">المسار الأكثر كفاءة</h3>
+          <p class="pull"><span data-edit="finale.pull">في العراق، المسار الأكثر كفاءة نحو علامة تجارية استهلاكية وطنية في 2026 لا يمر عبر شبكات التوزيع أو الإعلان فوق الخط، بل عبر العلاقة الاجتماعية الافتراضية للمبدع مع جمهوره.</span></p>
+          <p class="body" data-edit="finale.body.1">المسار سريع ومنخفض الاحتكاك ومتزايد التنافس. وللعلامات العالمية الداخلة إلى العراق: المؤثر ليس شريك توزيع بل هو منافس.</p>
           
         </section>
         
@@ -994,30 +1006,30 @@
 
     <section class="close" aria-labelledby="ledger-title">
       <div class="close-inner">
-        <h2 id="ledger-title">السوق في أربعة أرقام</h2>
+        <h2 id="ledger-title" data-edit="ledger.title">السوق في أربعة أرقام</h2>
         <dl class="four" style="--ledger:4">
-          <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd>نسبة انتشار الإنترنت، نهاية 2024</dd></div>
-          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd>من سكان العراق دون سن 25</dd></div>
-          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1 مليون</a></bdi></dt><dd>مستخدمو تيك توك النشطون، تشرين الأول 2025</dd></div>
-          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd>نقطة بيع يُعاد التوريد إليها</dd></div>
+          <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd data-edit="ledger.1.label">نسبة انتشار الإنترنت، نهاية 2024</dd></div>
+          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">من سكان العراق دون سن 25</dd></div>
+          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1 مليون</a></bdi></dt><dd data-edit="ledger.3.label">مستخدمو تيك توك النشطون، تشرين الأول 2025</dd></div>
+          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">نقطة بيع يُعاد التوريد إليها</dd></div>
           
         </dl>
 
         <div class="offer">
           <div>
-            <h2>هذا التقرير يرسم المسار. دراسة لقطاعك تحدد موقعك منه.</h2>
-            <p class="engage">للعلامات العالمية الداخلة إلى العراق، وللمبدعين الذين يفكرون في إطلاق علامتهم، وللعلامات الإقليمية المنافسة: تبني كابيتا البحثية هذا التحليل على قطاعك وسوقك وقرارك.</p>
+            <h2 data-edit="offer.title">هذا التقرير يرسم المسار. دراسة لقطاعك تحدد موقعك منه.</h2>
+            <p class="engage" data-edit="offer.engage">للعلامات العالمية الداخلة إلى العراق، وللمبدعين الذين يفكرون في إطلاق علامتهم، وللعلامات الإقليمية المنافسة: تبني كابيتا البحثية هذا التحليل على قطاعك وسوقك وقرارك.</p>
             <div class="actions">
-              <a class="btn" href="https://research.kapita.iq/contact?utm_source=read&amp;utm_medium=brief&amp;utm_campaign=iraq-creator-economy-ar" data-track="cta_click">ناقش دراسة لقطاعك
+              <a class="btn" href="https://research.kapita.iq/contact?utm_source=read&amp;utm_medium=brief&amp;utm_campaign=iraq-creator-economy-ar" data-track="cta_click"><span data-edit="offer.cta">ناقش دراسة لقطاعك</span>
                 <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
               <p class="mail">أو راسلنا على <a href="mailto:inquiry@kapitaresearch.com" data-track="email_click">inquiry@kapitaresearch.com</a></p>
             </div>
             <p class="full-report"><a href="https://research.kapita.iq/publications/iraqi-creator-economy-report-2026-iraq-abu-jana" data-track="publication_click">حمّل التقرير الكامل</a></p>
           </div>
           <ul class="modules" aria-label="ما يمكن أن تغطيه دراسة لقطاعك">
-            <li><h3>للعلامات العالمية الداخلة إلى العراق</h3><p>المؤثر منافس لا شريك توزيع، والتوطين دون المستوى الوطني مهم، والتجارة الأصيلة عبر واتساب ليست اختيارية.</p></li>
-            <li><h3>للمبدعين قبل إطلاق علامتهم</h3><p>توقيت المسار مهم: التحويل بعد أن تكون الثقة عميقة والسلطة الثقافية راسخة، مع هياكل مالية قادرة على العمل بالتسليم النقدي.</p></li>
-            <li><h3>للعلامات الإقليمية المنافسة</h3><p>قصة الأصل العراقية لا تُشترى: الاستحواذ على علامات المبدعين أو الشراكة معها بدلاً من تكرارها، ومحتوى من ناطقين أصليين باللهجة.</p></li>
+            <li><h3 data-edit="offer.module.1.name">للعلامات العالمية الداخلة إلى العراق</h3><p data-edit="offer.module.1.text">المؤثر منافس لا شريك توزيع، والتوطين دون المستوى الوطني مهم، والتجارة الأصيلة عبر واتساب ليست اختيارية.</p></li>
+            <li><h3 data-edit="offer.module.2.name">للمبدعين قبل إطلاق علامتهم</h3><p data-edit="offer.module.2.text">توقيت المسار مهم: التحويل بعد أن تكون الثقة عميقة والسلطة الثقافية راسخة، مع هياكل مالية قادرة على العمل بالتسليم النقدي.</p></li>
+            <li><h3 data-edit="offer.module.3.name">للعلامات الإقليمية المنافسة</h3><p data-edit="offer.module.3.text">قصة الأصل العراقية لا تُشترى: الاستحواذ على علامات المبدعين أو الشراكة معها بدلاً من تكرارها، ومحتوى من ناطقين أصليين باللهجة.</p></li>
             
           </ul>
         </div>

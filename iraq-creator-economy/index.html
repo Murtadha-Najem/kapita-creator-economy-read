@@ -31,7 +31,7 @@
   document.documentElement.classList.add('js');
   (function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();
 </script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "Turning Influence into Industry: Iraqi Creators and the Business of Self-Branding", "description": "In Iraq, influencers are not just advertisers: they are brand founders and direct competitors. An interactive read of the Kapita Research report.", "datePublished": "2026-04", "dateModified": "2026-09-30", "inLanguage": "en", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy", "isBasedOn": "https://research.kapita.iq/publications/iraqi-influencer-brands-self-branding-2026"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Report", "Article"], "headline": "Turning Influence into Industry: Iraqi Creators and the Business of Self-Branding", "description": "In Iraq, influencers are not just advertisers: they are brand founders and direct competitors. An interactive read of the Kapita Research report.", "datePublished": "2026-04", "dateModified": "2026-10-04", "inLanguage": "en", "isAccessibleForFree": true, "about": ["Iraq", "Creator economy", "Influencer marketing", "Consumer brands"], "image": ["https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/og.jpg", "https://research.kapita.iq/read-content/iraq-creator-economy/assets/img/cover.jpg"], "author": {"@type": "Organization", "name": "Kapita Research", "url": "https://research.kapita.iq"}, "publisher": {"@type": "Organization", "name": "Kapita Research", "logo": {"@type": "ImageObject", "url": "https://research.kapita.iq/kapita-logo.png"}}, "mainEntityOfPage": "https://research.kapita.iq/read/iraq-creator-economy", "isBasedOn": "https://research.kapita.iq/publications/iraqi-influencer-brands-self-branding-2026"}</script>
 <style>
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
   @font-face{font-family:'Gotham';src:url('assets/fonts/gotham-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
@@ -391,6 +391,18 @@
   .panel .matrix{font-size:16px}
   .panel .matrix thead th{font-size:14px}
   .panel .matrix th,.panel .matrix td{padding:13px 10px}
+  /* on the stage the table arrives like the charts do: the header, then each row in turn, then the tint
+     of the highlighted row. Cells move, not rows: a transform on a table row is not reliable everywhere. */
+  .panel .matrix thead th{opacity:0;transition:opacity .5s var(--ease-out)}
+  .panel .matrix tbody th,.panel .matrix tbody td{opacity:0;transform:translateY(10px);
+    transition:opacity .5s var(--ease-out),transform .6s var(--ease-out),background-color .6s var(--ease-out)}
+  .panel .matrix tr.hi th,.panel .matrix tr.hi td{background-color:transparent}
+  .panel.show .matrix thead th{opacity:1}
+  .panel.show .matrix tbody th,.panel.show .matrix tbody td{opacity:1;transform:none}
+  .panel.show .matrix tr.hi th,.panel.show .matrix tr.hi td{background-color:color-mix(in srgb,var(--accent) 9%,transparent)}
+  .panel.show .matrix tbody tr:nth-child(1)>*{transition-delay:.12s,.12s,.75s} .panel.show .matrix tbody tr:nth-child(2)>*{transition-delay:.22s,.22s,.85s}
+  .panel.show .matrix tbody tr:nth-child(3)>*{transition-delay:.32s,.32s,.95s} .panel.show .matrix tbody tr:nth-child(4)>*{transition-delay:.42s,.42s,1.05s}
+  .panel.show .matrix tbody tr:nth-child(5)>*{transition-delay:.52s,.52s,1.15s} .panel.show .matrix tbody tr:nth-child(n+6)>*{transition-delay:.62s,.62s,1.25s}
 
   /* ---- timeline: dated events on one rail ---- */
   .timeline{list-style:none;position:relative;display:grid;gap:16px;padding-inline-start:22px}
@@ -589,14 +601,14 @@
       <div class="stage" id="stage">
         <div class="layer scene" data-id="v-world" role="img" aria-label="A line drawing read from right to left. On the right, a shuttered shop with a padlock, an old television facing empty chairs, young people looking at their phones, and a tea house. In the middle, a giant phone lying flat like land, a woman creator on its screen before a ring light, an audience holding up phones, rising steps, a government building, a bank and a courier on a motorbike. On the left, a belt carrying bags printed with a smiling face from the phone to a factory, a warehouse, a truck, stocked corner shops, a beauty counter and a prize car with a bow on a pedestal; at the far edge, an iron gate with a padlock and a large stamp."><div class="plane" style="--ar:2.3301"><div class="base"></div></div><div class="veil"></div></div>
         
-        <p class="caption" id="caption" aria-hidden="true">The phone became the land</p>
+        <p class="caption" id="caption" aria-hidden="true" data-edit="opening.label">The phone became the land</p>
       </div>
 
       <div class="flow" id="flow">
 
-        <header class="opening" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land">
-          <h1><span class="h1-topic">Turning Influence into Industry</span><span class="h1-main">From Followers to Founders</span></h1>
-          <p class="dek">In Iraq, influencers are not just advertisers: they are brand founders. <em>The influencer is not a marketing channel: they are the competition.</em></p>
+        <header class="opening" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land" data-edit-label="opening.label">
+          <h1><span class="h1-topic" data-edit="h1.topic">Turning Influence into Industry</span><span class="h1-main" data-edit="h1.main">From Followers to Founders</span></h1>
+          <p class="dek" data-edit="dek">In Iraq, influencers are not just advertisers: they are brand founders. <em>The influencer is not a marketing channel: they are the competition.</em></p>
           <div class="byline">
             <p><b>Interactive Read</b>April 2026</p>
             <p><b>Kapita Research</b>Baghdad</p>
@@ -606,28 +618,28 @@
         </header>
 
         
-        <section class="chapter" id="chapter-1" data-chapter="Before" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The old way">
+        <section class="chapter" id="chapter-1" data-chapter="Before" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The old way" data-edit-label="chapter-1.label">
           <p class="ch-num" aria-hidden="true">1</p>
-          <h2><span class="vh">Chapter 1: </span>The trust vacuum</h2>
-          <p>What makes Iraq structurally distinctive is that none of the usual friction points apply: there is no credible legacy media competing for audience trust, and no developed retail infrastructure requiring expensive entry.</p>
+          <h2><span class="vh">Chapter 1: </span><span data-edit="chapter-1.title">The trust vacuum</span></h2>
+          <p data-edit="chapter-1.intro">What makes Iraq structurally distinctive is that none of the usual friction points apply: there is no credible legacy media competing for audience trust, and no developed retail infrastructure requiring expensive entry.</p>
         </section>
         
-        <section class="beat" id="b1-1" data-kind="scene" data-layer="v-world" data-x="0.8900" data-y="0.2200" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="A global brand, shuttered">
-          <p class="tag">Global brands</p>
-          <h3>“Iraqi-made” is a premium signal</h3>
+        <section class="beat" id="b1-1" data-kind="scene" data-layer="v-world" data-x="0.8900" data-y="0.2200" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="A global brand, shuttered" data-edit-label="b1-1.label">
+          <p class="tag" data-edit="b1-1.tag">Global brands</p>
+          <h3 data-edit="b1-1.title">“Iraqi-made” is a premium signal</h3>
           
           
           
-          <p class="pull">“Iraqi-made” functions as a premium signal in a market where global brands are viewed with suspicion inherited from decades of sanctions.</p>
-          <p class="body">In the post-October 2023 environment of international brand boycotts, domestic origin signals carry purchasing power beyond functional value.</p>
+          <p class="pull"><span data-edit="b1-1.pull">“Iraqi-made” functions as a premium signal in a market where global brands are viewed with suspicion inherited from decades of sanctions.</span></p>
+          <p class="body" data-edit="b1-1.body.1">In the post-October 2023 environment of international brand boycotts, domestic origin signals carry purchasing power beyond functional value.</p>
           
           
           <p class="source"><span>Source</span>Kapita Research, Turning Influence into Industry, 2026, pp. 9 and 46</p>
         </section>
         
-        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="State television, empty chairs">
-          <p class="tag">Internet penetration in Iraq</p>
-          <h3>One of the fastest in MENA</h3>
+        <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="State television, empty chairs" data-edit-label="b1-2.label">
+          <p class="tag" data-edit="b1-2.tag">Internet penetration in Iraq</p>
+          <h3 data-edit="b1-2.title">One of the fastest in MENA</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -643,47 +655,47 @@
           </figure>
           
           
-          <p class="body">Penetration crossed 80% for the first time in 2022 and 2023, driven by mobile broadband rollout, the affordability of Chinese-manufactured smartphones, and COVID-era demand for connectivity.</p>
+          <p class="body" data-edit="b1-2.body.1">Penetration crossed 80% for the first time in 2022 and 2023, driven by mobile broadband rollout, the affordability of Chinese-manufactured smartphones, and COVID-era demand for connectivity.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="Backs to the television, eyes on their phones">
-          <p class="tag">A mobile-first generation</p>
-          <h3>An alternative economic model</h3>
-          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l">of Iraq&#39;s population is under 25</span></p>
+        <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="Backs to the television, eyes on their phones" data-edit-label="b1-3.label">
+          <p class="tag" data-edit="b1-3.tag">A mobile-first generation</p>
+          <h3 data-edit="b1-3.title">An alternative economic model</h3>
+          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">of Iraq&#39;s population is under 25</span></p>
           
           
           
-          <p class="body">The median age is 20.8, youth unemployment is 32.09%, and approximately 700,000 school and college leavers a year compete for scarce public-sector positions and a thin private sector. The private-label brand that follows is proof that the model scales.</p>
+          <p class="body" data-edit="b1-3.body.1">The median age is 20.8, youth unemployment is 32.09%, and approximately 700,000 school and college leavers a year compete for scarce public-sector positions and a thin private sector. The private-label brand that follows is proof that the model scales.</p>
           
           
           <p class="source"><span>Source</span>Trading Economics / ILO, via the report, p. 15</p>
         </section>
         
-        <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="The tea house">
-          <p class="tag">Dialect</p>
-          <h3>Dialect as a trust signal</h3>
+        <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="The tea house" data-edit-label="b1-4.label">
+          <p class="tag" data-edit="b1-4.tag">Dialect</p>
+          <h3 data-edit="b1-4.title">Dialect as a trust signal</h3>
           
           
           
-          <p class="pull">When an Iraqi creator speaks dialect, they signal peer membership.</p>
-          <p class="body">The Communications and Media Commission&#39;s own 2023 framework regulations acknowledge this, permitting advertising in “standard Arabic language or the local Iraqi dialect that is understandable”.</p>
+          <p class="pull"><span data-edit="b1-4.pull">When an Iraqi creator speaks dialect, they signal peer membership.</span></p>
+          <p class="body" data-edit="b1-4.body.1">The Communications and Media Commission&#39;s own 2023 framework regulations acknowledge this, permitting advertising in “standard Arabic language or the local Iraqi dialect that is understandable”.</p>
           
           
           <p class="source"><span>Source</span>Kapita Research, p. 15</p>
         </section>
         
-        <section class="chapter" id="chapter-2" data-chapter="The channel" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="0.420" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land">
+        <section class="chapter" id="chapter-2" data-chapter="The channel" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="0.420" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land" data-edit-label="chapter-2.label">
           <p class="ch-num" aria-hidden="true">2</p>
-          <h2><span class="vh">Chapter 2: </span>Unmatched audience density</h2>
-          <p>A creator who masters short-form video can achieve national coverage without a television network, and followers purchase as an extension of the relationship, not merely as a market transaction.</p>
+          <h2><span class="vh">Chapter 2: </span><span data-edit="chapter-2.title">Unmatched audience density</span></h2>
+          <p data-edit="chapter-2.intro">A creator who masters short-form video can achieve national coverage without a television network, and followers purchase as an extension of the relationship, not merely as a market transaction.</p>
         </section>
         
-        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="A creator on the screen">
-          <p class="tag">Top platforms by ad reach</p>
-          <h3>TikTok reaches 90%+ of users</h3>
+        <section class="beat" id="b2-1" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4500" data-y="0.4500" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="A creator on the screen" data-edit-label="b2-1.label">
+          <p class="tag" data-edit="b2-1.tag">Top platforms by ad reach</p>
+          <h3 data-edit="b2-1.title">TikTok reaches 90%+ of users</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -703,28 +715,28 @@
           </figure>
           
           
-          <p class="body">Instagram&#39;s 21.5M users are disproportionately in the 18 to 34 demographic, and it is the beauty and fashion discovery platform.</p>
+          <p class="body" data-edit="b2-1.body.1">Instagram&#39;s 21.5M users are disproportionately in the 18 to 34 demographic, and it is the beauty and fashion discovery platform.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The order arrives">
-          <p class="tag">WhatsApp</p>
-          <h3>The sale closes on WhatsApp</h3>
+        <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The order arrives" data-edit-label="b2-2.label">
+          <p class="tag" data-edit="b2-2.tag">WhatsApp</p>
+          <h3 data-edit="b2-2.title">The sale closes on WhatsApp</h3>
           
           
           
           
-          <p class="body">TikTok is the primary discovery, Instagram is beauty and fashion discovery, and WhatsApp is the backbone of social commerce: order fulfillment, delivery, customer service.</p>
+          <p class="body" data-edit="b2-2.body.1">TikTok is the primary discovery, Instagram is beauty and fashion discovery, and WhatsApp is the backbone of social commerce: order fulfillment, delivery, customer service.</p>
           
           
           <p class="source"><span>Source</span>Kapita Research, pp. 9 and 14</p>
         </section>
         
-        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="Four steps">
-          <p class="tag">The four-stage pipeline</p>
-          <h3>Four stages</h3>
+        <section class="beat" id="b2-3" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.6000" data-y="0.4000" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="Four steps" data-edit-label="b2-3.label">
+          <p class="tag" data-edit="b2-3.tag">The four-stage pipeline</p>
+          <h3 data-edit="b2-3.title">Four stages</h3>
           
           
           
@@ -735,92 +747,92 @@
             <figcaption>Each stage is amplified by a structural condition the Iraqi market provides for free. <b>Source</b> Kapita Research, pp. 9 and 17 to 19</figcaption>
           </figure>
           
-          <p class="body">An influencer accumulates taste authority and domain credibility, then converts it into economic capital through a private-label product that embodies their persona.</p>
+          <p class="body" data-edit="b2-3.body.1">An influencer accumulates taste authority and domain credibility, then converts it into economic capital through a private-label product that embodies their persona.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The audience around the screen">
-          <p class="tag">Cultural authority</p>
-          <h3>Authority without challenge</h3>
+        <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The audience around the screen" data-edit-label="b2-4.label">
+          <p class="tag" data-edit="b2-4.tag">Cultural authority</p>
+          <h3 data-edit="b2-4.title">Authority without challenge</h3>
           
           
           
           
-          <p class="body">Without credible legacy critics, professional reviewers or trusted consumer guides, the beauty creator becomes the equivalent of a beauty editor, and the food creator the equivalent of a restaurant critic.</p>
+          <p class="body" data-edit="b2-4.body.1">Without credible legacy critics, professional reviewers or trusted consumer guides, the beauty creator becomes the equivalent of a beauty editor, and the food creator the equivalent of a restaurant critic.</p>
           
           
           <p class="source"><span>Source</span>Kapita Research, p. 19</p>
         </section>
         
-        <section class="chapter" id="chapter-3" data-chapter="The brand" data-kind="scene" data-layer="v-world" data-x="0.2500" data-y="0.7200" data-span="0.300" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="From the screen to the brand">
+        <section class="chapter" id="chapter-3" data-chapter="The brand" data-kind="scene" data-layer="v-world" data-x="0.2500" data-y="0.7200" data-span="0.300" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="From the screen to the brand" data-edit-label="chapter-3.label">
           <p class="ch-num" aria-hidden="true">3</p>
-          <h2><span class="vh">Chapter 3: </span>The creator becomes the product</h2>
-          <p>At stage four the creator does not endorse another company&#39;s product: the brand name is the creator&#39;s name, the packaging carries their face, the origin story behind the brand is their origin story.</p>
+          <h2><span class="vh">Chapter 3: </span><span data-edit="chapter-3.title">The creator becomes the product</span></h2>
+          <p data-edit="chapter-3.intro">At stage four the creator does not endorse another company&#39;s product: the brand name is the creator&#39;s name, the packaging carries their face, the origin story behind the brand is their origin story.</p>
         </section>
         
-        <section class="beat" id="b3-1" data-kind="scene" data-layer="v-world" data-x="0.2000" data-y="0.7200" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="The beauty counter">
-          <p class="tag">The archetype</p>
-          <h3>Blogger to billion-dollar brand</h3>
-          <p class="fig"><span class="fig-v"><bdi>$1.2B</bdi></span><span class="fig-l">Huda Beauty valuation (2017 TSG stake)</span></p>
+        <section class="beat" id="b3-1" data-kind="scene" data-layer="v-world" data-x="0.2000" data-y="0.7200" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="The beauty counter" data-edit-label="b3-1.label">
+          <p class="tag" data-edit="b3-1.tag">The archetype</p>
+          <h3 data-edit="b3-1.title">Blogger to billion-dollar brand</h3>
+          <p class="fig"><span class="fig-v"><bdi>$1.2B</bdi></span><span class="fig-l" data-edit="b3-1.figure">Huda Beauty valuation (2017 TSG stake)</span></p>
           
           
           
-          <p class="body">Huda Kattan launched a beauty blog in 2010 and a product in 2013 with USD 6,000, the first influencer-led brand at Sephora Dubai. In June 2025 she returned Huda Beauty to full founder ownership.</p>
+          <p class="body" data-edit="b3-1.body.1">Huda Kattan launched a beauty blog in 2010 and a product in 2013 with USD 6,000, the first influencer-led brand at Sephora Dubai. In June 2025 she returned Huda Beauty to full founder ownership.</p>
           
           
           <p class="source"><span>Source</span>Business of Fashion and others, via the report, p. 22</p>
         </section>
         
-        <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="Her products in her hands">
-          <p class="tag">Iraqi creators</p>
-          <h3>Iraq is the #1 market</h3>
+        <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="Her products in her hands" data-edit-label="b3-2.label">
+          <p class="tag" data-edit="b3-2.tag">Iraqi creators</p>
+          <h3 data-edit="b3-2.title">Iraq is the #1 market</h3>
           
           
           
           
-          <p class="body">Iraq is the #1 market for By Mina Al Sheikhly, ahead of Saudi Arabia and the UAE. In Baghdad, architect Shams Al-Khazraji founded AlMaqsad, a beauty distribution network, and then Voyage Cosmetics, priced at IQD 12,000 to 35,000.</p>
+          <p class="body" data-edit="b3-2.body.1">Iraq is the #1 market for By Mina Al Sheikhly, ahead of Saudi Arabia and the UAE. In Baghdad, architect Shams Al-Khazraji founded AlMaqsad, a beauty distribution network, and then Voyage Cosmetics, priced at IQD 12,000 to 35,000.</p>
           
           
           <p class="source"><span>Source</span>Forbes Middle East and the brands&#39; pages, via the report, pp. 23 and 24</p>
         </section>
         
-        <section class="beat" id="b3-3" data-kind="scene" data-layer="v-world" data-x="0.3100" data-y="0.7800" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="The prize car">
-          <p class="tag">When the founder is the character</p>
-          <h3>His face on the packaging</h3>
+        <section class="beat" id="b3-3" data-kind="scene" data-layer="v-world" data-x="0.3100" data-y="0.7800" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="The prize car" data-edit-label="b3-3.label">
+          <p class="tag" data-edit="b3-3.tag">When the founder is the character</p>
+          <h3 data-edit="b3-3.title">His face on the packaging</h3>
           
           
           
           
-          <p class="body">The Abu Jannah brand has no mascot and no jingle, and his personal social media accounts are the primary marketing channel. Every prize delivery is filmed and posted: the delivery theatre is not logistics, it is content production, building a geographic social proof chain across governorates, from Baghdad to Salah al-Din.</p>
+          <p class="body" data-edit="b3-3.body.1">The Abu Jannah brand has no mascot and no jingle, and his personal social media accounts are the primary marketing channel. Every prize delivery is filmed and posted: the delivery theatre is not logistics, it is content production, building a geographic social proof chain across governorates, from Baghdad to Salah al-Din.</p>
           
           
           <p class="source"><span>Source</span>Kapita Research, p. 34</p>
         </section>
         
-        <section class="beat" id="b3-4" data-kind="scene" data-layer="v-world" data-x="0.7050" data-y="0.2000" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="A bank&#39;s campaign">
-          <p class="tag">Beyond consumer goods</p>
-          <h3>That audience belongs to Talib</h3>
+        <section class="beat" id="b3-4" data-kind="scene" data-layer="v-world" data-x="0.7050" data-y="0.2000" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="A bank&#39;s campaign" data-edit-label="b3-4.label">
+          <p class="tag" data-edit="b3-4.tag">Beyond consumer goods</p>
+          <h3 data-edit="b3-4.title">That audience belongs to Talib</h3>
           
           
           
-          <p class="pull">Institutional brand spend in Iraq is, in part, involuntary creator incubation.</p>
-          <p class="body">First Iraqi Bank&#39;s Pocket Fight campaign grew jazz artist Mahmood Talib&#39;s following from 7,000 to 500,000 in under two months, and the TCL Bling campaign achieved 30 million+ organic Instagram views. The same pipeline extends to real estate.</p>
+          <p class="pull"><span data-edit="b3-4.pull">Institutional brand spend in Iraq is, in part, involuntary creator incubation.</span></p>
+          <p class="body" data-edit="b3-4.body.1">First Iraqi Bank&#39;s Pocket Fight campaign grew jazz artist Mahmood Talib&#39;s following from 7,000 to 500,000 in under two months, and the TCL Bling campaign achieved 30 million+ organic Instagram views. The same pipeline extends to real estate.</p>
           
           
           <p class="source"><span>Source</span>Ads of the World, via the report, p. 38</p>
         </section>
         
-        <section class="chapter" id="chapter-4" data-chapter="The arithmetic" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The production belt">
+        <section class="chapter" id="chapter-4" data-chapter="The arithmetic" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The production belt" data-edit-label="chapter-4.label">
           <p class="ch-num" aria-hidden="true">4</p>
-          <h2><span class="vh">Chapter 4: </span>Prize programme economics</h2>
-          <p>How is Abu Jannah&#39;s monthly car-giveaway programme financially sustainable?</p>
+          <h2><span class="vh">Chapter 4: </span><span data-edit="chapter-4.title">Prize programme economics</span></h2>
+          <p data-edit="chapter-4.intro">How is Abu Jannah&#39;s monthly car-giveaway programme financially sustainable?</p>
         </section>
         
-        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="The face on the bag">
-          <p class="tag">Three go-to-market models</p>
-          <h3>Why the name-only model fails</h3>
+        <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="The face on the bag" data-edit-label="b4-1.label">
+          <p class="tag" data-edit="b4-1.tag">Three go-to-market models</p>
+          <h3 data-edit="b4-1.title">Why the name-only model fails</h3>
           
           
           
@@ -832,15 +844,15 @@
             <figcaption>Go-to-market models in snacks, as the report compares them. <b>Source</b> Kapita Research, p. 28</figcaption>
           </figure>
           
-          <p class="body">Abu Jannah and Skonono sit in the P&amp;L partnership and full-ownership columns: high founder skin-in-the-game. The short-lived Celebrity Chips wave clusters in the fixed-fee column: no founder risk, no operational accountability.</p>
+          <p class="body" data-edit="b4-1.body.1">Abu Jannah and Skonono sit in the P&amp;L partnership and full-ownership columns: high founder skin-in-the-game. The short-lived Celebrity Chips wave clusters in the fixed-fee column: no founder risk, no operational accountability.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Factory to distributor">
-          <p class="tag">The price ladder, per carton</p>
-          <h3>From factory to shelf</h3>
+        <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Factory to distributor" data-edit-label="b4-2.label">
+          <p class="tag" data-edit="b4-2.tag">The price ladder, per carton</p>
+          <h3 data-edit="b4-2.title">From factory to shelf</h3>
           
           
           
@@ -851,28 +863,28 @@
             <figcaption>Jamila supplier panel data, April 2026, not independently audited. <b>Source</b> Jamila supplier panel data, April 2026, p. 30</figcaption>
           </figure>
           
-          <p class="body">Manufacturing cost is 30% or less of retail. The consumer mass pack is 250 IQD, the dominant price point, and the family pack 500 IQD.</p>
+          <p class="body" data-edit="b4-2.body.1">Manufacturing cost is 30% or less of retail. The consumer mass pack is 250 IQD, the dominant price point, and the family pack 500 IQD.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Shops that reorder">
-          <p class="tag">Distribution</p>
-          <h3>Distribution, not production</h3>
-          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l">points of sale, replenished</span></p>
+        <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Shops that reorder" data-edit-label="b4-3.label">
+          <p class="tag" data-edit="b4-3.tag">Distribution</p>
+          <h3 data-edit="b4-3.title">Distribution, not production</h3>
+          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">points of sale, replenished</span></p>
           
           
           
-          <p class="body">Shops reorder 7 times a month, approximately 21 cartons per shop, a cadence consistent with replenishment demand rather than novelty trial.</p>
+          <p class="body" data-edit="b4-3.body.1">Shops reorder 7 times a month, approximately 21 cartons per shop, a cadence consistent with replenishment demand rather than novelty trial.</p>
           
           
           <p class="source"><span>Source</span>Jamila supplier panel data, April 2026, via the report, p. 31</p>
         </section>
         
-        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Prizes paid from profit">
-          <p class="tag">Headline vs. conservative economics</p>
-          <h3>0.7% of gross profit</h3>
+        <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Prizes paid from profit" data-edit-label="b4-4.label">
+          <p class="tag" data-edit="b4-4.tag">Headline vs. conservative economics</p>
+          <h3 data-edit="b4-4.title">0.7% of gross profit</h3>
           
           
           <figure class="viz chart viz-share" style="--vw:5ch">
@@ -887,21 +899,21 @@
           </figure>
           
           
-          <p class="body">A stress case with higher operating costs still leaves monthly net profit of about $0.93M, sufficient to fund ten times the current prize cadence.</p>
+          <p class="body" data-edit="b4-4.body.1">A stress case with higher operating costs still leaves monthly net profit of about $0.93M, sufficient to fund ten times the current prize cadence.</p>
           
           
           
         </section>
         
-        <section class="chapter" id="chapter-5" data-chapter="The limits" data-kind="scene" data-layer="v-world" data-x="0.1400" data-y="0.7000" data-span="0.280" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The gate">
+        <section class="chapter" id="chapter-5" data-chapter="The limits" data-kind="scene" data-layer="v-world" data-x="0.1400" data-y="0.7000" data-span="0.280" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The gate" data-edit-label="chapter-5.label">
           <p class="ch-num" aria-hidden="true">5</p>
-          <h2><span class="vh">Chapter 5: </span>Real constraints</h2>
-          <p>Ignoring them produces a distorted picture of how Iraqi creator brands actually function.</p>
+          <h2><span class="vh">Chapter 5: </span><span data-edit="chapter-5.title">Real constraints</span></h2>
+          <p data-edit="chapter-5.intro">Ignoring them produces a distorted picture of how Iraqi creator brands actually function.</p>
         </section>
         
-        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The stamp and the padlock">
-          <p class="tag">The regulatory environment is accelerating</p>
-          <h3>Five steps in three years</h3>
+        <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The stamp and the padlock" data-edit-label="b5-1.label">
+          <p class="tag" data-edit="b5-1.tag">The regulatory environment is accelerating</p>
+          <h3 data-edit="b5-1.title">Five steps in three years</h3>
           
           
           
@@ -912,15 +924,15 @@
             <figcaption>The regulatory steps the report records. <b>Source</b> Arab News, The New Arab and Shafaq News, via the report, pp. 15, 42 and 43</figcaption>
           </figure>
           
-          <p class="body">The compliance burden pushes influencer payments toward cash and proxy accounts, reducing financial transparency for creator-brands seeking formal investment or international partnerships.</p>
+          <p class="body" data-edit="b5-1.body.1">The compliance burden pushes influencer payments toward cash and proxy accounts, reducing financial transparency for creator-brands seeking formal investment or international partnerships.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The platform itself">
-          <p class="tag">Platform ban risk</p>
-          <h3>The ban risk is real</h3>
+        <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The platform itself" data-edit-label="b5-2.label">
+          <p class="tag" data-edit="b5-2.tag">Platform ban risk</p>
+          <h3 data-edit="b5-2.title">The ban risk is real</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -936,28 +948,28 @@
           </figure>
           
           
-          <p class="body">Creator brands built primarily on TikTok discovery face platform concentration risk that Instagram-first or WhatsApp-native brands do not.</p>
+          <p class="body" data-edit="b5-2.body.1">Creator brands built primarily on TikTok discovery face platform concentration risk that Instagram-first or WhatsApp-native brands do not.</p>
           
           
           
         </section>
         
-        <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The authorities">
-          <p class="tag">Morality regulations</p>
-          <h3>Even comedy videos</h3>
-          <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l">morality-linked cyber cases since 2023, with over 200 arrests</span></p>
+        <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The authorities" data-edit-label="b5-3.label">
+          <p class="tag" data-edit="b5-3.tag">Morality regulations</p>
+          <h3 data-edit="b5-3.title">Even comedy videos</h3>
+          <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l" data-edit="b5-3.figure">morality-linked cyber cases since 2023, with over 200 arrests</span></p>
           
           
           
-          <p class="body">Article 403 of the 1969 Iraqi Penal Code is the primary prosecution instrument. With the Ballegh platform for anonymous citizen reporting, 500+ violations and 75 arrests were recorded in January to March 2025 alone.</p>
+          <p class="body" data-edit="b5-3.body.1">Article 403 of the 1969 Iraqi Penal Code is the primary prosecution instrument. With the Ballegh platform for anonymous citizen reporting, 500+ violations and 75 arrests were recorded in January to March 2025 alone.</p>
           
           
           <p class="source"><span>Source</span>Shafaq News, 2025, via the report, p. 42</p>
         </section>
         
-        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The face on the bag, copied">
-          <p class="tag">Counterfeits</p>
-          <h3>Counterfeit leakage</h3>
+        <section class="beat" id="b5-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3000" data-y="0.2800" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The face on the bag, copied" data-edit-label="b5-4.label">
+          <p class="tag" data-edit="b5-4.tag">Counterfeits</p>
+          <h3 data-edit="b5-4.title">Counterfeit leakage</h3>
           
           
           <figure class="viz chart viz-share" style="--vw:4ch">
@@ -971,7 +983,7 @@
           </figure>
           
           
-          <p class="body">In food, the Abu Jannah prize-chip format has spawned imitators whose prize delivery infrastructure is unverified, risking reputational contamination of the original.</p>
+          <p class="body" data-edit="b5-4.body.1">In food, the Abu Jannah prize-chip format has spawned imitators whose prize delivery infrastructure is unverified, risking reputational contamination of the original.</p>
           
           
           
@@ -979,11 +991,11 @@
         
 
         
-        <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land">
-          <p class="tag">In short</p>
-          <h3>The most efficient route</h3>
-          <p class="pull">In Iraq, the most efficient route to a national consumer brand in 2026 runs not through retail distribution or above-the-line advertising, but through a creator&#39;s parasocial relationship with their audience.</p>
-          <p class="body">The pipeline is fast, low-friction, and increasingly contested. For global brands entering Iraq, the influencer is not a distribution partner: they are a competitor.</p>
+        <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land" data-edit-label="finale.label">
+          <p class="tag" data-edit="finale.tag">In short</p>
+          <h3 data-edit="finale.title">The most efficient route</h3>
+          <p class="pull"><span data-edit="finale.pull">In Iraq, the most efficient route to a national consumer brand in 2026 runs not through retail distribution or above-the-line advertising, but through a creator&#39;s parasocial relationship with their audience.</span></p>
+          <p class="body" data-edit="finale.body.1">The pipeline is fast, low-friction, and increasingly contested. For global brands entering Iraq, the influencer is not a distribution partner: they are a competitor.</p>
           
         </section>
         
@@ -992,30 +1004,30 @@
 
     <section class="close" aria-labelledby="ledger-title">
       <div class="close-inner">
-        <h2 id="ledger-title">The market in four numbers</h2>
+        <h2 id="ledger-title" data-edit="ledger.title">The market in four numbers</h2>
         <dl class="four" style="--ledger:4">
-          <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd>Internet penetration, end of 2024</dd></div>
-          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd>of Iraq&#39;s population is under 25</dd></div>
-          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1M</a></bdi></dt><dd>TikTok active users, October 2025</dd></div>
-          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd>points of sale, replenished</dd></div>
+          <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd data-edit="ledger.1.label">Internet penetration, end of 2024</dd></div>
+          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">of Iraq&#39;s population is under 25</dd></div>
+          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1M</a></bdi></dt><dd data-edit="ledger.3.label">TikTok active users, October 2025</dd></div>
+          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">points of sale, replenished</dd></div>
           
         </dl>
 
         <div class="offer">
           <div>
-            <h2>This report maps the pipeline. A study for your sector shows where you stand in it.</h2>
-            <p class="engage">For global brands entering Iraq, for creators considering the brand-launch step, and for regional brands competing with influencer private labels: Kapita Research builds this analysis around your sector, your market and your decision.</p>
+            <h2 data-edit="offer.title">This report maps the pipeline. A study for your sector shows where you stand in it.</h2>
+            <p class="engage" data-edit="offer.engage">For global brands entering Iraq, for creators considering the brand-launch step, and for regional brands competing with influencer private labels: Kapita Research builds this analysis around your sector, your market and your decision.</p>
             <div class="actions">
-              <a class="btn" href="https://research.kapita.iq/contact?utm_source=read&amp;utm_medium=brief&amp;utm_campaign=iraq-creator-economy" data-track="cta_click">Discuss a study for your sector
+              <a class="btn" href="https://research.kapita.iq/contact?utm_source=read&amp;utm_medium=brief&amp;utm_campaign=iraq-creator-economy" data-track="cta_click"><span data-edit="offer.cta">Discuss a study for your sector</span>
                 <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
               <p class="mail">Or write to <a href="mailto:inquiry@kapitaresearch.com" data-track="email_click">inquiry@kapitaresearch.com</a></p>
             </div>
             <p class="full-report"><a href="https://research.kapita.iq/publications/iraqi-influencer-brands-self-branding-2026" data-track="publication_click">Download the full report</a></p>
           </div>
           <ul class="modules" aria-label="What a study for your sector can cover">
-            <li><h3>For global brands entering Iraq</h3><p>The influencer is a competitor, not a distribution partner; localisation below the national level matters; WhatsApp-native commerce is not optional.</p></li>
-            <li><h3>For creators before the brand launch</h3><p>Pipeline timing matters: convert after trust is deep and cultural authority is established, with financial structures that can operate with cash-on-delivery.</p></li>
-            <li><h3>For regional brands competing with creators</h3><p>The Iraqi origin story cannot be purchased: acquire or partner with Iraqi creator-brands rather than replicate them, and invest in native-speaker content.</p></li>
+            <li><h3 data-edit="offer.module.1.name">For global brands entering Iraq</h3><p data-edit="offer.module.1.text">The influencer is a competitor, not a distribution partner; localisation below the national level matters; WhatsApp-native commerce is not optional.</p></li>
+            <li><h3 data-edit="offer.module.2.name">For creators before the brand launch</h3><p data-edit="offer.module.2.text">Pipeline timing matters: convert after trust is deep and cultural authority is established, with financial structures that can operate with cash-on-delivery.</p></li>
+            <li><h3 data-edit="offer.module.3.name">For regional brands competing with creators</h3><p data-edit="offer.module.3.text">The Iraqi origin story cannot be purchased: acquire or partner with Iraqi creator-brands rather than replicate them, and invest in native-speaker content.</p></li>
             
           </ul>
         </div>
