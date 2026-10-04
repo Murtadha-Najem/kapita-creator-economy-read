@@ -1416,52 +1416,6 @@
   }
   window.addEventListener('load', function(){ refresh(); landHash(); });
 
-  /* ---------- a soft landing, forward only ----------
-     While the reader scrolls, nothing moves the page. When they stop between two blocks, having gone
-     about a third of the way or more, the page finishes the move to the next block in the direction they
-     were going, in a short glide. It never pulls them back, and any new scroll, touch or key stops it. */
-  var lastY2 = window.pageYOffset, dir = 0, settleTimer = 0, glide = null;
-  function stopGlide(){ if (glide) { cancelAnimationFrame(glide); glide = null; doc.style.scrollBehavior = ''; } }
-  function contentEdge(el, bottom){
-    var kids = [].filter.call(el.children, function(c){ return c.offsetHeight > 1 && getComputedStyle(c).position !== 'absolute' && !c.classList.contains('cue'); });
-    if (!kids.length) return null;
-    return bottom ? kids[kids.length - 1].getBoundingClientRect().bottom : kids[0].getBoundingClientRect().top;
-  }
-  function settle(){
-    if (window.__freeScroll) return;
-    if (glide || mqReduce.matches || !anchors.length || menu.classList.contains('open')) return;
-    var y = window.pageYOffset, line = readingLine(), t = anchors.map(function(a){ return a.y - line; });
-    if (y <= t[0] + 2 || y >= t[t.length - 1] - 2) return;           /* before the first block or past the last: free */
-    var i = 0; while (i < t.length - 1 && t[i + 1] <= y) i++;
-    var f = (y - t[i]) / (t[i + 1] - t[i]), to = null;
-    if (f < 0.03 || f > 0.97) return;                                /* already there */
-    if (dir > 0 && f >= 0.3) {
-      var eb = contentEdge(anchors[i].el, true);                     /* still reading a long block: leave it */
-      if (eb !== null && eb > window.innerHeight - 8) return;
-      to = t[i + 1];
-    } else if (dir < 0 && f <= 0.7) {
-      var et = contentEdge(anchors[i + 1].el, false), top = narrow ? stage.getBoundingClientRect().bottom : bar.getBoundingClientRect().bottom;
-      if (et !== null && et < top + 8) return;
-      to = t[i];
-    }
-    if (to === null) return;
-    var from = y, d = to - from, dur = Math.min(650, 280 + Math.abs(d) * 0.7), t0 = performance.now();
-    doc.style.scrollBehavior = 'auto';
-    (function frame(now){
-      var p = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - p, 3);
-      window.scrollTo(0, from + d * e);
-      if (p < 1) glide = requestAnimationFrame(frame); else { glide = null; doc.style.scrollBehavior = ''; }
-    })(t0);
-  }
-  window.addEventListener('scroll', function(){
-    var y = window.pageYOffset;
-    if (!glide) { if (y > lastY2 + 1) dir = 1; else if (y < lastY2 - 1) dir = -1; }
-    lastY2 = y;
-    clearTimeout(settleTimer);
-    if (!glide) settleTimer = setTimeout(settle, 170);
-  }, { passive: true });
-  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(ev){ window.addEventListener(ev, stopGlide, { passive: true }); });
-
   /* ---------- theme: light unless the reader chooses dark ---------- */
   var themeBtn = document.getElementById('theme');
   function syncThemeLabel(){ themeBtn.setAttribute('aria-label', doc.getAttribute('data-theme') === 'dark' ? CFG.t.light : CFG.t.dark); }
@@ -1500,18 +1454,5 @@
 })();
 
 </script>
-<style>
-.scroll-mode{position:fixed;z-index:9999;bottom:16px;inset-inline-start:16px;display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;background:#111;color:#fff;border-radius:999px;font:600 13px/1 system-ui,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.25)}
-.scroll-mode button{border:0;border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer;background:transparent;color:#bbb}
-.scroll-mode button[aria-pressed=true]{background:#fff;color:#111}
-</style>
-<div class="scroll-mode" role="group" aria-label="التمرير"><span>التمرير</span><button type="button" data-mode="guided">بمساعدة</button><button type="button" data-mode="free">حر</button></div>
-<script>(function(){
-  var K='read-scroll-mode',m='guided';try{m=localStorage.getItem(K)||'guided'}catch(e){}
-  var bs=document.querySelectorAll('.scroll-mode button');
-  function set(v){m=v;window.__freeScroll=(v==='free');try{localStorage.setItem(K,v)}catch(e){}
-    [].forEach.call(bs,function(b){b.setAttribute('aria-pressed',b.dataset.mode===v?'true':'false')})}
-  [].forEach.call(bs,function(b){b.addEventListener('click',function(){set(b.dataset.mode)})});set(m);
-})();</script>
 </body>
 </html>
