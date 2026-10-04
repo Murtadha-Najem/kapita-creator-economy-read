@@ -182,9 +182,13 @@
 
   /* ---- panels: a chart, diagram, quotation or figure takes the stage on wide screens ---- */
   .panel{position:absolute;z-index:3;top:50%;inset-inline-start:var(--panel-start,60%);inset-inline-end:var(--gutter);max-width:42rem;
-    transform:translateY(-46%);opacity:0;visibility:hidden;pointer-events:none;
+    transform:translateY(-46%) scale(var(--fit,1));transform-origin:0 50%;opacity:0;visibility:hidden;pointer-events:none;
+    container-type:inline-size;   /* what is inside lays itself out by the room the panel has, not by the window */
     transition:opacity .45s var(--ease-out),transform .6s var(--ease-out),visibility 0s linear .45s}
-  .panel.show{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+  [dir="rtl"] .panel{transform-origin:100% 50%}
+  /* --fit: the script measures each panel against the stage and scales down one that is still too tall or
+     too wide for this screen, so nothing is ever cut off (app.js, fitPanels) */
+  .panel.show{opacity:1;visibility:visible;transform:translateY(-50%) scale(var(--fit,1));transition-delay:0s}
   .panel-title{font:400 clamp(1.5rem,2.2vw,2rem)/1.2 var(--serif);letter-spacing:var(--head-track);color:var(--ink);margin-bottom:1.6rem;text-wrap:balance}
   [lang="ar"] .panel-title{font-weight:600;line-height:1.45}
   .panel .viz{margin:0}
@@ -357,7 +361,11 @@
   .steps .sn{grid-row:span 2;font:900 1.9rem/1 var(--num);color:var(--accent)}
   .steps b{font:700 15px/1.35 var(--sans);color:var(--ink)}
   .steps span:not(.sn){font-size:15.5px;line-height:1.55;color:var(--ink-2)}
-  .panel .steps{grid-template-columns:repeat(2,minmax(13rem,1fr));gap:30px 36px}
+  .panel .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(18px,5cqi,36px)}
+  @container (max-width:27rem){
+    .panel .steps{grid-template-columns:1fr;gap:16px}
+    .panel .steps .sn{font-size:2rem} .panel .steps b{font-size:16px} .panel .steps span:not(.sn){font-size:15px}
+  }
   .panel .steps li{border-bottom:0;border-top:2px solid var(--ink);padding:14px 0 0;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
   .panel .steps .sn{font-size:2.6rem}
   .panel .steps b{font-size:18px}
@@ -374,12 +382,16 @@
   .chain .link{position:relative;padding-block:4px;padding-inline-start:26px;font:700 13px/1.3 var(--num);color:var(--accent);min-height:22px}
   .chain .link::before{content:'';position:absolute;inset-inline-start:8px;top:0;bottom:0;width:2px;background:var(--accent)}
   .chain .node:last-child .nv{color:var(--accent)}
-  .panel .chain{grid-auto-flow:column;grid-auto-columns:auto;grid-template-rows:auto;align-items:center;gap:0}
-  .panel .chain .node{grid-template-columns:1fr;row-gap:8px;padding:0;min-width:8.5rem}
-  .panel .chain .nv{font-size:2rem}
+  .panel .chain .nv{font-size:1.7rem;white-space:nowrap}
   .panel .chain .nl{font-size:15px}
-  .panel .chain .link{padding:0 14px 26px;min-width:8rem;max-width:11rem;text-align:center;font-size:13.5px;line-height:1.35}
-  .panel .chain .link::before{inset-inline:6px;top:auto;bottom:12px;width:auto;height:2px}
+  /* side by side only where the panel has the room; on a narrower stage the chain stays a column */
+  @container (min-width:35rem){
+    .panel .chain{grid-auto-flow:column;grid-auto-columns:auto;grid-template-rows:auto;align-items:center;gap:0}
+    .panel .chain .node{grid-template-columns:1fr;row-gap:8px;padding:0;min-width:0}
+    .panel .chain .nv{font-size:clamp(1.5rem,4.6cqi,2rem)}
+    .panel .chain .link{padding:0 14px 26px;min-width:3.5rem;max-width:11rem;text-align:center;font-size:13.5px;line-height:1.35}
+    .panel .chain .link::before{inset-inline:6px;top:auto;bottom:12px;width:auto;height:2px}
+  }
 
   /* ---- matrix: models compared ---- */
   .matrix{width:100%;table-layout:fixed;border-collapse:collapse;font:400 13.5px/1.45 var(--sans);color:var(--ink-2)}
@@ -582,10 +594,10 @@
     </div>
     <nav class="chapter-nav" aria-label="Chapters">
       <ol class="chapters" id="chapterNav">
-        <li><a href="#chapter-1"><span class="n">1</span><span class="t">Before</span></a></li>
+        <li><a href="#chapter-1"><span class="n">1</span><span class="t">Introduction</span></a></li>
         <li><a href="#chapter-2"><span class="n">2</span><span class="t">The channel</span></a></li>
         <li><a href="#chapter-3"><span class="n">3</span><span class="t">The brand</span></a></li>
-        <li><a href="#chapter-4"><span class="n">4</span><span class="t">The arithmetic</span></a></li>
+        <li><a href="#chapter-4"><span class="n">4</span><span class="t">Economics</span></a></li>
         <li><a href="#chapter-5"><span class="n">5</span><span class="t">The limits</span></a></li>
         
       </ol>
@@ -619,9 +631,9 @@
         </header>
 
         
-        <section class="chapter" id="chapter-1" data-chapter="Before" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The old way" data-edit-label="chapter-1.label">
+        <section class="chapter" id="chapter-1" data-chapter="Introduction" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The old way" data-edit-label="chapter-1.label">
           <p class="ch-num" aria-hidden="true">1</p>
-          <h2><span class="vh">Chapter 1: </span><span data-edit="chapter-1.title">The trust vacuum</span></h2>
+          <h2><span class="vh">Chapter 1: </span><span data-edit="chapter-1.title">The institutional trust vacuum</span></h2>
           <p data-edit="chapter-1.intro">What makes Iraq structurally distinctive is that none of the usual friction points apply.</p>
         </section>
         
@@ -662,9 +674,9 @@
         </section>
         
         <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="Backs to the television, eyes on their phones" data-edit-label="b1-3.label">
-          <p class="tag" data-edit="b1-3.tag">A mobile-first generation</p>
+          <p class="tag" data-edit="b1-3.tag">The youth bulge and its economic pressure</p>
           <h3 data-edit="b1-3.title">An alternative economic model</h3>
-          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">of Iraq&#39;s population is under 25</span></p>
+          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">of the population under 25</span></p>
           
           
           
@@ -676,7 +688,7 @@
         
         <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="The tea house" data-edit-label="b1-4.label">
           <p class="tag" data-edit="b1-4.tag">Dialect</p>
-          <h3 data-edit="b1-4.title">Dialect as a trust signal</h3>
+          <h3 data-edit="b1-4.title">Iraqi dialect as a trust signal</h3>
           
           
           
@@ -722,7 +734,7 @@
         
         <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The order arrives" data-edit-label="b2-2.label">
           <p class="tag" data-edit="b2-2.tag">WhatsApp</p>
-          <h3 data-edit="b2-2.title">The sale closes on WhatsApp</h3>
+          <h3 data-edit="b2-2.title">The WhatsApp DM close</h3>
           
           
           
@@ -754,7 +766,7 @@
         
         <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="The audience around the screen" data-edit-label="b2-4.label">
           <p class="tag" data-edit="b2-4.tag">Cultural authority</p>
-          <h3 data-edit="b2-4.title">Authority without challenge</h3>
+          <h3 data-edit="b2-4.title">Held without challenge</h3>
           
           
           
@@ -785,13 +797,13 @@
         </section>
         
         <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="Her products in her hands" data-edit-label="b3-2.label">
-          <p class="tag" data-edit="b3-2.tag">Iraqi creators</p>
-          <h3 data-edit="b3-2.title">Iraq is the #1 market</h3>
+          <p class="tag" data-edit="b3-2.tag">Mina Al Sheikhly and Shams Al-Khazraji</p>
+          <h3 data-edit="b3-2.title">Her #1 market is Iraq</h3>
           
           
           
           
-          <p class="body" data-edit="b3-2.body.1">Iraq is the #1 market for By Mina Al Sheikhly, ahead of Saudi Arabia and the UAE. In Baghdad, architect Shams Al-Khazraji founded AlMaqsad, a beauty distribution network, and then Voyage Cosmetics.</p>
+          <p class="body" data-edit="b3-2.body.1">For By Mina Al Sheikhly, her #1 market is Iraq, ahead of Saudi Arabia and the UAE. In Baghdad, architect Shams Al-Khazraji founded AlMaqsad, a beauty distribution network, and then Voyage Cosmetics.</p>
           
           
           <p class="source"><span>Source</span>Forbes Middle East and the brands&#39; pages, via the report, pp. 23 and 24</p>
@@ -823,7 +835,7 @@
           <p class="source"><span>Source</span>Ads of the World, via the report, p. 38</p>
         </section>
         
-        <section class="chapter" id="chapter-4" data-chapter="The arithmetic" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The production belt" data-edit-label="chapter-4.label">
+        <section class="chapter" id="chapter-4" data-chapter="Economics" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The production belt" data-edit-label="chapter-4.label">
           <p class="ch-num" aria-hidden="true">4</p>
           <h2><span class="vh">Chapter 4: </span><span data-edit="chapter-4.title">Prize programme economics</span></h2>
           <p data-edit="chapter-4.intro">How is Abu Jannah&#39;s monthly car-giveaway programme financially sustainable?</p>
@@ -831,16 +843,16 @@
         
         <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="The face on the bag" data-edit-label="b4-1.label">
           <p class="tag" data-edit="b4-1.tag">Three go-to-market models</p>
-          <h3 data-edit="b4-1.title">Why the name-only model fails</h3>
+          <h3 data-edit="b4-1.title">Why only two last</h3>
           
           
           
           <figure class="viz diagram viz-matrix">
             
             <table class="matrix"><thead><tr><th></th><th scope="col">What the customer is buying</th><th scope="col">Consumer loyalty is to</th><th scope="col">Expected lifespan</th></tr></thead>
-              <tbody><tr><th scope="row">Prize-first</th><td>The chance to win</td><td>The prize, not the product</td><td>High, while prize attractiveness is sustained</td></tr><tr><th scope="row">Quality-first</th><td>A snack that tastes good, consistently</td><td>The product itself</td><td>High, genuine loyalty</td></tr><tr class="hi"><th scope="row">Influencer name only</th><td>A familiar face on a package</td><td>The influencer, not the product</td><td>Low, one or two trial purchases</td></tr></tbody></table>
+              <tbody><tr><th scope="row">Prize-first</th><td>The chance to win</td><td>The prize, not the product</td><td>High, conditional on prize attractiveness being sustained</td></tr><tr><th scope="row">Quality-first</th><td>A snack that tastes good and consistently so</td><td>The product itself</td><td>High, genuine loyalty</td></tr><tr class="hi"><th scope="row">Influencer name only</th><td>A familiar face on a package</td><td>The influencer, not the product</td><td>Low, one or two trial purchases</td></tr></tbody></table>
             
-            <figcaption>Go-to-market models in snacks, as the report compares them. <b>Source</b> Kapita Research, p. 28</figcaption>
+            <figcaption>Three go-to-market models. <b>Source</b> Kapita Research, p. 28</figcaption>
           </figure>
           
           <p class="body" data-edit="b4-1.body.1">The short-lived Celebrity Chips wave clusters in the fixed-fee column: no founder risk, no operational accountability.</p>
@@ -850,8 +862,8 @@
         </section>
         
         <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Factory to distributor" data-edit-label="b4-2.label">
-          <p class="tag" data-edit="b4-2.tag">The price ladder, per carton</p>
-          <h3 data-edit="b4-2.title">From factory to shelf</h3>
+          <p class="tag" data-edit="b4-2.tag">The price ladder</p>
+          <h3 data-edit="b4-2.title">From factory gate to shop counter</h3>
           
           
           
@@ -869,9 +881,9 @@
         </section>
         
         <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="Shops that reorder" data-edit-label="b4-3.label">
-          <p class="tag" data-edit="b4-3.tag">Distribution</p>
+          <p class="tag" data-edit="b4-3.tag">The volume engine</p>
           <h3 data-edit="b4-3.title">Distribution, not production</h3>
-          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">points of sale, replenished</span></p>
+          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">points of sale</span></p>
           
           
           
@@ -889,12 +901,12 @@
           <figure class="viz chart viz-share" style="--vw:5ch">
             
             <ol class="shares">
-              <li><span class="sk">Two prize cars a month ($30,000)</span><span class="st"><span class="sf" style="--w:0.70%" aria-hidden="true"></span></span><span class="sv"><bdi>0.7%</bdi> <small>of gross profit</small></span></li>
-              <li><span class="sk">The full prize programme ($300,000 a month)</span><span class="st"><span class="sf" style="--w:4.40%" aria-hidden="true"></span></span><span class="sv"><bdi>4.4%</bdi> <small>of revenue</small></span></li>
+              <li><span class="sk">Two cars per month, a $30,000 monthly outlay</span><span class="st"><span class="sf" style="--w:0.70%" aria-hidden="true"></span></span><span class="sv"><bdi>0.7%</bdi> <small>of gross profit</small></span></li>
+              <li><span class="sk">The full prize programme, $300,000 per month</span><span class="st"><span class="sf" style="--w:4.40%" aria-hidden="true"></span></span><span class="sv"><bdi>4.4%</bdi> <small>of revenue</small></span></li>
               
             </ol>
             
-            <figcaption>Prize cost as a share of profit and revenue, on the upper-bound estimate. To be read with appropriate margins of error. <b>Source</b> Kapita Research estimate on supplier data, pp. 32 and 50</figcaption>
+            <figcaption>Upper-bound estimate. <b>Source</b> Kapita Research estimate on supplier data, pp. 32 and 50</figcaption>
           </figure>
           
           
@@ -912,15 +924,15 @@
         
         <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The stamp and the padlock" data-edit-label="b5-1.label">
           <p class="tag" data-edit="b5-1.tag">The regulatory environment is accelerating</p>
-          <h3 data-edit="b5-1.title">Five steps in three years</h3>
+          <h3 data-edit="b5-1.title">CMC licensing and CBI classification</h3>
           
           
           
           <figure class="viz diagram viz-timeline">
             
-            <ol class="timeline"><li><time>2023</time><span>Communications and Media Commission regulations permit advertising in the local Iraqi dialect.</span></li><li><time>November 2024</time><span>Central Bank of Iraq financial transaction ban on TikTok intermediaries.</span></li><li><time>March 2025</time><span>Mandatory annual registration and fees of up to USD 680 a year for creators above 5 million followers.</span></li><li><time>April 2025</time><span>A parliamentary ban request on TikTok, not granted approval.</span></li><li class="hi"><time>November 2025</time><span>The Central Bank of Iraq classifies influencers as “high-risk and multi-risk clients”, affecting more than 11,000 accounts.</span></li></ol>
+            <ol class="timeline"><li><time>2023</time><span>Communications and Media Commission regulations permit advertising in the local Iraqi dialect.</span></li><li><time>November 2024</time><span>Central Bank of Iraq financial transaction ban on TikTok intermediaries.</span></li><li><time>March 2025</time><span>Mandatory annual registration and fees: USD 680 a year for creators above 5 million followers.</span></li><li><time>April 2025</time><span>A parliamentary ban request. Parliamentary approval for a ban has not been granted.</span></li><li class="hi"><time>November 2025</time><span>The Central Bank of Iraq classifies influencers as “high-risk and multi-risk clients”, affecting more than 11,000 accounts.</span></li></ol>
             
-            <figcaption>The regulatory steps the report records. <b>Source</b> Arab News, The New Arab and Shafaq News, via the report, pp. 15, 42 and 43</figcaption>
+            <figcaption> <b>Source</b> Arab News, The New Arab and Shafaq News, via the report, pp. 15, 42 and 43</figcaption>
           </figure>
           
           <p class="body" data-edit="b5-1.body.1">The compliance burden pushes influencer payments toward cash and proxy accounts.</p>
@@ -931,7 +943,7 @@
         
         <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The platform itself" data-edit-label="b5-2.label">
           <p class="tag" data-edit="b5-2.tag">Platform ban risk</p>
-          <h3 data-edit="b5-2.title">The ban risk is real</h3>
+          <h3 data-edit="b5-2.title">The risk is real</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -943,7 +955,7 @@
               
             </ol>
             
-            <figcaption>TikTok&#39;s audience in Iraq during 2025. <b>Source</b> Kapita Research, p. 43</figcaption>
+            <figcaption>TikTok&#39;s audience in Iraq. <b>Source</b> Kapita Research, p. 43</figcaption>
           </figure>
           
           
@@ -954,8 +966,8 @@
         </section>
         
         <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="The authorities" data-edit-label="b5-3.label">
-          <p class="tag" data-edit="b5-3.tag">Morality regulations</p>
-          <h3 data-edit="b5-3.title">Even comedy videos</h3>
+          <p class="tag" data-edit="b5-3.tag">Article 403</p>
+          <h3 data-edit="b5-3.title">Morality regulations</h3>
           <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l" data-edit="b5-3.figure">morality-linked cyber cases since 2023, with over 200 arrests</span></p>
           
           
@@ -991,7 +1003,7 @@
 
         
         <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="The phone became the land" data-edit-label="finale.label">
-          <p class="tag" data-edit="finale.tag">In short</p>
+          <p class="tag" data-edit="finale.tag">Strategic implications</p>
           <h3 data-edit="finale.title">The most efficient route</h3>
           <p class="pull"><span data-edit="finale.pull">In Iraq, the most efficient route to a national consumer brand in 2026 runs not through retail distribution or above-the-line advertising, but through a creator&#39;s parasocial relationship with their audience.</span></p>
           <p class="body" data-edit="finale.body.1">The pipeline is fast, low-friction, and increasingly contested. For global brands entering Iraq, the influencer is not a distribution partner: they are a competitor.</p>
@@ -1006,9 +1018,9 @@
         <h2 id="ledger-title" data-edit="ledger.title">The market in four numbers</h2>
         <dl class="four" style="--ledger:4">
           <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd data-edit="ledger.1.label">Internet penetration, end of 2024</dd></div>
-          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">of Iraq&#39;s population is under 25</dd></div>
+          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">of the population under 25</dd></div>
           <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1M</a></bdi></dt><dd data-edit="ledger.3.label">TikTok active users, October 2025</dd></div>
-          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">points of sale, replenished</dd></div>
+          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">points of sale</dd></div>
           
         </dl>
 
@@ -1325,7 +1337,17 @@
     queued = true;
     requestAnimationFrame(function(){ queued = false; render(); chromeState(); });
   }
-  function refresh(){ camNow = null; measure(); render(); }
+  /* a panel that is still taller or wider than the stage on this screen is scaled down to fit: nothing is cut off */
+  function fitPanels(){
+    items.forEach(function(el){
+      var p = el._panel; if (!p) return;
+      p.style.setProperty('--fit', '1');
+      if (narrow) return;
+      var room = H - 56, s = Math.min(1, room / p.offsetHeight, p.clientWidth / p.scrollWidth);
+      if (s < 0.999) p.style.setProperty('--fit', Math.max(0.5, s).toFixed(3));
+    });
+  }
+  function refresh(){ camNow = null; measure(); fitPanels(); render(); }
 
   /* ---------- the camera follows the scroll, eased ----------
      The scroll position sets where the camera should be; the camera glides there with a short time

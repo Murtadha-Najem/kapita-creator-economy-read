@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Kapita Research">
 <meta property="og:url" content="https://research.kapita.iq/read/iraq-creator-economy-ar">
 <meta property="og:title" content="تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وتطوير الأعمال">
-<meta property="og:description" content="قراءة تفاعلية من كابيتا البحثية، بغداد، نيسان 2026.">
+<meta property="og:description" content="قراءة تفاعلية من كابيتا البحثية، بغداد، أبريل 2026.">
 <meta property="og:image" content="https://research.kapita.iq/read-content/iraq-creator-economy-ar/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -184,9 +184,13 @@
 
   /* ---- panels: a chart, diagram, quotation or figure takes the stage on wide screens ---- */
   .panel{position:absolute;z-index:3;top:50%;inset-inline-start:var(--panel-start,60%);inset-inline-end:var(--gutter);max-width:42rem;
-    transform:translateY(-46%);opacity:0;visibility:hidden;pointer-events:none;
+    transform:translateY(-46%) scale(var(--fit,1));transform-origin:0 50%;opacity:0;visibility:hidden;pointer-events:none;
+    container-type:inline-size;   /* what is inside lays itself out by the room the panel has, not by the window */
     transition:opacity .45s var(--ease-out),transform .6s var(--ease-out),visibility 0s linear .45s}
-  .panel.show{opacity:1;visibility:visible;transform:translateY(-50%);transition-delay:0s}
+  [dir="rtl"] .panel{transform-origin:100% 50%}
+  /* --fit: the script measures each panel against the stage and scales down one that is still too tall or
+     too wide for this screen, so nothing is ever cut off (app.js, fitPanels) */
+  .panel.show{opacity:1;visibility:visible;transform:translateY(-50%) scale(var(--fit,1));transition-delay:0s}
   .panel-title{font:400 clamp(1.5rem,2.2vw,2rem)/1.2 var(--serif);letter-spacing:var(--head-track);color:var(--ink);margin-bottom:1.6rem;text-wrap:balance}
   [lang="ar"] .panel-title{font-weight:600;line-height:1.45}
   .panel .viz{margin:0}
@@ -359,7 +363,11 @@
   .steps .sn{grid-row:span 2;font:900 1.9rem/1 var(--num);color:var(--accent)}
   .steps b{font:700 15px/1.35 var(--sans);color:var(--ink)}
   .steps span:not(.sn){font-size:15.5px;line-height:1.55;color:var(--ink-2)}
-  .panel .steps{grid-template-columns:repeat(2,minmax(13rem,1fr));gap:30px 36px}
+  .panel .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(18px,5cqi,36px)}
+  @container (max-width:27rem){
+    .panel .steps{grid-template-columns:1fr;gap:16px}
+    .panel .steps .sn{font-size:2rem} .panel .steps b{font-size:16px} .panel .steps span:not(.sn){font-size:15px}
+  }
   .panel .steps li{border-bottom:0;border-top:2px solid var(--ink);padding:14px 0 0;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
   .panel .steps .sn{font-size:2.6rem}
   .panel .steps b{font-size:18px}
@@ -376,12 +384,16 @@
   .chain .link{position:relative;padding-block:4px;padding-inline-start:26px;font:700 13px/1.3 var(--num);color:var(--accent);min-height:22px}
   .chain .link::before{content:'';position:absolute;inset-inline-start:8px;top:0;bottom:0;width:2px;background:var(--accent)}
   .chain .node:last-child .nv{color:var(--accent)}
-  .panel .chain{grid-auto-flow:column;grid-auto-columns:auto;grid-template-rows:auto;align-items:center;gap:0}
-  .panel .chain .node{grid-template-columns:1fr;row-gap:8px;padding:0;min-width:8.5rem}
-  .panel .chain .nv{font-size:2rem}
+  .panel .chain .nv{font-size:1.7rem;white-space:nowrap}
   .panel .chain .nl{font-size:15px}
-  .panel .chain .link{padding:0 14px 26px;min-width:8rem;max-width:11rem;text-align:center;font-size:13.5px;line-height:1.35}
-  .panel .chain .link::before{inset-inline:6px;top:auto;bottom:12px;width:auto;height:2px}
+  /* side by side only where the panel has the room; on a narrower stage the chain stays a column */
+  @container (min-width:35rem){
+    .panel .chain{grid-auto-flow:column;grid-auto-columns:auto;grid-template-rows:auto;align-items:center;gap:0}
+    .panel .chain .node{grid-template-columns:1fr;row-gap:8px;padding:0;min-width:0}
+    .panel .chain .nv{font-size:clamp(1.5rem,4.6cqi,2rem)}
+    .panel .chain .link{padding:0 14px 26px;min-width:3.5rem;max-width:11rem;text-align:center;font-size:13.5px;line-height:1.35}
+    .panel .chain .link::before{inset-inline:6px;top:auto;bottom:12px;width:auto;height:2px}
+  }
 
   /* ---- matrix: models compared ---- */
   .matrix{width:100%;table-layout:fixed;border-collapse:collapse;font:400 13.5px/1.45 var(--sans);color:var(--ink-2)}
@@ -584,10 +596,10 @@
     </div>
     <nav class="chapter-nav" aria-label="الفصول">
       <ol class="chapters" id="chapterNav">
-        <li><a href="#chapter-1"><span class="n">1</span><span class="t">قبل</span></a></li>
+        <li><a href="#chapter-1"><span class="n">1</span><span class="t">المقدمة</span></a></li>
         <li><a href="#chapter-2"><span class="n">2</span><span class="t">القناة</span></a></li>
         <li><a href="#chapter-3"><span class="n">3</span><span class="t">العلامة</span></a></li>
-        <li><a href="#chapter-4"><span class="n">4</span><span class="t">الحساب</span></a></li>
+        <li><a href="#chapter-4"><span class="n">4</span><span class="t">الاقتصاديات</span></a></li>
         <li><a href="#chapter-5"><span class="n">5</span><span class="t">الحدود</span></a></li>
         
       </ol>
@@ -613,7 +625,7 @@
           <h1><span class="h1-topic" data-edit="h1.topic">تحويل التأثير إلى صناعة</span><span class="h1-main" data-edit="h1.main">من المتابعين إلى المؤسسين</span></h1>
           <p class="dek" data-edit="dek">في العراق تجاوز المؤثرون دورهم التقليدي كواجهات إعلانية ليتحولوا إلى مؤسسي علامات تجارية. <em>لم يعد المؤثر مجرد وسيلة للتسويق، بل تحول إلى منافس تجاري مباشر.</em></p>
           <div class="byline">
-            <p><b>قراءة تفاعلية</b>نيسان 2026</p>
+            <p><b>قراءة تفاعلية</b>أبريل 2026</p>
             <p><b>Kapita Research</b>بغداد</p>
             <p><b>مدة القراءة</b>8 دقائق</p>
           </div>
@@ -621,9 +633,9 @@
         </header>
 
         
-        <section class="chapter" id="chapter-1" data-chapter="قبل" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الطريق القديم" data-edit-label="chapter-1.label">
+        <section class="chapter" id="chapter-1" data-chapter="المقدمة" data-kind="scene" data-layer="v-world" data-x="0.8400" data-y="0.5200" data-span="0.320" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الطريق القديم" data-edit-label="chapter-1.label">
           <p class="ch-num" aria-hidden="true">1</p>
-          <h2><span class="vh">الفصل 1: </span><span data-edit="chapter-1.title">فراغ الثقة</span></h2>
+          <h2><span class="vh">الفصل 1: </span><span data-edit="chapter-1.title">الفراغ المتروك من غياب الثقة</span></h2>
           <p data-edit="chapter-1.intro">ما يمنح العراق خصوصيته الهيكلية هو غياب «نقاط الاحتكاك» التقليدية.</p>
         </section>
         
@@ -641,7 +653,7 @@
         
         <section class="beat" id="b1-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.7600" data-y="0.4700" data-span="0.160" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="تلفزيون الدولة بلا مشاهدين" data-edit-label="b1-2.label">
           <p class="tag" data-edit="b1-2.tag">انتشار الإنترنت في العراق</p>
-          <h3 data-edit="b1-2.title">من الأسرع في المنطقة</h3>
+          <h3 data-edit="b1-2.title">أحد أسرع مسارات التحول الرقمي</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:6ch">
@@ -653,7 +665,7 @@
               
             </ol>
             
-            <figcaption>نسبة انتشار الإنترنت. <b>المصدر</b> وزارة الاتصالات العراقية، تموز 2025</figcaption>
+            <figcaption>نسبة انتشار الإنترنت. <b>المصدر</b> وزارة الاتصالات العراقية، يوليو 2025</figcaption>
           </figure>
           
           
@@ -664,9 +676,9 @@
         </section>
         
         <section class="beat" id="b1-3" data-kind="scene" data-layer="v-world" data-x="0.8850" data-y="0.4700" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="ظهورهم للتلفزيون، وجوههم للهواتف" data-edit-label="b1-3.label">
-          <p class="tag" data-edit="b1-3.tag">جيل الهواتف الذكية</p>
+          <p class="tag" data-edit="b1-3.tag">الفجوة الشبابية وضغطها الاقتصادي</p>
           <h3 data-edit="b1-3.title">نموذج اقتصادي بديل</h3>
-          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">من سكان العراق دون سن 25</span></p>
+          <p class="fig"><span class="fig-v"><bdi>42%</bdi></span><span class="fig-l" data-edit="b1-3.figure">من السكان دون سن 25</span></p>
           
           
           
@@ -678,7 +690,7 @@
         
         <section class="beat" id="b1-4" data-kind="scene" data-layer="v-world" data-x="0.8750" data-y="0.7600" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.8400" data-fb-y="0.5200" data-fb-span="0.320" data-label="المقهى" data-edit-label="b1-4.label">
           <p class="tag" data-edit="b1-4.tag">اللهجة</p>
-          <h3 data-edit="b1-4.title">اللهجة إشارة ثقة</h3>
+          <h3 data-edit="b1-4.title">اللهجة العراقية بوصفها إشارة ثقة</h3>
           
           
           
@@ -712,7 +724,7 @@
               
             </ol>
             
-            <figcaption>المستخدمون النشطون، تشرين الأول 2025. <b>المصدر</b> DataReportal Digital 2026 Iraq</figcaption>
+            <figcaption>المستخدمون النشطون، أكتوبر 2025. <b>المصدر</b> DataReportal Digital 2026 Iraq</figcaption>
           </figure>
           
           
@@ -724,7 +736,7 @@
         
         <section class="beat" id="b2-2" data-kind="scene" data-layer="v-world" data-x="0.6800" data-y="0.7200" data-span="0.150" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الطلب وصل" data-edit-label="b2-2.label">
           <p class="tag" data-edit="b2-2.tag">واتساب</p>
-          <h3 data-edit="b2-2.title">البيع يُغلق عبر واتساب</h3>
+          <h3 data-edit="b2-2.title">إغلاق المبيعات عبر واتساب</h3>
           
           
           
@@ -756,7 +768,7 @@
         
         <section class="beat" id="b2-4" data-kind="scene" data-layer="v-world" data-x="0.3500" data-y="0.6000" data-span="0.240" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="0.420" data-label="الجمهور حول الشاشة" data-edit-label="b2-4.label">
           <p class="tag" data-edit="b2-4.tag">المرجعية الثقافية</p>
-          <h3 data-edit="b2-4.title">سلطة دون منازع</h3>
+          <h3 data-edit="b2-4.title">تُستدام دون منازع</h3>
           
           
           
@@ -787,13 +799,13 @@
         </section>
         
         <section class="beat" id="b3-2" data-kind="scene" data-layer="v-world" data-x="0.1700" data-y="0.7000" data-span="0.100" data-fb-layer="v-world" data-fb-x="0.2500" data-fb-y="0.7200" data-fb-span="0.300" data-label="منتجاتها بيدها" data-edit-label="b3-2.label">
-          <p class="tag" data-edit="b3-2.tag">مبدعات عراقيات</p>
-          <h3 data-edit="b3-2.title">العراق الوجهة الأولى</h3>
+          <p class="tag" data-edit="b3-2.tag">مينا الشيخلي وشمس الخزرجي</p>
+          <h3 data-edit="b3-2.title">السوق العراقي وجهتها الأولى</h3>
           
           
           
           
-          <p class="body" data-edit="b3-2.body.1">صار العراق الوجهة الأولى لعلامة مينا الشيخلي، متفوقاً على السعودية والإمارات. وفي بغداد أسست المعمارية شمس الخزرجي شبكة التوزيع «المقصد» ثم علامتها Voyage.</p>
+          <p class="body" data-edit="b3-2.body.1">اخترقت علامة مينا الشيخلي السوق العراقي ليصبح وجهتها الأولى، متفوقاً على السعودية والإمارات. وفي بغداد أسست المعمارية شمس الخزرجي شبكة التوزيع «المقصد» ثم علامتها Voyage.</p>
           
           
           <p class="source"><span>المصدر</span>Forbes Middle East وصفحات العلامتين، عبر التقرير، ص 23 و24</p>
@@ -825,7 +837,7 @@
           <p class="source"><span>المصدر</span>Ads of the World، عبر التقرير، ص 40</p>
         </section>
         
-        <section class="chapter" id="chapter-4" data-chapter="الحساب" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="حزام الإنتاج" data-edit-label="chapter-4.label">
+        <section class="chapter" id="chapter-4" data-chapter="الاقتصاديات" data-kind="scene" data-layer="v-world" data-x="0.1800" data-y="0.3000" data-span="0.360" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="حزام الإنتاج" data-edit-label="chapter-4.label">
           <p class="ch-num" aria-hidden="true">4</p>
           <h2><span class="vh">الفصل 4: </span><span data-edit="chapter-4.title">اقتصاديات برنامج الجوائز</span></h2>
           <p data-edit="chapter-4.intro">كيف يُموَّل برنامج «هدايا السيارات» الخاص بأبو جنة؟</p>
@@ -833,16 +845,16 @@
         
         <section class="beat" id="b4-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1500" data-y="0.1600" data-span="0.170" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الوجه على الكيس" data-edit-label="b4-1.label">
           <p class="tag" data-edit="b4-1.tag">ثلاثة نماذج للدخول إلى السوق</p>
-          <h3 data-edit="b4-1.title">لماذا يفشل الاسم المجرد</h3>
+          <h3 data-edit="b4-1.title">يفشل «الاسم المجرد»</h3>
           
           
           
           <figure class="viz diagram viz-matrix">
             
             <table class="matrix"><thead><tr><th></th><th scope="col">ماذا يشتري العميل</th><th scope="col">ولاؤه يتجه نحو</th><th scope="col">العمر المتوقع للعلامة</th></tr></thead>
-              <tbody><tr><th scope="row">الجائزة أولاً</th><td>فرصة الفوز</td><td>الجائزة، لا جودة المنتج</td><td>مرتفع، طالما استمرت جاذبية الجوائز</td></tr><tr><th scope="row">الجودة أولاً</th><td>وجبة لذيذة في كل مرة</td><td>المنتج نفسه</td><td>مرتفع، بولاء حقيقي</td></tr><tr class="hi"><th scope="row">اسم المؤثر فقط</th><td>وجه مألوف على الغلاف</td><td>المؤثر كشخص، لا المنتج</td><td>منخفض، ينتهي بعد تجربة أو اثنتين</td></tr></tbody></table>
+              <tbody><tr><th scope="row">الجائزة أولاً</th><td>فرصة الفوز</td><td>الجائزة، وليس جودة المنتج</td><td>مرتفع، طالما استمرت جاذبية الجوائز</td></tr><tr><th scope="row">الجودة أولاً</th><td>وجبة لذيذة تتكرر في كل مرة</td><td>المنتج نفسه</td><td>مرتفع، ولاء حقيقي</td></tr><tr class="hi"><th scope="row">اسم المؤثر فقط</th><td>وجه مألوف على الغلاف</td><td>المؤثر كشخص، مع تجاهل قيمة المنتج</td><td>منخفض، ينتهي بعد تجربة أو اثنتين</td></tr></tbody></table>
             
-            <figcaption>نماذج الدخول إلى سوق الوجبات الخفيفة كما يقارنها التقرير. <b>المصدر</b> كابيتا البحثية، ص 28</figcaption>
+            <figcaption>ثلاثة نماذج للدخول إلى السوق. <b>المصدر</b> كابيتا البحثية، ص 28</figcaption>
           </figure>
           
           <p class="body" data-edit="b4-1.body.1">موجة «شيبس المشاهير» قصيرة العمر تتمركز في خانة الرسوم الثابتة: لا مخاطرة على المبدع ولا مساءلة تشغيلية.</p>
@@ -852,8 +864,8 @@
         </section>
         
         <section class="beat" id="b4-2" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.1800" data-y="0.3800" data-span="0.200" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="من المصنع إلى الموزع" data-edit-label="b4-2.label">
-          <p class="tag" data-edit="b4-2.tag">سلّم الأسعار لكل كرتون</p>
-          <h3 data-edit="b4-2.title">من المصنع إلى الرف</h3>
+          <p class="tag" data-edit="b4-2.tag">هيكلية القيمة</p>
+          <h3 data-edit="b4-2.title">من المصنع إلى صاحب المحل</h3>
           
           
           
@@ -861,7 +873,7 @@
             
             <ol class="chain"><li class="node"><span class="nv"><bdi>7,000 دينار</bdi></span><span class="nl">تكلفة التصنيع</span></li><li class="link"><span></span></li><li class="node"><span class="nv"><bdi>9,000 دينار</bdi></span><span class="nl">البيع بالجملة للموزع</span></li><li class="link"><span></span></li><li class="node"><span class="nv"><bdi>10,000 دينار</bdi></span><span class="nl">سعر شراء التجزئة</span></li></ol>
             
-            <figcaption>بيانات لوحة موردي جميلة، نيسان 2026، ولم تخضع لمراجعة مستقلة. <b>المصدر</b> Jamila supplier panel data، نيسان 2026، ص 30</figcaption>
+            <figcaption>بيانات لوحة موردي جميلة، أبريل 2026، ولم تخضع لمراجعة مستقلة. <b>المصدر</b> Jamila supplier panel data، أبريل 2026، ص 30</figcaption>
           </figure>
           
           <p class="body" data-edit="b4-2.body.1">تكلفة التصنيع 30% أو أقل من سعر التجزئة. وسعر المستهلك 250 ديناراً للعبوة الصغيرة، وهي نقطة السعر الأكثر شعبية، و500 دينار للعبوة العائلية.</p>
@@ -871,16 +883,16 @@
         </section>
         
         <section class="beat" id="b4-3" data-kind="scene" data-layer="v-world" data-x="0.1100" data-y="0.5500" data-span="0.180" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="دكاكين تعيد الطلب" data-edit-label="b4-3.label">
-          <p class="tag" data-edit="b4-3.tag">التوزيع</p>
+          <p class="tag" data-edit="b4-3.tag">محرك الحجم</p>
           <h3 data-edit="b4-3.title">التوزيع لا الإنتاج</h3>
-          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">نقطة بيع يُعاد التوريد إليها</span></p>
+          <p class="fig"><span class="fig-v"><bdi>100,000+</bdi></span><span class="fig-l" data-edit="b4-3.figure">نقطة بيع</span></p>
           
           
           
           <p class="body" data-edit="b4-3.body.1">يطلب المتجر الواحد المنتج 7 مرات شهرياً، بمعدل 21 كرتوناً، وهو إيقاع يكشف نموذجاً استهلاكياً صلباً وليس مجرد تجربة عابرة.</p>
           
           
-          <p class="source"><span>المصدر</span>بيانات لوحة موردي جميلة، نيسان 2026، عبر التقرير، ص 32</p>
+          <p class="source"><span>المصدر</span>بيانات لوحة موردي جميلة، أبريل 2026، عبر التقرير، ص 32</p>
         </section>
         
         <section class="beat" id="b4-4" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.3100" data-y="0.7400" data-span="0.110" data-fb-layer="v-world" data-fb-x="0.1800" data-fb-y="0.3000" data-fb-span="0.360" data-label="الجائزة من الربح" data-edit-label="b4-4.label">
@@ -891,12 +903,12 @@
           <figure class="viz chart viz-share" style="--vw:5ch">
             
             <ol class="shares">
-              <li><span class="sk">سيارتا الجائزة شهرياً (30,000 دولار)</span><span class="st"><span class="sf" style="--w:0.70%" aria-hidden="true"></span></span><span class="sv"><bdi>0.7%</bdi> <small>من إجمالي الربح</small></span></li>
-              <li><span class="sk">برنامج المكافآت الكامل (300,000 دولار شهرياً)</span><span class="st"><span class="sf" style="--w:4.40%" aria-hidden="true"></span></span><span class="sv"><bdi>4.4%</bdi> <small>من الإيرادات</small></span></li>
+              <li><span class="sk">سيارتان شهرياً بقيمة 30,000 دولار</span><span class="st"><span class="sf" style="--w:0.70%" aria-hidden="true"></span></span><span class="sv"><bdi>0.7%</bdi> <small>من إجمالي الربح</small></span></li>
+              <li><span class="sk">برنامج المكافآت الكامل بتكلفة 300,000 دولار شهرياً</span><span class="st"><span class="sf" style="--w:4.40%" aria-hidden="true"></span></span><span class="sv"><bdi>4.4%</bdi> <small>من الإيرادات</small></span></li>
               
             </ol>
             
-            <figcaption>كلفة الجوائز حصةً من الربح والإيرادات، على تقدير الحد الأقصى. تُقرأ بهامش خطأ مناسب. <b>المصدر</b> تقدير كابيتا البحثية على بيانات الموردين، ص 33 و52</figcaption>
+            <figcaption>تقدير الحد الأقصى. <b>المصدر</b> تقدير كابيتا البحثية على بيانات الموردين، ص 33 و52</figcaption>
           </figure>
           
           
@@ -914,15 +926,15 @@
         
         <section class="beat" id="b5-1" data-kind="scene" data-layer="v-world" data-panel="diagram" data-x="0.0700" data-y="0.7400" data-span="0.130" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الختم والقفل" data-edit-label="b5-1.label">
           <p class="tag" data-edit="b5-1.tag">البيئة التنظيمية تتسارع</p>
-          <h3 data-edit="b5-1.title">خمس خطوات في ثلاث سنوات</h3>
+          <h3 data-edit="b5-1.title">ترخيص هيئة الاتصالات وتصنيف البنك المركزي</h3>
           
           
           
           <figure class="viz diagram viz-timeline">
             
-            <ol class="timeline"><li><time>2023</time><span>تشريعات هيئة الاتصالات والإعلام تضع اللهجة المحلية على قدم المساواة مع الفصحى في الخطاب الإعلاني.</span></li><li><time>تشرين الثاني 2024</time><span>حظر معاملات البنك المركزي المالية مع وسطاء تيك توك.</span></li><li><time>آذار 2025</time><span>تسجيل سنوي إلزامي ورسوم تصل إلى 680 دولاراً سنوياً لمن يتجاوز 5 ملايين متابع.</span></li><li><time>نيسان 2025</time><span>طلب برلماني بحظر تيك توك، لم يُمنح الموافقة.</span></li><li class="hi"><time>تشرين الثاني 2025</time><span>البنك المركزي يصنّف المؤثرين «عملاء عاليي المخاطر ومتعددي المخاطر»، فيتأثر أكثر من 11,000 حساب.</span></li></ol>
+            <ol class="timeline"><li><time>2023</time><span>تشريعات هيئة الاتصالات والإعلام تضع اللهجة المحلية على قدم المساواة مع الفصحى في الخطاب الإعلاني.</span></li><li><time>نوفمبر 2024</time><span>حظر معاملات البنك المركزي المالية مع وسطاء تيك توك.</span></li><li><time>مارس 2025</time><span>تسجيل سنوي إلزامي ورسوم: 680 دولاراً سنوياً للمبدعين الذين يتجاوزون 5 ملايين متابع.</span></li><li><time>أبريل 2025</time><span>طلب برلماني بالحظر. لم يُمنح الحظر الموافقة البرلمانية.</span></li><li class="hi"><time>نوفمبر 2025</time><span>البنك المركزي يصنّف المؤثرين «عملاء عاليي المخاطر ومتعددي المخاطر»، فيتأثر أكثر من 11,000 حساب.</span></li></ol>
             
-            <figcaption>القرارات التنظيمية التي يرصدها التقرير. <b>المصدر</b> Arab News وThe New Arab وشفق نيوز، عبر التقرير، ص 15 و44 و45</figcaption>
+            <figcaption> <b>المصدر</b> Arab News وThe New Arab وشفق نيوز، عبر التقرير، ص 15 و44 و45</figcaption>
           </figure>
           
           <p class="body" data-edit="b5-1.body.1">عبء الامتثال يدفع مدفوعات المؤثرين نحو النقد والحسابات الوسيطة.</p>
@@ -933,19 +945,19 @@
         
         <section class="beat" id="b5-2" data-kind="scene" data-layer="v-world" data-panel="chart" data-x="0.4700" data-y="0.4700" data-span="0.260" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="المنصة نفسها" data-edit-label="b5-2.label">
           <p class="tag" data-edit="b5-2.tag">خطر حظر المنصة</p>
-          <h3 data-edit="b5-2.title">خطر الحظر حقيقي</h3>
+          <h3 data-edit="b5-2.title">الخطر حقيقي</h3>
           
           
           <figure class="viz chart viz-bars" style="--vw:11ch">
             
             
             <ol class="bars">
-              <li><span class="bk">كانون الثاني 2025</span><span class="bt" style="--end:85.54%"><span class="seg solid" style="--l:0%;--w:85.54%" aria-hidden="true"></span><span class="bv"><bdi>34.3 مليون</bdi></span></span></li>
-              <li><span class="bk">تشرين الأول 2025</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>40.1 مليون</bdi></span></span></li>
+              <li><span class="bk">يناير 2025</span><span class="bt" style="--end:85.54%"><span class="seg solid" style="--l:0%;--w:85.54%" aria-hidden="true"></span><span class="bv"><bdi>34.3 مليون</bdi></span></span></li>
+              <li><span class="bk">أكتوبر 2025</span><span class="bt" style="--end:100.00%"><span class="seg hi" style="--l:0%;--w:100.00%" aria-hidden="true"></span><span class="bv"><bdi>40.1 مليون</bdi></span></span></li>
               
             </ol>
             
-            <figcaption>جمهور تيك توك في العراق خلال 2025. <b>المصدر</b> كابيتا البحثية، ص 45</figcaption>
+            <figcaption>جمهور تيك توك في العراق. <b>المصدر</b> كابيتا البحثية، ص 45</figcaption>
           </figure>
           
           
@@ -956,8 +968,8 @@
         </section>
         
         <section class="beat" id="b5-3" data-kind="scene" data-layer="v-world" data-x="0.5550" data-y="0.1800" data-span="0.140" data-fb-layer="v-world" data-fb-x="0.1400" data-fb-y="0.7000" data-fb-span="0.280" data-label="الجهة الرسمية" data-edit-label="b5-3.label">
-          <p class="tag" data-edit="b5-3.tag">لوائح الأخلاق العامة</p>
-          <h3 data-edit="b5-3.title">حتى المقاطع الكوميدية</h3>
+          <p class="tag" data-edit="b5-3.tag">المادة 403</p>
+          <h3 data-edit="b5-3.title">لوائح الأخلاق العامة</h3>
           <p class="fig"><span class="fig-v"><bdi>1,500+</bdi></span><span class="fig-l" data-edit="b5-3.figure">قضية إلكترونية مرتبطة بالأخلاق منذ 2023، ومعها أكثر من 200 اعتقال</span></p>
           
           
@@ -993,7 +1005,7 @@
 
         
         <section class="beat" id="finale" data-kind="scene" data-layer="v-world" data-x="0.5000" data-y="0.5000" data-span="all" data-fb-layer="v-world" data-fb-x="0.5000" data-fb-y="0.5000" data-fb-span="all" data-label="الهاتف صار الأرض" data-edit-label="finale.label">
-          <p class="tag" data-edit="finale.tag">الخلاصة</p>
+          <p class="tag" data-edit="finale.tag">الانعكاسات الاستراتيجية</p>
           <h3 data-edit="finale.title">المسار الأكثر كفاءة</h3>
           <p class="pull"><span data-edit="finale.pull">في العراق، المسار الأكثر كفاءة نحو علامة تجارية استهلاكية وطنية في 2026 لا يمر عبر شبكات التوزيع أو الإعلان فوق الخط، بل عبر العلاقة الاجتماعية الافتراضية للمبدع مع جمهوره.</span></p>
           <p class="body" data-edit="finale.body.1">المسار سريع ومنخفض الاحتكاك ومتزايد التنافس. وللعلامات العالمية الداخلة إلى العراق: المؤثر ليس شريك توزيع بل هو منافس.</p>
@@ -1008,9 +1020,9 @@
         <h2 id="ledger-title" data-edit="ledger.title">السوق في أربعة أرقام</h2>
         <dl class="four" style="--ledger:4">
           <div><dt><bdi><a href="#b1-2" style="text-decoration:none">82.9%</a></bdi></dt><dd data-edit="ledger.1.label">نسبة انتشار الإنترنت، نهاية 2024</dd></div>
-          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">من سكان العراق دون سن 25</dd></div>
-          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1 مليون</a></bdi></dt><dd data-edit="ledger.3.label">مستخدمو تيك توك النشطون، تشرين الأول 2025</dd></div>
-          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">نقطة بيع يُعاد التوريد إليها</dd></div>
+          <div><dt><bdi><a href="#b1-3" style="text-decoration:none">42%</a></bdi></dt><dd data-edit="ledger.2.label">من السكان دون سن 25</dd></div>
+          <div><dt><bdi><a href="#b2-1" style="text-decoration:none">40.1 مليون</a></bdi></dt><dd data-edit="ledger.3.label">مستخدمو تيك توك النشطون، أكتوبر 2025</dd></div>
+          <div><dt><bdi><a href="#b4-3" style="text-decoration:none">100,000+</a></bdi></dt><dd data-edit="ledger.4.label">نقطة بيع</dd></div>
           
         </dl>
 
@@ -1035,13 +1047,13 @@
 
         <div class="sources">
           <h2>المصادر</h2>
-          <ol><li>كابيتا البحثية، تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وتطوير الأعمال، نيسان 2026.</li><li>وزارة الاتصالات العراقية، تموز 2025؛ DataReportal Digital 2026 Iraq، تشرين الأول 2025.</li><li>Trading Economics / ILO، 2024.</li><li>Business of Fashion، حزيران 2025؛ Forbes Middle East، 2022.</li><li>بيانات لوحة موردي جميلة، نيسان 2026، ولم تخضع لمراجعة مستقلة.</li><li>Ads of the World، دراستا حالة FIB Pocket Fight وTCL Bling.</li><li>شفق نيوز، 2025؛ Arab News وThe New Arab، آذار 2025؛ Gulf Research Center عبر Market Data Forecast.</li></ol>
+          <ol><li>كابيتا البحثية، تحويل التأثير إلى صناعة: صنّاع المحتوى العراقيون وتطوير الأعمال، أبريل 2026.</li><li>وزارة الاتصالات العراقية، يوليو 2025؛ DataReportal Digital 2026 Iraq، أكتوبر 2025.</li><li>Trading Economics / ILO، 2024.</li><li>Business of Fashion، يونيو 2025؛ Forbes Middle East، 2022.</li><li>بيانات لوحة موردي جميلة، أبريل 2026، ولم تخضع لمراجعة مستقلة.</li><li>Ads of the World، دراستا حالة FIB Pocket Fight وTCL Bling.</li><li>شفق نيوز، 2025؛ Arab News وThe New Arab، مارس 2025؛ Gulf Research Center عبر Market Data Forecast.</li></ol>
         </div>
 
         <div class="endmark">
           <img class="logo-light" src="assets/img/logo-navy.png" alt="Kapita Research" width="106" height="30">
           <img class="logo-dark" src="assets/img/logo-white.png" alt="Kapita Research" width="106" height="30">
-          <p>قراءة تفاعلية, بغداد, نيسان 2026</p>
+          <p>قراءة تفاعلية, بغداد, أبريل 2026</p>
         </div>
       </div>
     </section>
@@ -1327,7 +1339,17 @@
     queued = true;
     requestAnimationFrame(function(){ queued = false; render(); chromeState(); });
   }
-  function refresh(){ camNow = null; measure(); render(); }
+  /* a panel that is still taller or wider than the stage on this screen is scaled down to fit: nothing is cut off */
+  function fitPanels(){
+    items.forEach(function(el){
+      var p = el._panel; if (!p) return;
+      p.style.setProperty('--fit', '1');
+      if (narrow) return;
+      var room = H - 56, s = Math.min(1, room / p.offsetHeight, p.clientWidth / p.scrollWidth);
+      if (s < 0.999) p.style.setProperty('--fit', Math.max(0.5, s).toFixed(3));
+    });
+  }
+  function refresh(){ camNow = null; measure(); fitPanels(); render(); }
 
   /* ---------- the camera follows the scroll, eased ----------
      The scroll position sets where the camera should be; the camera glides there with a short time
